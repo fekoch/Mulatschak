@@ -37,9 +37,17 @@ class Player{
      * @param {number} int - is the value for the number of the card in the array
      */
     getCard(int){
-        this.Cardarr = Array.from(this.CardSet);
-        this.CardSet.delete(this.Cardarr[int]);
+        this.Cardarr = Array.from(this.hand);
+        this.hand.delete(this.Cardarr[int]);
         return this.Cardarr[int];
+    }
+    
+    /**
+     * returns hand
+     * @return hand
+     */
+    getHand(){
+        return this.hand;
     }
     
     /**
@@ -47,7 +55,15 @@ class Player{
      * @param {number} counter - the new counter
      */
     setCounter(counter){
-        this.counter
+        this.counter = counter;
+    }
+    
+    /**
+     * sets reihe, that tells you if this player starts the round
+     * @param (boolean) reihe - true if he starts, false if not
+     */
+    setReihe(beginn){
+        this.reihe = beginn;
     }
 
 }
