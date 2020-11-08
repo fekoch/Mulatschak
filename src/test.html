@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to display a confirm box.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+    <p id="demo"></p>
+    
+<script src="Card.js"></script>
+<script src="Deck.js"></script>
+
+<script>
+
+var deck = new Deck();
+    function myFunction() {
+  
+  
+  var txt;
+  var r = confirm("Press a button!");
+  if (r == true) {
+      var card = deck.draw();
+    if(deck.nofcards = 0){
+       txt= "aus";
+       }else{
+        txt = card.color+", "+card.number;
+       }
+  } else {
+    txt = "You pressed Cancel!";
+  }
+  document.getElementById("demo").innerHTML = txt;
+}
+</script>
+
+</body>
+</html>
