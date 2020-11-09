@@ -24,5 +24,18 @@ class Card{
   setNumber(number){
     this.number = number;
   }
-
+  /**
+   * gets Card color
+   * @return the color
+   */
+  getColor() {
+      return this.color;
+  }
+    /**
+   * gets Card number
+   * @return the number
+   */
+  getNumber() {
+      return this.number;
+  }
 }
