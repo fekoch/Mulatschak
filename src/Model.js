@@ -28,20 +28,31 @@ class Model{
      * 
      */
     handOut(){
+        var handp;
+        var handc1;
+        var handc2;
+        var handc3;
         do{
+            var i= 0;
             for(var i = 0;i<5;i++){
                 this.player.addcard(deck.draw());
                 this.com1.addcard(deck.draw);
                 this.com2.addcard(deck.draw);
                 this.com3.addcard(deck.draw);
             }
-        } while();
+            if(i=1){
+                this.multi=this.multi*2;
+            }
+            i=1;
+            handp = this.player.getHand;
+        } while((handp[0].number > 10||handp[1].number > 10||handp[2].number > 10||handp[3].number > 10)&&(handc1[0].number > 10||handc1[1].number > 10||handc1[2].number > 10||handc1[3].number > 10)&&(handc2[0].number > 10||handc2[1].number > 10||handc2[2].number > 10||handc2[3].number > 10)&&(handc3[0].number > 10||handc3[1].number > 10||handc3[2].number > 10||handc3[3].number > 10));
         
         console.log(this.player);
         console.log(this.com1);
         console.log(this.com2);
         console.log(this.com3);
     }
+    
     
     discard(player, num){
         if(num.length <= 5){
@@ -57,13 +68,38 @@ class Model{
         this.trumpffarbe = farbe;
     }
     
-    restrat(){
+    /**
+     *  set SticheAngesagt
+     *  @param anzahl
+     */
+    setSticheAngesagt(anzahl) {
+        this.setSticheAngesagt=anzahl;
+    }
+    
+    restart(){
         multi = 1;
         trumpffarbe = "";
     }
-    // var zum Speichern ob eine trumpff Karte gespielt wurde
-    var trumpfVorhanden = false;
-
+    
+    prePlay(){
+        if(this.player.getSticheAngesagt > this.com1.getSticheAngesagt && this.player.getSticheAngesagt > this.com2.getSticheAngesagt && this.player.getSticheAngesagt > this.com3.getSticheAngesagt){
+            this.player.setRundeGewonnen(true);
+            return this.player;
+        }else if(this.player.getSticheAngesagt < this.com1.getSticheAngesagt && this.com1.getSticheAngesagt > this.com2.getSticheAngesagt && this.com1.getSticheAngesagt > this.com3.getSticheAngesagt){
+            this.com1.setRundeGewonnen(true);
+            return this.com1;
+        }else if(this.com2.getSticheAngesagt > this.com1.getSticheAngesagt && this.player.getSticheAngesagt < this.com2.getSticheAngesagt && this.com2.getSticheAngesagt > this.com3.getSticheAngesagt){
+            this.com2.setRundeGewonnen(true);
+            return this.com2;     
+        }else if(this.com3.getSticheAngesagt > this.com1.getSticheAngesagt && this.player.getSticheAngesagt > this.com2.getSticheAngesagt && this.com3.getSticheAngesagt < this.com3.getSticheAngesagt){
+            this.com3.setRundeGewonnen(true);
+            return this.com3;
+        }
+    }
+    /** 
+     *
+     *
+     */
     play(card1,comcard1, comcard2, comcard3, round){
         //ar[0] = player1;
         //ar[1] = card1;
@@ -80,6 +116,7 @@ class Model{
         else if(this.com2.getRundeGewonnen())this.gewinnerfarbe=comcard2.getColor();
         else if(this.com3.getRundeGewonnen())this.gewinnerfarbe=comcard3.getColor();
         // Hier kommt noch die Methode für die Stiche damit bei der ersten Runde der Spieler mit der höchsten Stichanzahl als erstes Spielt und somit die Gewinnerfarbe bestimmt
+        
         ar[0]=card1
         // Schauen welche Karten die Trumpffarbe haben, und die höchste Trumpffarbenkarte bestimmen
             for(var i = 0;i<4;i++){
@@ -131,5 +168,4 @@ class Model{
                 this.com3.setRundeGewonnen(true);
             }
         }
-    }
-
+}

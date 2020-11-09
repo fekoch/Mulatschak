@@ -24,7 +24,7 @@ class Player{
      * @param {Card} card - the added Card
      */
     addcard(card){
-        this.hand.add(card);
+        this.hand.push(card);
     }
     
     /**
@@ -32,7 +32,9 @@ class Player{
      * @param {Card} card - the deleted Card
      */
     delcard(card){
-        this.hand.delete(card);
+        var set = new Set(this.hand);
+        set.delete(card);
+        this.hand = Array.from(set);
     }
     
     /**
@@ -40,9 +42,7 @@ class Player{
      * @param {number} int - is the value for the number of the card in the array
      */
     getCard(int){
-        this.Cardarr = Array.from(this.hand);
-        this.hand.delete(this.Cardarr[int]);
-        return this.Cardarr[int];
+        return this.hand[int];
     }
     
     /**
@@ -68,6 +68,7 @@ class Player{
     setReihe(beginn){
         this.reihe = beginn;
     }
+    
     /**
      * sets sticheBekommen
      * @param the sticheBekommen
@@ -96,6 +97,7 @@ class Player{
     getRundeGewonnen() {
         return this.rundeGewonnen;
     }
+    
     /**
      *  set SticheAngesagt
      *  @param anzahl
@@ -110,4 +112,5 @@ class Player{
     getSticheAngesagt() {
         return this.sticheAngesagt;
     }
+
 }

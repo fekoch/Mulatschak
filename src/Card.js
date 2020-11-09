@@ -9,7 +9,6 @@ class Card{
       this.number = number;
   }
 
-  //setter of the class Card
   /**
    * sets color
    * @param {String} color - new color
@@ -24,7 +23,8 @@ class Card{
   setNumber(number){
     this.number = number;
   }
-  /**
+    
+    /**
    * gets Card color
    * @return the color
    */
@@ -38,4 +38,5 @@ class Card{
   getNumber() {
       return this.number;
   }
+
 }
