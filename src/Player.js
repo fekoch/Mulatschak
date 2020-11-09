@@ -11,9 +11,12 @@ class Player{
      * Creates a new Player
      */
     constructor(){
-        this.hand = new Set();
-        this.counter = 21;
-        this.reihe = false;
+        this.hand = [];
+        counter = 21;
+        reihe = false;
+        sticheAngesagt = 0;
+        sticheBekommen = 0;
+        rundeGewonnen = false;
     }
     
     /**
@@ -65,5 +68,32 @@ class Player{
     setReihe(beginn){
         this.reihe = beginn;
     }
-
+    /**
+     * sets sticheBekommen
+     * @param the sticheBekommen
+     */
+    setSticheBekommen(bekommen) {
+        this.sticheBekommen=bekommen;
+    } 
+    /**
+     * gets sticheBekommen
+     * @return the sticheBekommen
+     */
+    getSticheBekommen() {
+        return this.sticheBekommen;
+    }
+    /**
+     * sets rundeGewonnen
+     * @param the sticheBekommen
+     */
+    setRundeGewonnen(gewonnen) {
+        this.RundeGewonnen=gewonnen;
+    } 
+    /**
+     * gets rundeGewonnen
+     * @return the rundeGewonnen
+     */
+    getRundeGewonnen() {
+        return this.rundeGewonnen;
+    }
 }
