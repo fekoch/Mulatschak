@@ -96,4 +96,18 @@ class Player{
     getRundeGewonnen() {
         return this.rundeGewonnen;
     }
+    /**
+     *  set SticheAngesagt
+     *  @param anzahl
+     */
+    setSticheAngesagt(anzahl) {
+        this.setSticheAngesagt=anzahl;
+    }
+    /**
+     * get sticheAngesagt
+     * @return sticheAngesagt
+     */
+    getSticheAngesagt() {
+        return this.sticheAngesagt;
+    }
 }
