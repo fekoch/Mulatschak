@@ -1,3 +1,3 @@
 abstract class AbPlayer{
-    //todo
+    //todo realy
 }
