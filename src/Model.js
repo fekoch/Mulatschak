@@ -11,42 +11,42 @@ class Model{
      *
      */
     constructor(){
-        deck = new Deck();
-        player = new Player();
-        com1 = new Player();
-        com2 = new Player();
-        com3 = new Player();
+        var deck = new Deck();
+        var player = new Player();
+        var com1 = new Player();
+        var com2 = new Player();
+        var com3 = new Player();
         this.ar = [];
-        multi = 1;
-        trumpffarbe = "";
+        var multi = 1;
+        var trumpffarbe = "";
         this.stack = [];
-        trumpfVorhanden = false;
-        gewinnerfarbe = "";
+        var trumpfVorhanden = false;
+        var gewinnerfarbe = "";
     }
     
     /**
-     * 
+     * Lässt alle Personen 5 Kartenziehen
      */
     handOut(){
         var handp;
         var handc1;
         var handc2;
         var handc3;
-        do{
-            var i= 0;
+        //do{
+           // var j= 0;
             for(var i = 0;i<5;i++){
                 this.player.addcard(deck.draw());
                 this.com1.addcard(deck.draw);
                 this.com2.addcard(deck.draw);
                 this.com3.addcard(deck.draw);
             }
-            if(i=1){
-                this.multi=this.multi*2;
-            }
-            i=1;
-            handp = this.player.getHand;
-        } while((handp[0].number > 10||handp[1].number > 10||handp[2].number > 10||handp[3].number > 10)&&(handc1[0].number > 10||handc1[1].number > 10||handc1[2].number > 10||handc1[3].number > 10)&&(handc2[0].number > 10||handc2[1].number > 10||handc2[2].number > 10||handc2[3].number > 10)&&(handc3[0].number > 10||handc3[1].number > 10||handc3[2].number > 10||handc3[3].number > 10));
-        
+           // if(j=1){
+            //    this.multi=this.multi*2;
+           // }
+           // j=1;
+            //handp = this.player.getHand;
+       // } while(j=0);
+        //(handp[0].number > 10||handp[1].number > 10||handp[2].number > 10||handp[3].number > 10)&&(handc1[0].number > 10||handc1[1].number > 10||handc1[2].number > 10||handc1[3].number > 10)&&(handc2[0].number > 10||handc2[1].number > 10||handc2[2].number > 10||handc2[3].number > 10)&&(handc3[0].number > 10||handc3[1].number > 10||handc3[2].number > 10||handc3[3].number > 10)
         console.log(this.player);
         console.log(this.com1);
         console.log(this.com2);
@@ -54,6 +54,11 @@ class Model{
     }
     
     
+    /**
+     * discarded eine zahl an Karten für einen bestimmten spieler
+     * @param player - spieler
+     * @param num - ein Array, dieses sagt welche Karte (nach der nummer der reihenfolgen 0-5) gelöscht werden soll
+     */
     discard(player, num){
         if(num.length <= 5){
             for(var i = 0;i<num.length;i++){
@@ -64,23 +69,35 @@ class Model{
         }
     }
     
+    /**
+     * setzt die Trumpffarbe
+     * @param farbe - die neue trumpffarbe
+     */
     setTrumpffarbe(farbe){
         this.trumpffarbe = farbe;
     }
     
     /**
      *  set SticheAngesagt
-     *  @param anzahl
+     *  @param anzahl 
      */
     setSticheAngesagt(anzahl) {
         this.setSticheAngesagt=anzahl;
     }
     
+    /**
+     * setzt die werte zurück
+     */
     restart(){
         multi = 1;
         trumpffarbe = "";
+        gewinnerfarbe = "";
     }
     
+    /** 
+     * giebt an wer am meisten stiche angesagt hat und giebt diese person zurück
+     * @return eine Person
+     */
     prePlay(){
         if(this.player.getSticheAngesagt > this.com1.getSticheAngesagt && this.player.getSticheAngesagt > this.com2.getSticheAngesagt && this.player.getSticheAngesagt > this.com3.getSticheAngesagt){
             this.player.setRundeGewonnen(true);

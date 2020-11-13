@@ -12,11 +12,11 @@ class Player{
      */
     constructor(){
         this.hand = [];
-        counter = 21;
-        reihe = false;
-        sticheAngesagt = 0;
-        sticheBekommen = 0;
-        rundeGewonnen = false;
+        var counter = 21;
+        var reihe = false;
+        var sticheAngesagt = 0;
+        var sticheBekommen = 0;
+        var rundeGewonnen = false;
     }
     
     /**
@@ -59,6 +59,7 @@ class Player{
      */
     setCounter(counter){
         this.counter = counter;
+        console.log(counter);
     }
     
     /**
