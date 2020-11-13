@@ -122,7 +122,7 @@ class Model{
         //ar[1] = card1;
         this.stack.push(card1);
         this.player.delcard(card1);
-        this.stack.push(card1);
+        this.stack.push(comcard1);
         this.com1.delcard(comcard1);
         this.stack.push(comcard2);
         this.com2.delcard(comcard2);
