@@ -19,12 +19,11 @@ class Deck{
     constructor(){
         this.CardSet = new Set();
         this.Cardarr;
-        for(var i = 14;i >= 7;){
+       for(var i = 14;i >= 7;i--){
             this.CardSet.add(new Card(Deck.NUSS_FARBE,i));
             this.CardSet.add(new Card(Deck.BLATT_FARBE,i));
             this.CardSet.add(new Card(Deck.HERZ_FARBE,i));
             this.CardSet.add(new Card(Deck.GLOCKE_FARBE,i));
-            i--;
         }
         this.CardSet.add(new Card(Deck.NUSS_FARBE,6));
         this.CardSet.add(new Card(Deck.BLATT_FARBE,6));
