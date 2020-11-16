@@ -7,6 +7,11 @@ var Cardarr;
  * @version 07/11/2020
  */
 class Deck{
+    static NUSS_FARBE= "Nuss";
+    static BLATT_FARBE="Blatt";
+    static HERZ_FARBE="Herz";
+    static GLOCKE_FARBE="Glocke";
+    static WELI_FARBE="Weli";
 
     /**
      * Creates all Cards and saves it in a Set
@@ -15,16 +20,16 @@ class Deck{
         this.CardSet = new Set();
         this.Cardarr;
         for(var i = 14;i >= 7;){
-            this.CardSet.add(new Card("Nuss",i));
-            this.CardSet.add(new Card("Blatt",i));
-            this.CardSet.add(new Card("Herz",i));
-            this.CardSet.add(new Card("Glocke",i));
+            this.CardSet.add(new Card(Deck.NUSS_FARBE,i));
+            this.CardSet.add(new Card(Deck.BLATT_FARBE,i));
+            this.CardSet.add(new Card(Deck.HERZ_FARBE,i));
+            this.CardSet.add(new Card(Deck.GLOCKE_FARBE,i));
             i--;
         }
-        this.CardSet.add(new Card("Eichel",6));
-        this.CardSet.add(new Card("Blatt",6));
-        this.CardSet.add(new Card("Herz",6));
-        this.CardSet.add(new Card("Weli",6));
+        this.CardSet.add(new Card(Deck.NUSS_FARBE,6));
+        this.CardSet.add(new Card(Deck.BLATT_FARBE,6));
+        this.CardSet.add(new Card(Deck.HERZ_FARBE,6));
+        this.CardSet.add(new Card(Deck.WELI_FARBE,6));
     }
 
     /**
