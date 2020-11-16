@@ -1,5 +1,10 @@
 var ar;
 var stack;
+var deck;
+        var player;
+        var com1;
+        var com2;
+        var com3;
 /**
  * The Gamelogic
  * @author David Hegyi
@@ -11,11 +16,11 @@ class Model{
      *
      */
     constructor(){
-        var deck = new Deck();
-        var player = new Player();
-        var com1 = new Player();
-        var com2 = new Player();
-        var com3 = new Player();
+        this.deck = new Deck();
+        this.player = new Player();
+        this.com1 = new Player();
+        this.com2 = new Player();
+        this.com3 = new Player();
         this.ar = [];
         var multi = 1;
         var trumpffarbe = "";
@@ -24,7 +29,53 @@ class Model{
         var gewinnerfarbe = "";
     }
     
+    
     /**
+     * setzt die Trumpffarbe
+     * @param farbe - die neue trumpffarbe
+     */
+    setTrumpffarbe(farbe){
+        this.trumpffarbe = farbe;
+    }
+    
+    /**
+     *  set SticheAngesagt
+     *  @param anzahl 
+     */
+    setSticheAngesagt(anzahl) {
+        this.setSticheAngesagt = anzahl;
+    }
+    
+    /**
+     * Get Player
+     * @return player
+     */
+    getPlayer() {
+        return this.player;
+    }
+    /**
+     * Get Com1 
+     * @return com1
+     */
+    getCom1() {
+        return this.com1;
+    }
+    /**
+     * Get Com2 
+     * @return com2
+     */
+    getCom2() {
+        return this.com2;
+    }
+    /**
+     * Get Com3
+     * @return com3
+     */
+    getCom3() {
+        return this.com3;
+    }
+    
+     /**
      * Lässt alle Personen 5 Kartenziehen
      */
     handOut(){
@@ -35,10 +86,10 @@ class Model{
         //do{
            // var j= 0;
             for(var i = 0;i<5;i++){
-                this.player.addcard(deck.draw());
-                this.com1.addcard(deck.draw);
-                this.com2.addcard(deck.draw);
-                this.com3.addcard(deck.draw);
+                this.player.addcard(this.deck.draw());
+                this.com1.addcard(this.deck.draw());
+                this.com2.addcard(this.deck.draw());
+                this.com3.addcard(this.deck.draw());
             }
            // if(j=1){
             //    this.multi=this.multi*2;
@@ -70,28 +121,12 @@ class Model{
     }
     
     /**
-     * setzt die Trumpffarbe
-     * @param farbe - die neue trumpffarbe
-     */
-    setTrumpffarbe(farbe){
-        this.trumpffarbe = farbe;
-    }
-    
-    /**
-     *  set SticheAngesagt
-     *  @param anzahl 
-     */
-    setSticheAngesagt(anzahl) {
-        this.setSticheAngesagt=anzahl;
-    }
-    
-    /**
      * setzt die werte zurück
      */
     restart(){
-        multi = 1;
-        trumpffarbe = "";
-        gewinnerfarbe = "";
+        this.multi = 1;
+        this.trumpffarbe = "";
+        this.gewinnerfarbe = "";
     }
     
     /** 
@@ -113,11 +148,11 @@ class Model{
             return this.com3;
         }
     }
-    /** 
-     *
+    
+    /**
      *
      */
-    play(card1,comcard1, comcard2, comcard3, round){
+   play(card1,comcard1, comcard2, comcard3){
         //ar[0] = player1;
         //ar[1] = card1;
         this.stack.push(card1);
@@ -138,14 +173,14 @@ class Model{
         // Schauen welche Karten die Trumpffarbe haben, und die höchste Trumpffarbenkarte bestimmen
             for(var i = 0;i<4;i++){
                 if(stack[i].getColor()==this.trumpffarbe && 
-                   stack[i].getNumber()=>ar[0].getNumber()) {
+                   stack[i].getNumber()>=ar[0].getNumber()) {
                     ar[0]=stack[i];                                   
                     this.trumpfVorhanden = true;
                 }
             }
         // Falls die Trupffarbe nicht vorkommt gewinnt die höchste Karte mit der Gewinnerfarbe
-            if(this.trumpfVorhanden==false) {
-                for(var i = 0;i<4;i++){
+            if(this.trumpfVorhanden===false) {
+                for(i = 0;i<4;i++){
                     if(stack[i].getColor()==this.gewinnerfarbefarbe && 
                        stack[i].getNumber()>ar[0].getNumber()) {
                         ar[0]=stack[i];
