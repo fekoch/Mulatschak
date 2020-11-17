@@ -51,8 +51,10 @@ class playGame extends Phaser.Scene {
 
     create() {
         model = new Model();
+
+        // Rundenbegin
         model.handOut();
-        this.showDeck();
+        this.showHand();
 
         var zone = this.add.image(1000,300,'dropzone').setInteractive();
         zone.setScale(2);
@@ -80,6 +82,7 @@ class playGame extends Phaser.Scene {
             zone.setScale(2);
         });
 
+        // TODO onDrop, move Card back up, (it will be moved down because of the hover-stuff)
         // center the card on drop
         this.input.on('drop', function(pointer,gameObject,dropZone){
             gameObject.x = dropZone.x;
@@ -101,15 +104,37 @@ class playGame extends Phaser.Scene {
 
     }
 
-    showDeck() {
+    /**
+     * Displays all the cards from the Hand
+     *  on the bottom of the screen
+     */
+    showHand() {
         const cardWidth = gameOptions.cardWidth * gameOptions.cardScale;
-        const margin_left = cardWidth; // margin left = 1 Card
+        const handLength = 5 * cardWidth; // max total length of hand
+        const margin_left = game.config.width / 2 - handLength / 2 + cardWidth/2; // center Hand
+        const handHeight = game.config.height;
+        console.log("ML: "+margin_left);
         let player = model.getPlayer();
         for (let i = 0; i < player.hand.length; i++) {
-            let card = this.add.sprite(margin_left+i*cardWidth,game.config.height / 2, "cards", player.hand[i].getSpriteID());
+            let card = this.add.sprite(margin_left+i*cardWidth,handHeight, "cards", player.hand[i].getSpriteID());
             card.setScale(gameOptions.cardScale);
             card.setInteractive();
             this.input.setDraggable(card);
+
+            // hover-listener
+            card.on('pointerover',(pointer,localX,localY,event)=>{
+                console.log("pointerover:");
+                console.log(card);
+                card.y= card.y-30;
+            });
+
+            // TODO isnt executed on mobile
+            // hover-ende-listener
+            card.on('pointerout',(pointer,localX,localY,event)=>{
+                console.log("pointerout:");
+                console.log(card);
+                card.y= card.y+30;
+            });
         }
         console.log("showdeck");
         console.log(player.hand);
