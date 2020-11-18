@@ -1,5 +1,4 @@
 let game;
-let model;
 let gameOptions = {
     // card width, in pixels
     cardWidth: 180,
@@ -34,6 +33,19 @@ window.onload =function () {
  * Die Haupt-Szene
  */
 class playGame extends Phaser.Scene {
+    /**
+     * The Offset, if you hover over cards
+     */
+    static HOVEROFFSET = 30;
+
+    /**
+     * The Mulatschak-model
+     */
+    model;
+
+    /**
+     * generate Scene
+     */
     constructor() {
         super("PlayGame");
     }
@@ -50,15 +62,13 @@ class playGame extends Phaser.Scene {
 
 
     create() {
-        model = new Model();
+        this.model = new Model();
 
         // Rundenbegin
-        model.handOut();
+        this.model.handOut();
         this.showHand();
+        this.displayDropzones();
 
-        var zone = this.add.image(1000,300,'dropzone').setInteractive();
-        zone.setScale(2);
-        zone.input.dropZone = true;
 
         // Show card over everything else
         this.input.on('dragstart', function(pointer, gameObject){
@@ -71,36 +81,6 @@ class playGame extends Phaser.Scene {
            gameObject.y = dragY;
         });
 
-        // recognizes if the card enters the correct dropzone
-        this.input.on('dragenter',function(pointer,gameObject,dropZone){
-            if(dropZone === zone) {
-                zone.setScale(3);
-                console.log('dragenter');
-            }
-        });
-        this.input.on('dragleave',function(pointer,gameObject,dropZone){
-            zone.setScale(2);
-        });
-
-        // TODO onDrop, move Card back up, (it will be moved down because of the hover-stuff)
-        // center the card on drop
-        this.input.on('drop', function(pointer,gameObject,dropZone){
-            gameObject.x = dropZone.x;
-            gameObject.y = dropZone.y;
-            gameObject.setScale(0.5);
-            gameObject.input.enabled = false; // disable further input on the card
-            zone.setScale(2);
-        });
-
-        // reset card after unsuccesfull drop
-        this.input.on('dragend',function(pointer,gameObject,dropped){
-            console.log("draggend");
-            if(!dropped){
-                console.log("not dropped");
-                gameObject.x = gameObject.input.dragStartX;
-                gameObject.y = gameObject.input.dragStartY;
-            }
-        })
 
     }
 
@@ -114,7 +94,7 @@ class playGame extends Phaser.Scene {
         const margin_left = game.config.width / 2 - handLength / 2 + cardWidth/2; // center Hand
         const handHeight = game.config.height;
         console.log("ML: "+margin_left);
-        let player = model.getPlayer();
+        let player = this.model.getPlayer();
         for (let i = 0; i < player.hand.length; i++) {
             let card = this.add.sprite(margin_left+i*cardWidth,handHeight, "cards", player.hand[i].getSpriteID());
             card.setScale(gameOptions.cardScale);
@@ -125,7 +105,7 @@ class playGame extends Phaser.Scene {
             card.on('pointerover',(pointer,localX,localY,event)=>{
                 console.log("pointerover:");
                 console.log(card);
-                card.y= card.y-30;
+                card.y= card.y-playGame.HOVEROFFSET;
             });
 
             // TODO isnt executed on mobile
@@ -140,5 +120,72 @@ class playGame extends Phaser.Scene {
         console.log(player.hand);
     }
 
+    /**
+     * Displays the DropZone and adds the listeners
+     */
+    displayDropzones() {
+        let zoneWidth=gameOptions.cardWidth*gameOptions.cardScale;
+        let zoneHeight=gameOptions.cardHeight*gameOptions.cardScale;
+        let zoneX = game.config.width/2;
+        let zoneY = game.config.height/2 + game.config.height*0.1;
+        // Graphic Origin is in the upper left corner
+        let zoneXg = zoneX - zoneWidth/2;
+        let zoneYg = zoneY - zoneHeight/2;
+
+        // the player drop-zone
+        //this.playerDropZone = this.add.image(1000,300,'dropzone').setInteractive();
+        /**
+         * The DropZone for the player Cards
+         */
+        let playerDropZone = this.add.zone(zoneX,zoneY,zoneWidth,zoneHeight).setRectangleDropZone(zoneWidth,zoneHeight);
+        /**
+         * The Graphic of the DropZone
+         * @see playerDrop        let zoneWidth=gameOptions.cardWidth*gameOptions.cardScale;
+        let zoneHeight=gameOptions.cardHeight*gameOptions.cardScale;Zone
+         */
+        let playerDropZoneGraphic = this.add.graphics();
+        console.log(playerDropZoneGraphic);
+        playerDropZoneGraphic.lineStyle(4,0x636363);
+        playerDropZoneGraphic.strokeRoundedRect(zoneXg,zoneYg,zoneWidth,zoneHeight);
+        playerDropZone.input.dropZone = true;
+
+        // recognizes if the card enters the correct dropzone
+        this.input.on('dragenter',function(pointer,gameObject,dropZone){
+            if(dropZone === playerDropZone) {
+                console.log('dragenter');
+                playerDropZoneGraphic.clear();
+                playerDropZoneGraphic.lineStyle(5,0x00FF28);
+                playerDropZoneGraphic.strokeRoundedRect(zoneXg,zoneYg,zoneWidth,zoneHeight);
+            }
+        });
+
+        this.input.on('dragleave',function(pointer,gameObject,dropZone){
+            console.log("dragleave");
+            playerDropZoneGraphic.clear();
+            playerDropZoneGraphic.lineStyle(4,0x636363);
+            playerDropZoneGraphic.strokeRoundedRect(zoneXg,zoneYg,zoneWidth,zoneHeight);
+        });
+
+        // center the card on drop
+        this.input.on('drop', function(pointer,gameObject,dropZone){
+            gameObject.input.enabled = false; // disable further input on the card
+            gameObject.x = dropZone.x;
+            gameObject.y = dropZone.y - playGame.HOVEROFFSET;
+            // TODO continue game
+        });
+
+        // reset card after unsuccesfull drop
+        this.input.on('dragend',function(pointer,gameObject,dropped){
+            console.log("draggend");
+            if(!dropped){
+                console.log("not dropped");
+                gameObject.x = gameObject.input.dragStartX;
+                gameObject.y = gameObject.input.dragStartY;
+            }
+            playerDropZoneGraphic.clear();
+            playerDropZoneGraphic.lineStyle(4,0x636363);
+            playerDropZoneGraphic.strokeRoundedRect(zoneXg,zoneYg,zoneWidth,zoneHeight);
+        });
+    }
 }
 
