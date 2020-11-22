@@ -1,10 +1,10 @@
 var ar;
 var stack;
 var deck;
-        var player;
-        var com1;
-        var com2;
-        var com3;
+var player;
+var com1;
+var com2;
+var com3;
 /**
  * The Gamelogic
  * @author David Hegyi
@@ -28,54 +28,31 @@ class Model{
         var trumpfVorhanden = false;
         var gewinnerfarbe = "";
     }
-    
-    
+	/**
+	 * Setzt Karten im Array
+	 * @param {Card} card1 - Karte des Spielers 
+	 * @param {Card} comcard1 - Karte des 1. ersten Comspielers 
+	 * @param {Card} comcard2 - Karte des 2. ersten Comspielers 
+	 * @param {Card} comcard3 - Karte des 3. ersten Comspielers 
+	 */
+    setStack(card1,comcard1, comcard2, comcard3) {
+		this.stack.push(card1);
+        this.player.delcard(card1);
+        this.stack.push(comcard1);
+        this.com1.delcard(comcard1);
+        this.stack.push(comcard2);
+        this.com2.delcard(comcard2);
+        this.stack.push(comcard3);
+        this.com2.delcard(comcard3);
+	}
+	/**
+	 * Gibt den Array mit den Karten zurueck
+	 * @return {Array} stack - Array mit den Karten der jetztigen Runde
+	 */
+	getStack() {
+		return this.stack;
+	}
     /**
-     * setzt die Trumpffarbe
-     * @param farbe - die neue trumpffarbe
-     */
-    setTrumpffarbe(farbe){
-        this.trumpffarbe = farbe;
-    }
-    
-    /**
-     *  set SticheAngesagt
-     *  @param anzahl 
-     */
-    setSticheAngesagt(anzahl) {
-        this.setSticheAngesagt = anzahl;
-    }
-    
-    /**
-     * Get Player
-     * @return player
-     */
-    getPlayer() {
-        return this.player;
-    }
-    /**
-     * Get Com1 
-     * @return com1
-     */
-    getCom1() {
-        return this.com1;
-    }
-    /**
-     * Get Com2 
-     * @return com2
-     */
-    getCom2() {
-        return this.com2;
-    }
-    /**
-     * Get Com3
-     * @return com3
-     */
-    getCom3() {
-        return this.com3;
-    }
-    
-     /**
      * Lässt alle Personen 5 Kartenziehen
      */
     handOut(){
@@ -103,7 +80,34 @@ class Model{
         console.log(this.com2);
         console.log(this.com3);
     }
-    
+    /**
+	 * Get Player
+	 * @return player
+	 */
+    getPlayer() {
+		return this.player;
+	}
+	/**
+	 * Get Com1 
+	 * @return com1
+	 */
+	getCom1() {
+		return this.com1;
+	}
+	/**
+	 * Get Com2 
+	 * @return com2
+	 */
+	getCom2() {
+		return this.com2;
+	}
+	/**
+	 * Get Com3
+	 * @return com3
+	 */
+	getCom3() {
+		return this.com3;
+	}
     
     /**
      * discarded eine zahl an Karten für einen bestimmten spieler
@@ -118,6 +122,22 @@ class Model{
         }else{
             alert("You don't have that many Cards to discard");
         }
+    }
+    
+    /**
+     * setzt die Trumpffarbe
+     * @param farbe - die neue trumpffarbe
+     */
+    setTrumpffarbe(farbe){
+        this.trumpffarbe = farbe;
+    }
+    
+    /**
+     *  set SticheAngesagt
+     *  @param anzahl 
+     */
+    setSticheAngesagt(anzahl) {
+        this.setSticheAngesagt=anzahl;
     }
     
     /**
@@ -148,11 +168,11 @@ class Model{
             return this.com3;
         }
     }
-    
-    /**
+    /** 
+     *
      *
      */
-   play(card1,comcard1, comcard2, comcard3){
+    play(){
         //ar[0] = player1;
         //ar[1] = card1;
         this.stack.push(card1);
@@ -169,34 +189,35 @@ class Model{
         else if(this.com3.getRundeGewonnen())this.gewinnerfarbe=comcard3.getColor();
         // Hier kommt noch die Methode für die Stiche damit bei der ersten Runde der Spieler mit der höchsten Stichanzahl als erstes Spielt und somit die Gewinnerfarbe bestimmt
         
-        ar[0]=card1
+        this.ar[0]=card1;
         // Schauen welche Karten die Trumpffarbe haben, und die höchste Trumpffarbenkarte bestimmen
             for(var i = 0;i<4;i++){
-                if(stack[i].getColor()==this.trumpffarbe && 
-                   stack[i].getNumber()>=ar[0].getNumber()) {
-                    ar[0]=stack[i];                                   
+                if(this.stack[i].getColor()==this.trumpffarbe && 
+                   this.stack[i].getNumber()>=this.ar[0].getNumber()) {
+                    this.ar[0]=this.stack[i];                                   
                     this.trumpfVorhanden = true;
                 }
             }
         // Falls die Trupffarbe nicht vorkommt gewinnt die höchste Karte mit der Gewinnerfarbe
             if(this.trumpfVorhanden===false) {
                 for(i = 0;i<4;i++){
-                    if(stack[i].getColor()==this.gewinnerfarbefarbe && 
-                       stack[i].getNumber()>ar[0].getNumber()) {
-                        ar[0]=stack[i];
+                    if(this.stack[i].getColor()==this.gewinnerfarbefarbe && 
+                       this.stack[i].getNumber()>this.ar[0].getNumber()) {
+                        this.ar[0]=stack[i];
                     }
                 }
             }
         // Falls der Spieler die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
-            if(ar[0]==this.player) {
+            if(this.ar[0]==this.card1) {
                 this.player.setSticheBekommen(this.player.getSticheBekommen()+1);
                 this.player.setRundeGewonnen(true);
                 this.com1.setRundeGewonnen(false);
                 this.com2.setRundeGewonnen(false);
                 this.com3.setRundeGewonnen(false);
+				console.log(this.player.getRundeGewonnen());
             }
         // Falls der Com1 die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
-            if(ar[0]==this.com1) {
+            if(this.ar[0]==this.comcard1) {
                 this.com1.setSticheBekommen(this.com1.getSticheBekommen()+1);
                 this.player.setRundeGewonnen(false);
                 this.com1.setRundeGewonnen(true);
@@ -204,7 +225,7 @@ class Model{
                 this.com3.setRundeGewonnen(false);
             }
         // Falls der Com2 die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
-            if(ar[0]==this.com2) {
+            if(this.ar[0]==this.comcard2) {
                 this.com2.setSticheBekommen(this.com2.getSticheBekommen()+1);
                 this.player.setRundeGewonnen(false);
                 this.com1.setRundeGewonnen(false);
@@ -212,12 +233,20 @@ class Model{
                 this.com3.setRundeGewonnen(false);
             }
         // Falls der Com3 die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
-            if(ar[0]==this.com3) {
+            if(this.ar[0]==this.comcard3) {
                 this.com3.setSticheBekommen(this.com3.getSticheBekommen()+1);
                 this.player.setRundeGewonnen(false);
                 this.com1.setRundeGewonnen(false);
                 this.com2.setRundeGewonnen(false);
                 this.com3.setRundeGewonnen(true);
             }
+			console.log(this.player.getRundeGewonnen());
         }
+		/**
+		beginGame
+		Handout
+		setTrupffarbe
+		Choose card
+		**/
+
 }
