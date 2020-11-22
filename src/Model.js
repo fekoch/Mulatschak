@@ -45,6 +45,11 @@ class Model{
 		return this.stack;
 	}
     
+    
+    /**
+     * gives you the current playing player
+     * @retrun {Player} the current playing player
+     */
     getSpieleranderReihe(){
         if(this.player.getRundeGewonnen() == true){
            return this.player;
@@ -58,6 +63,9 @@ class Model{
         return -1;
     }
     
+    /**
+     * änderet den derzeit spielenden spieler(diese methode muss 4mal eingesetzt werden bevor das model spielt mit es auf den anfangswert wieder zurück gesetzt wird, DANKE!!)
+     */
     nächsterSpieler(){
         if(this.player.getRundeGewonnen() == true){
            this.player.setRundeGewonnen(false);
@@ -72,7 +80,6 @@ class Model{
             this.com3.setRundeGewonnen(false);
             this.plyer.setRundeGewonnen(true);
         }
-        return -1;
     }
     
     /**
