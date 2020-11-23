@@ -1,10 +1,4 @@
-var ar;
-var stack;
-var deck;
-        var player;
-        var com1;
-        var com2;
-        var com3;
+
 /**
  * The Gamelogic
  * @author David Hegyi
@@ -27,8 +21,66 @@ class Model{
         this.stack = [];
         var trumpfVorhanden = false;
         var gewinnerfarbe = "";
+        this.player.setRundeGewonnen(true);
+    }
+    /**
+	 * Setzt Karten im Array
+	 * @param {Card} card1 - Karte des Spielers 
+	 */
+    setStack(card1) {
+		this.stack.push(card1);
+        this.player.delcard(card1);
+        this.stack.push(this.com1.getCard(1));
+        this.com1.shift();
+        this.stack.push(this.com2.getCard(1));
+        this.com2.shift();
+        this.stack.push(this.com3.getCard(1));
+        this.com3.shift();
+	}
+	/**
+	 * Gibt den Array mit den Karten zurueck
+	 * @return {Array} stack - Array mit den Karten der jetztigen Runde
+	 */
+	getStack() {
+		return this.stack;
+	}
+    
+    
+    /**
+     * gives you the current playing player
+     * @retrun {Player} the current playing player
+     */
+    getSpieleranderReihe(){
+        if(this.player.getRundeGewonnen() == true){
+           return this.player;
+        } else if(this.com1.getRundeGewonnen() == true){
+            return this.com1;
+        }else if(this.com2.getRundeGewonnen() == true){
+            return this.com2;
+        }else if(this.com3.getRundeGewonnen() == true){
+            return this.com3;
+        }
+        return -1;
     }
     
+    /**
+     * änderet den derzeit spielenden spieler(diese methode muss 4mal eingesetzt werden bevor das model spielt mit es auf den anfangswert wieder zurück gesetzt wird, DANKE!!)
+     */
+    nächsterSpieler(){
+        if(this.player.getRundeGewonnen() == true){
+           this.player.setRundeGewonnen(false);
+            this.com1.setRundeGewonnen(true);
+        } else if(this.com1.getRundeGewonnen() == true){
+            this.com1.setRundeGewonnen(false);
+            this.com2.setRundeGewonnen(true);
+        }else if(this.com2.getRundeGewonnen() == true){
+            this.com2.setRundeGewonnen(false);
+            this.com3.setRundeGewonnen(true);
+        }else if(this.com3.getRundeGewonnen() == true){
+            this.com3.setRundeGewonnen(false);
+            this.plyer.setRundeGewonnen(true);
+        }
+    }
     
     /**
      * setzt die Trumpffarbe
@@ -48,28 +100,28 @@ class Model{
     
     /**
      * Get Player
-     * @return player
+     * @return player obj
      */
     getPlayer() {
         return this.player;
     }
     /**
      * Get Com1 
-     * @return com1
+     * @return com1 obj
      */
     getCom1() {
         return this.com1;
     }
     /**
      * Get Com2 
-     * @return com2
+     * @return com2 obj
      */
     getCom2() {
         return this.com2;
     }
     /**
      * Get Com3
-     * @return com3
+     * @return com3 obj
      */
     getCom3() {
         return this.com3;
@@ -107,8 +159,8 @@ class Model{
     
     /**
      * discarded eine zahl an Karten für einen bestimmten spieler
-     * @param player - spieler
-     * @param num - ein Array, dieses sagt welche Karte (nach der nummer der reihenfolgen 0-5) gelöscht werden soll
+     * @param {Player} player - spieler
+     * @param {Integer} num - ein Array, dieses sagt welche Karte (nach der nummer der reihenfolgen 0-5) gelöscht werden soll
      */
     discard(player, num){
         if(num.length <= 5){
@@ -130,7 +182,7 @@ class Model{
     }
     
     /**
-     * giebt an wer am meisten stiche angesagt hat und giebt diese person zurück
+     * gibt an wer am meisten stiche angesagt hat und giebt diese person zurück
      * @return {Person} Person
      */
     prePlay(){
@@ -152,17 +204,7 @@ class Model{
     /**
      *
      */
-   play(card1,comcard1, comcard2, comcard3){
-        //ar[0] = player1;
-        //ar[1] = card1;
-        this.stack.push(card1);
-        this.player.delcard(card1);
-        this.stack.push(comcard1);
-        this.com1.delcard(comcard1);
-        this.stack.push(comcard2);
-        this.com2.delcard(comcard2);
-        this.stack.push(comcard3);
-        this.com2.delcard(comcard3);
+   play(){
         if(this.player.getRundeGewonnen())this.gewinnerfarbe=card1.getColor();
         else if(this.com1.getRundeGewonnen())this.gewinnerfarbe=comcard1.getColor();
         else if(this.com2.getRundeGewonnen())this.gewinnerfarbe=comcard2.getColor();
