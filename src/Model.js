@@ -181,9 +181,9 @@ class Model{
         this.gewinnerfarbe = "";
     }
     
-    /** 
-     * giebt an wer am meisten stiche angesagt hat und giebt diese person zurück
-     * @return {Person} eine Person
+    /**
+     * gibt an wer am meisten stiche angesagt hat und giebt diese person zurück
+     * @return {Person} Person
      */
     prePlay(){
         if(this.player.getSticheAngesagt > this.com1.getSticheAngesagt && this.player.getSticheAngesagt > this.com2.getSticheAngesagt && this.player.getSticheAngesagt > this.com3.getSticheAngesagt){
