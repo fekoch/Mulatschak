@@ -172,7 +172,7 @@ class playGame extends Phaser.Scene {
             gameObject.x = dropZone.x;
             gameObject.y = dropZone.y - playGame.HOVEROFFSET;
             // TODO continue game
-        });
+        },this);
 
         // reset card after unsuccesfull drop
         this.input.on('dragend',function(pointer,gameObject,dropped){
