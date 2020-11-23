@@ -66,7 +66,7 @@ class Model{
     /**
      * änderet den derzeit spielenden spieler(diese methode muss 4mal eingesetzt werden bevor das model spielt mit es auf den anfangswert wieder zurück gesetzt wird, DANKE!!)
      */
-    nächsterSpieler(){
+    naechsterSpieler(){
         if(this.player.getRundeGewonnen() == true){
            this.player.setRundeGewonnen(false);
             this.com1.setRundeGewonnen(true);
