@@ -68,6 +68,8 @@ class PlayGame extends Phaser.Scene {
      */
     playerHandCards;
 
+    comGraphics;
+
     /**
      * generate Scene
      */
@@ -101,6 +103,45 @@ class PlayGame extends Phaser.Scene {
         // setup player hand array
         this.playerHandCards = [];
 
+
+        // set-up Com Graphics
+        this.comGraphics = [];
+        this.comGraphics[0] = this.add.graphics();
+        this.comGraphics[0].drawMyself = function() {
+            let y = 20;
+            let radius = game.config.width / 8 / 2;
+            let x = game.config.width / 4;
+            this.clear();
+            //this.lineStyle(10,0x636363,1);
+            this.fillStyle(0x636363,1)
+            this.fillCircle(x,y,radius);
+            //this.strokeCircle(x,y,radius);
+        }
+        this.comGraphics[0].drawMyself();
+        this.comGraphics[1] = this.add.graphics();
+        this.comGraphics[1].drawMyself = function() {
+            let y = 20;
+            let radius = game.config.width / 8 / 2;
+            let x = game.config.width / 4 *2;
+            this.clear();
+            //this.lineStyle(10,0x636363,1);
+            this.fillStyle(0x636363,1)
+            this.fillCircle(x,y,radius);
+            //this.strokeCircle(x,y,radius);
+        }
+        this.comGraphics[1].drawMyself();
+        this.comGraphics[2] = this.add.graphics();
+        this.comGraphics[2].drawMyself = function() {
+            let y = 20;
+            let radius = game.config.width / 8 / 2;
+            let x = game.config.width / 4 * 3;
+            this.clear();
+            //this.lineStyle(10,0x636363,1);
+            this.fillStyle(0x636363,1)
+            this.fillCircle(x,y,radius);
+            //this.strokeCircle(x,y,radius);
+        }
+        this.comGraphics[2].drawMyself();
         // old code
         //this.model = new Model();
         //this.model.handOut();
@@ -250,6 +291,15 @@ class PlayGame extends Phaser.Scene {
         for (let i = 0; i < this.playerHandCards.length; i++) {
             this.input.setDraggable(this.playerHandCards[i],enable);
         }
+    }
+
+    /**
+     * Shows that a com plays a card
+     * @param card {Card} the Card that the com plays
+     * @param comID {int} the comID from 0-2
+     */
+    comPlayCard(comID,card) {
+
     }
 }
 
