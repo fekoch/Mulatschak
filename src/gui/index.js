@@ -45,13 +45,21 @@ class PlayGame extends Phaser.Scene {
 
     /**
      * The DropZone for the player Cards
+     * @type Phaser.GameObjects.Zone
      */
     dropZone;
     /**
      * The Graphic of the DropZone
      * @see playerDrop
+     * @type Phaser.GameObjects.Graphics
      */
     dropZoneGraphic;
+
+    /**
+     * Is the CardDrag enabled?
+     * @type boolean
+     */
+    cardDragEnabled;
 
     /**
      * generate Scene
