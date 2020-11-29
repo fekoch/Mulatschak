@@ -82,6 +82,7 @@ class PlayGame extends Phaser.Scene {
         // Start a Game
         // Game { * Plays { 5 Rounds { 4 Runs
         this.#controller = new Controller(this);
+        this.#controller.playGame();
     }
 
 
@@ -122,6 +123,10 @@ class PlayGame extends Phaser.Scene {
 
     /**
      * Displays the DropZone and adds the listeners
+     *  also waits for the player input
+     * @param dropCallback {function} the callback-function to be executed after a succesfull drop,
+     *   it is executed with the dropped SpriteID
+     *
      */
     displayDropzones(dropCallback) {
         let zoneWidth=gameOptions.cardWidth*gameOptions.cardScale;
