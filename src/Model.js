@@ -210,7 +210,7 @@ class Model{
         else if(this.com2.getRundeGewonnen())this.gewinnerfarbe=this.stack[2].getColor();
         else if(this.com3.getRundeGewonnen())this.gewinnerfarbe=this.stack[3].getColor();
         
-        this.ar[0]=stack[0];
+        this.ar[0]=this.stack[0];
         // Schauen welche Karten die Trumpffarbe haben, und die höchste Trumpffarbenkarte bestimmen
             for(var i = 0;i<4;i++){
                 if(this.stack[i].getColor()==this.trumpffarbe && 
