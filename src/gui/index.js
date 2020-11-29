@@ -1,4 +1,5 @@
 let game;
+let ctrl; // TODO for debug
 let gameOptions = {
     // card width, in pixels
     cardWidth: 180,
@@ -62,6 +63,12 @@ class PlayGame extends Phaser.Scene {
     cardDragEnabled;
 
     /**
+     * The cards in the hand of the player
+     * @type Phaser.GameObjects.Sprite[]
+     */
+    playerHandCards;
+
+    /**
      * generate Scene
      */
     constructor() {
@@ -91,6 +98,9 @@ class PlayGame extends Phaser.Scene {
             gameObject.y = dragY;
         });
 
+        // setup player hand array
+        this.playerHandCards = [];
+
         // old code
         //this.model = new Model();
         //this.model.handOut();
@@ -100,6 +110,7 @@ class PlayGame extends Phaser.Scene {
         // Start a Game
         // Game { * Plays { 5 Rounds { 4 Runs
         this.controller = new Controller(this);
+        ctrl = this.controller;
         this.controller.playGame();
     }
 
@@ -107,6 +118,8 @@ class PlayGame extends Phaser.Scene {
     /**
      * Displays all the cards from the Hand
      *  on the bottom of the screen
+     * Also enables the CardDrag
+     * @see setCardDragEnabled
      *  @param hand {Array<Card>} ein Array mit den Handkarten
      */
     showHand(hand) {
@@ -118,15 +131,17 @@ class PlayGame extends Phaser.Scene {
         for (let i = 0; i < hand.length; i++) {
             let card = this.add.sprite(margin_left+i*cardWidth,handHeight, "cards", hand[i].getSpriteID());
             card.setData('ID',hand[i].getSpriteID()); // add the SpriteID to be queried with getData('ID')
+            card.setData('object',hand[i]);
             card.setScale(gameOptions.cardScale);
             card.setInteractive();
-            this.input.setDraggable(card);
+            //this.input.setDraggable(card);
+            this.playerHandCards.push(card);
 
             // hover-listener
             card.on('pointerover',(pointer,localX,localY,event)=>{
                 //console.log("pointerover:");
                 //console.log(card);
-                card.y= card.y-PlayGame.HOVEROFFSET;
+                if (this.cardDragEnabled) card.y= card.y-PlayGame.HOVEROFFSET;
             });
 
             // TODO isnt executed on mobile
@@ -134,9 +149,10 @@ class PlayGame extends Phaser.Scene {
             card.on('pointerout',(pointer,localX,localY,event)=>{
                 //console.log("pointerout:");
                 //console.log(card);
-                card.y= card.y+30;
+                if (this.cardDragEnabled) card.y= card.y+30;
             });
         }
+        this.setCardDragEnabled(true);
     }
 
     /**
@@ -191,7 +207,7 @@ class PlayGame extends Phaser.Scene {
                 gameObject.input.enabled = false; // disable further input on the card
                 gameObject.x = dropZone.x;
                 gameObject.y = dropZone.y - PlayGame.HOVEROFFSET;
-                this.controller.playCard(gameObject.getData('ID'));
+                this.controller.playCard(gameObject.getData('object'));
             }
         },this);
 
@@ -223,6 +239,17 @@ class PlayGame extends Phaser.Scene {
     hideDropzone() {
         this.input.disable(this.dropZone);
         this.dropZoneGraphic.clear();
+    }
+
+    /**
+     * Enables the Card Drag and the Hover -Effect
+     * @param enable {boolean} enable or disable?
+     */
+    setCardDragEnabled(enable) {
+        this.cardDragEnabled = enable;
+        for (let i = 0; i < this.playerHandCards.length; i++) {
+            this.input.setDraggable(this.playerHandCards[i],enable);
+        }
     }
 }
 
