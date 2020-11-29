@@ -201,36 +201,35 @@ class Model{
         }
     }
     
-    /**
-     *
+    /** 
+     * Bestimmt welche der 4 Karten die höchste ist und setzt den Gewinner
      */
-   play(){
-        if(this.player.getRundeGewonnen())this.gewinnerfarbe=card1.getColor();
-        else if(this.com1.getRundeGewonnen())this.gewinnerfarbe=comcard1.getColor();
-        else if(this.com2.getRundeGewonnen())this.gewinnerfarbe=comcard2.getColor();
-        else if(this.com3.getRundeGewonnen())this.gewinnerfarbe=comcard3.getColor();
-        // Hier kommt noch die Methode für die Stiche damit bei der ersten Runde der Spieler mit der höchsten Stichanzahl als erstes Spielt und somit die Gewinnerfarbe bestimmt
+    play(){
+        if(this.player.getRundeGewonnen())this.gewinnerfarbe=this.stack[0].getColor();
+        else if(this.com1.getRundeGewonnen())this.gewinnerfarbe=this.stack[1].getColor();
+        else if(this.com2.getRundeGewonnen())this.gewinnerfarbe=this.stack[2].getColor();
+        else if(this.com3.getRundeGewonnen())this.gewinnerfarbe=this.stack[3].getColor();
         
-        ar[0]=card1
+        this.ar[0]=stack[0];
         // Schauen welche Karten die Trumpffarbe haben, und die höchste Trumpffarbenkarte bestimmen
             for(var i = 0;i<4;i++){
-                if(stack[i].getColor()==this.trumpffarbe && 
-                   stack[i].getNumber()>=ar[0].getNumber()) {
-                    ar[0]=stack[i];                                   
+                if(this.stack[i].getColor()==this.trumpffarbe && 
+                   this.stack[i].getNumber()>=this.ar[0].getNumber()) {
+                    this.ar[0]=this.stack[i];                                   
                     this.trumpfVorhanden = true;
                 }
             }
         // Falls die Trupffarbe nicht vorkommt gewinnt die höchste Karte mit der Gewinnerfarbe
             if(this.trumpfVorhanden===false) {
                 for(i = 0;i<4;i++){
-                    if(stack[i].getColor()==this.gewinnerfarbefarbe && 
-                       stack[i].getNumber()>ar[0].getNumber()) {
-                        ar[0]=stack[i];
+                    if(this.stack[i].getColor()==this.gewinnerfarbefarbe && 
+                       this.stack[i].getNumber()>this.ar[0].getNumber()) {
+                        this.ar[0]=this.stack[i];
                     }
                 }
             }
         // Falls der Spieler die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
-            if(ar[0]==this.player) {
+            if(this.ar[0]==this.stack[0]) {
                 this.player.setSticheBekommen(this.player.getSticheBekommen()+1);
                 this.player.setRundeGewonnen(true);
                 this.com1.setRundeGewonnen(false);
@@ -238,7 +237,7 @@ class Model{
                 this.com3.setRundeGewonnen(false);
             }
         // Falls der Com1 die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
-            if(ar[0]==this.com1) {
+            if(this.ar[0]==this.stack[1]) {
                 this.com1.setSticheBekommen(this.com1.getSticheBekommen()+1);
                 this.player.setRundeGewonnen(false);
                 this.com1.setRundeGewonnen(true);
@@ -246,7 +245,7 @@ class Model{
                 this.com3.setRundeGewonnen(false);
             }
         // Falls der Com2 die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
-            if(ar[0]==this.com2) {
+            if(this.ar[0]==this.stack[2]) {
                 this.com2.setSticheBekommen(this.com2.getSticheBekommen()+1);
                 this.player.setRundeGewonnen(false);
                 this.com1.setRundeGewonnen(false);
@@ -254,7 +253,7 @@ class Model{
                 this.com3.setRundeGewonnen(false);
             }
         // Falls der Com3 die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
-            if(ar[0]==this.com3) {
+            if(this.ar[0]==this.stack[3]) {
                 this.com3.setSticheBekommen(this.com3.getSticheBekommen()+1);
                 this.player.setRundeGewonnen(false);
                 this.com1.setRundeGewonnen(false);
