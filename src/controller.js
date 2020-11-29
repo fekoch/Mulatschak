@@ -63,16 +63,20 @@ class Controller {
         let currPlayer = this.model.getSpieleranderReihe();
         if (currPlayer === -1) {
             // TODO end of round
+            // View shows all cards which are were played
             console.log("end of round");
         }
         else if (currPlayer === this.model.getPlayer()) {
             // TODO player input
             // Model returns played cards
+            // View shows played cards
             this.view.showHand(currPlayer.getHand());
             this.view.showDropzone();
         }
         else {
             // TODO com play
+            // View shows COM Animation of playing cards
+            // View shows all played cards
             console.log("COM ist an der Reihe");
         }
 
