@@ -88,6 +88,7 @@ class PlayGame extends Phaser.Scene {
     /**
      * Displays all the cards from the Hand
      *  on the bottom of the screen
+     *  @param hand {Array<Card>} ein Array mit den Handkarten
      */
     showHand(hand) {
         const cardWidth = gameOptions.cardWidth * gameOptions.cardScale;
