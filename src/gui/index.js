@@ -65,7 +65,7 @@ class PlayGame extends Phaser.Scene {
      */
     preload() {
         console.log("begin load");
-        this.load.spritesheet("cards","./assets/drawing.png", {frameWidth: gameOptions.cardWidth, frameHeight: gameOptions.cardHeight}); // TODO spritesheet vs altas
+        this.load.spritesheet("cards","./assets/cardsheet_big.png", {frameWidth: gameOptions.cardWidth, frameHeight: gameOptions.cardHeight}); // TODO spritesheet vs altas
         this.load.image('dropzone','assets/testdrop.png');
         console.log("load finnished");
     }
