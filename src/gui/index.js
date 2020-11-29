@@ -1,4 +1,5 @@
 let game;
+let ctrl; // TODO for debug
 let gameOptions = {
     // card width, in pixels
     cardWidth: 180,
@@ -100,6 +101,7 @@ class PlayGame extends Phaser.Scene {
         // Start a Game
         // Game { * Plays { 5 Rounds { 4 Runs
         this.controller = new Controller(this);
+        ctrl = this.controller;
         this.controller.playGame();
     }
 
