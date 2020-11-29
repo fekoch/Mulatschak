@@ -8,7 +8,14 @@ let gameOptions = {
     cardHeight: 280,
 
     // card scale. 1 = original size, 0.5 half size and so on
-    cardScale: 1
+    cardScale: 1,
+
+    // props of com circle
+    com_radius: 1 / 8 / 2,
+    com_y: 20,
+    com_x: 1 / 4,
+    com_cardScale: 0.6
+
 }
 
 window.onload =function () {
@@ -108,38 +115,25 @@ class PlayGame extends Phaser.Scene {
         this.comGraphics = [];
         this.comGraphics[0] = this.add.graphics();
         this.comGraphics[0].drawMyself = function() {
-            let y = 20;
-            let radius = game.config.width / 8 / 2;
-            let x = game.config.width / 4;
             this.clear();
             //this.lineStyle(10,0x636363,1);
             this.fillStyle(0x636363,1)
-            this.fillCircle(x,y,radius);
+            this.fillCircle(game.config.width*gameOptions.com_x,gameOptions.com_y,game.config.width*gameOptions.com_radius);
             //this.strokeCircle(x,y,radius);
         }
         this.comGraphics[0].drawMyself();
         this.comGraphics[1] = this.add.graphics();
         this.comGraphics[1].drawMyself = function() {
-            let y = 20;
-            let radius = game.config.width / 8 / 2;
-            let x = game.config.width / 4 *2;
             this.clear();
-            //this.lineStyle(10,0x636363,1);
             this.fillStyle(0x636363,1)
-            this.fillCircle(x,y,radius);
-            //this.strokeCircle(x,y,radius);
+            this.fillCircle(game.config.width*gameOptions.com_x*2,gameOptions.com_y,game.config.width*gameOptions.com_radius);
         }
         this.comGraphics[1].drawMyself();
         this.comGraphics[2] = this.add.graphics();
         this.comGraphics[2].drawMyself = function() {
-            let y = 20;
-            let radius = game.config.width / 8 / 2;
-            let x = game.config.width / 4 * 3;
             this.clear();
-            //this.lineStyle(10,0x636363,1);
             this.fillStyle(0x636363,1)
-            this.fillCircle(x,y,radius);
-            //this.strokeCircle(x,y,radius);
+            this.fillCircle(game.config.width*gameOptions.com_x*3,gameOptions.com_y,game.config.width*gameOptions.com_radius);
         }
         this.comGraphics[2].drawMyself();
         // old code
@@ -299,7 +293,12 @@ class PlayGame extends Phaser.Scene {
      * @param comID {int} the comID from 0-2
      */
     comPlayCard(comID,card) {
-
+        const cardWidth = gameOptions.cardWidth * gameOptions.com_cardScale;
+        let x = game.config.width*gameOptions.com_x*(comID+1);
+        let y = gameOptions.com_y+gameOptions.com_radius*0.5+gameOptions.cardHeight*gameOptions.com_cardScale;
+        let cardSprite = this.add.sprite(x,y, "cards", card.getSpriteID());
+        cardSprite.setScale(gameOptions.com_cardScale);
+        //TODO y-alingnment?
     }
 }
 
