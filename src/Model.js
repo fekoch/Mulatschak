@@ -45,7 +45,7 @@ class Model{
 	getStack() {
 		return this.stack;
 	}
-    
+    // Die gibt aber nur die Karten zurück wenn der Player schon gespielt hat oder?
     
     /**
      * gives you the current playing player
@@ -65,7 +65,9 @@ class Model{
     }
     
     /**
-     * änderet den derzeit spielenden spieler(diese methode muss 4mal eingesetzt werden bevor das model spielt mit es auf den anfangswert wieder zurück gesetzt wird, DANKE!!)
+     * Ändert den derzeitig spielenden Spieler
+     * ( diese methode muss 4mal eingesetzt werden bevor
+     * das model spielt mit es auf den anfangswert wieder zurück gesetzt wird, DANKE!!)
      */
     naechsterSpieler(){
         if(this.player.getRundeGewonnen() == true){
@@ -79,7 +81,7 @@ class Model{
             this.com3.setRundeGewonnen(true);
         }else if(this.com3.getRundeGewonnen() == true){
             this.com3.setRundeGewonnen(false);
-            this.plyer.setRundeGewonnen(true);
+            this.player.setRundeGewonnen(true);
         }
     }
     
