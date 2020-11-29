@@ -49,7 +49,7 @@ class Model{
     
     /**
      * gives you the current playing player
-     * @retrun {Player} the current playing player
+     * @return {Player} the current playing player
      */
     getSpieleranderReihe(){
         if(this.player.getRundeGewonnen() == true){
