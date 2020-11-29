@@ -98,6 +98,7 @@ class PlayGame extends Phaser.Scene {
         console.log("ML: "+margin_left);
         for (let i = 0; i < hand.length; i++) {
             let card = this.add.sprite(margin_left+i*cardWidth,handHeight, "cards", hand[i].getSpriteID());
+            card.setData('ID',hand[i].getSpriteID()); // add the SpriteID to be queried with getData('ID')
             card.setScale(gameOptions.cardScale);
             card.setInteractive();
             this.input.setDraggable(card);
@@ -122,7 +123,7 @@ class PlayGame extends Phaser.Scene {
     /**
      * Displays the DropZone and adds the listeners
      */
-    displayDropzones() {
+    displayDropzones(dropCallback) {
         let zoneWidth=gameOptions.cardWidth*gameOptions.cardScale;
         let zoneHeight=gameOptions.cardHeight*gameOptions.cardScale;
         let zoneX = game.config.width/2;
@@ -139,8 +140,7 @@ class PlayGame extends Phaser.Scene {
         let playerDropZone = this.add.zone(zoneX,zoneY,zoneWidth,zoneHeight).setRectangleDropZone(zoneWidth,zoneHeight);
         /**
          * The Graphic of the DropZone
-         * @see playerDrop        let zoneWidth=gameOptions.cardWidth*gameOptions.cardScale;
-        let zoneHeight=gameOptions.cardHeight*gameOptions.cardScale;Zone
+         * @see playerDrop
          */
         let playerDropZoneGraphic = this.add.graphics();
         console.log(playerDropZoneGraphic);
@@ -170,7 +170,7 @@ class PlayGame extends Phaser.Scene {
             gameObject.input.enabled = false; // disable further input on the card
             gameObject.x = dropZone.x;
             gameObject.y = dropZone.y - PlayGame.HOVEROFFSET;
-            // TODO continue game
+            dropCallback(gameObject.getData('ID'));
         },this);
 
         // reset card after unsuccesfull drop
