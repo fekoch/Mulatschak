@@ -7,6 +7,8 @@ var hand;
  */
 class Player{
 
+    playedCard;
+
     /**
      * Creates a new Player
      */
@@ -17,6 +19,7 @@ class Player{
         var sticheAngesagt = 0;
         var sticheBekommen = 0;
         this.rundeGewonnen = false;
+        this.playedCard = null;
     }
     
     /**
@@ -115,4 +118,31 @@ class Player{
         return this.sticheAngesagt;
     }
 
+    /**
+     * Sets a selected Card of the Hand as played
+     *  (and removes it from the hand)
+     * @param card {Card} the card to play
+     */
+    playCard(card){
+        if (this.hand.includes(card)) {
+            this.delcard(card);
+            this.playedCard = card;
+        }
+        else console.error("The card "+card+" is not int the hand of the player "+this);
+    }
+
+    /**
+     * Retruns the played Card
+     * @return {Card|null}
+     */
+    getPlayedCard() {
+        return this.playedCard;
+    }
+
+    /**
+     * Clears the played Card
+     */
+    clearPlayedCard() {
+        this.playedCard = null;
+    }
 }
