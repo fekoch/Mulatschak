@@ -6,8 +6,8 @@ var hand;
  * @version 08/11/2020
  */
 class Player{
-    
-    /** 
+
+    /**
      * Creates a new Player
      */
     constructor(){
@@ -16,7 +16,7 @@ class Player{
         var reihe = false;
         var sticheAngesagt = 0;
         var sticheBekommen = 0;
-        var rundeGewonnen = false;
+        this.rundeGewonnen = false;
     }
     
     /**
@@ -76,7 +76,7 @@ class Player{
      */
     setSticheBekommen(bekommen) {
         this.sticheBekommen=bekommen;
-    } 
+    }
     /**
      * gets sticheBekommen
      * @return the sticheBekommen
@@ -86,14 +86,15 @@ class Player{
     }
     /**
      * sets rundeGewonnen
-     * @param the sticheBekommen
+     * @param gewonnen {boolean} if the player has won
      */
     setRundeGewonnen(gewonnen) {
-        this.RundeGewonnen=gewonnen;
-    } 
+        this.rundeGewonnen=gewonnen;
+    }
+
     /**
      * gets rundeGewonnen
-     * @return the rundeGewonnen
+     * @return gewonnen {boolean} the rundeGewonnen
      */
     getRundeGewonnen() {
         return this.rundeGewonnen;
