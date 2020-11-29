@@ -1,6 +1,7 @@
 /**
  * A Controller for a Game
  * @author Felix Koch
+ * @author Anne Kreppenhofer
  * @version 2020-11-29
  */
 class Controller {
@@ -66,6 +67,7 @@ class Controller {
         }
         else if (currPlayer === this.model.getPlayer()) {
             // TODO player input
+            // Model returns played cards
             this.view.showHand(currPlayer.getHand());
             this.view.showDropzone();
         }
@@ -85,5 +87,8 @@ class Controller {
         console.log("Played CARD:");
         console.log(card);
         this.view.hideDropzone();
+        // Model gets card
+        // Model returns Stecher
+
     }
 }

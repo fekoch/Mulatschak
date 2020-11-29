@@ -37,6 +37,7 @@ class Model{
         this.stack.push(this.com3.getCard(1));
         this.com3.shift();
 	}
+	// WIESO HABT IHR DAS SO BENANNT ????
 	/**
 	 * Gibt den Array mit den Karten zurueck
 	 * @return {Array} stack - Array mit den Karten der jetztigen Runde
