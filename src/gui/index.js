@@ -39,9 +39,9 @@ class PlayGame extends Phaser.Scene {
     static HOVEROFFSET = 30;
 
     /**
-     * The Mulatschak-model
+     * The Controller
      */
-    model;
+    #controller;
 
     /**
      * generate Scene
@@ -62,27 +62,28 @@ class PlayGame extends Phaser.Scene {
 
 
     create() {
-        this.model = new Model();
-
-        // Rundenbegin
-        this.model.handOut();
-        this.showHand();
-        this.displayDropzones();
-
-
+        // setup some listeners
         // Show card over everything else
         this.input.on('dragstart', function(pointer, gameObject){
             this.children.bringToTop(gameObject);
         },this);
-
         // move card with cursor
         this.input.on('drag',function (pointer,gameObject,dragX,dragY) {
-           gameObject.x = dragX;
-           gameObject.y = dragY;
+            gameObject.x = dragX;
+            gameObject.y = dragY;
         });
 
+        // old code
+        //this.model = new Model();
+        //this.model.handOut();
+        //this.showHand();
+        //this.displayDropzones();
 
+        // Start a Game
+        // Game { * Plays { 5 Rounds { 4 Runs
+        this.#controller = new Controller(this);
     }
+
 
     /**
      * Displays all the cards from the Hand
