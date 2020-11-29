@@ -88,15 +88,14 @@ class PlayGame extends Phaser.Scene {
      * Displays all the cards from the Hand
      *  on the bottom of the screen
      */
-    showHand() {
+    showHand(hand) {
         const cardWidth = gameOptions.cardWidth * gameOptions.cardScale;
         const handLength = 5 * cardWidth; // max total length of hand
         const margin_left = game.config.width / 2 - handLength / 2 + cardWidth/2; // center Hand
         const handHeight = game.config.height;
         console.log("ML: "+margin_left);
-        let player = this.model.getPlayer();
-        for (let i = 0; i < player.hand.length; i++) {
-            let card = this.add.sprite(margin_left+i*cardWidth,handHeight, "cards", player.hand[i].getSpriteID());
+        for (let i = 0; i < hand.length; i++) {
+            let card = this.add.sprite(margin_left+i*cardWidth,handHeight, "cards", hand[i].getSpriteID());
             card.setScale(gameOptions.cardScale);
             card.setInteractive();
             this.input.setDraggable(card);
@@ -111,13 +110,11 @@ class PlayGame extends Phaser.Scene {
             // TODO isnt executed on mobile
             // hover-ende-listener
             card.on('pointerout',(pointer,localX,localY,event)=>{
-                console.log("pointerout:");
-                console.log(card);
+                //console.log("pointerout:");
+                //console.log(card);
                 card.y= card.y+30;
             });
         }
-        console.log("showdeck");
-        console.log(player.hand);
     }
 
     /**
