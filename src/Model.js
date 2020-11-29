@@ -45,7 +45,7 @@ class Model{
 	getStack() {
 		return this.stack;
 	}
-    
+    // Die gibt aber nur die Karten zurück wenn der Player schon gespielt hat oder?
     
     /**
      * gives you the current playing player
