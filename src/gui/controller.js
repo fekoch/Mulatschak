@@ -13,6 +13,8 @@ class Controller {
      */
     constructor(view) {
         this.view = view;
+        // creates the dropzone; it is linked to the playCard()-Method
+        this.view.createDropzones();
     }
 
     /*
@@ -65,7 +67,7 @@ class Controller {
         else if (currPlayer === this.model.getPlayer()) {
             // TODO player input
             this.view.showHand(currPlayer.getHand());
-            this.view.displayDropzones(this.playCard);
+            this.view.showDropzone();
         }
         else {
             // TODO com play
@@ -79,7 +81,9 @@ class Controller {
      * @param card the card that the player plays
      */
     playCard(card) {
+        // TODO implement
         console.log("Played CARD:");
         console.log(card);
+        this.view.hideDropzone();
     }
 }
