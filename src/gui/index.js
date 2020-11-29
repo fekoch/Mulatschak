@@ -21,7 +21,7 @@ window.onload =function () {
             height: 750,
             width: 1334
         },
-        scene: playGame
+        scene: PlayGame
     }
     game = new Phaser.Game(gameConfig);
     window.focus();
@@ -32,7 +32,7 @@ window.onload =function () {
 /**
  * Die Haupt-Szene
  */
-class playGame extends Phaser.Scene {
+class PlayGame extends Phaser.Scene {
     /**
      * The Offset, if you hover over cards
      */
@@ -103,9 +103,9 @@ class playGame extends Phaser.Scene {
 
             // hover-listener
             card.on('pointerover',(pointer,localX,localY,event)=>{
-                console.log("pointerover:");
-                console.log(card);
-                card.y= card.y-playGame.HOVEROFFSET;
+                //console.log("pointerover:");
+                //console.log(card);
+                card.y= card.y-PlayGame.HOVEROFFSET;
             });
 
             // TODO isnt executed on mobile
@@ -170,7 +170,7 @@ class playGame extends Phaser.Scene {
         this.input.on('drop', function(pointer,gameObject,dropZone){
             gameObject.input.enabled = false; // disable further input on the card
             gameObject.x = dropZone.x;
-            gameObject.y = dropZone.y - playGame.HOVEROFFSET;
+            gameObject.y = dropZone.y - PlayGame.HOVEROFFSET;
             // TODO continue game
         },this);
 
