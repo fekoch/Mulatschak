@@ -27,9 +27,7 @@ class Model{
 	 * Setzt Karten im Array
 	 * @param {Card} card1 - Karte des Spielers 
 	 */
-    setStack(card1) {
-		this.stack.push(card1);
-        this.player.delcard(card1);
+    setStack() {
         this.stack.push(this.com1.getCard(1));
         this.com1.shift();
         this.stack.push(this.com2.getCard(1));
@@ -37,7 +35,10 @@ class Model{
         this.stack.push(this.com3.getCard(1));
         this.com3.shift();
 	}
-	// WIESO HABT IHR DAS SO BENANNT ????
+    setPlayerinStack(card1){
+        this.stack.push(card1);
+        this.player.delcard(card1);
+    }
 	/**
 	 * Gibt den Array mit den Karten zurueck
 	 * @return {Array} stack - Array mit den Karten der jetztigen Runde
@@ -45,11 +46,11 @@ class Model{
 	getStack() {
 		return this.stack;
 	}
-    // Die gibt aber nur die Karten zurück wenn der Player schon gespielt hat oder?
+    
     
     /**
      * gives you the current playing player
-     * @return {Player} the current playing player
+     * @retrun {Player} the current playing player
      */
     getSpieleranderReihe(){
         if(this.player.getRundeGewonnen() == true){
@@ -65,11 +66,9 @@ class Model{
     }
     
     /**
-     * Ändert den derzeitig spielenden Spieler
-     * ( diese methode muss 4mal eingesetzt werden bevor
-     * das model spielt mit es auf den anfangswert wieder zurück gesetzt wird, DANKE!!)
+     * änderet den derzeit spielenden spieler(diese methode muss 4mal eingesetzt werden bevor das model spielt mit es auf den anfangswert wieder zurück gesetzt wird, DANKE!!)
      */
-    naechsterSpieler(){
+    nächsterSpieler(){
         if(this.player.getRundeGewonnen() == true){
            this.player.setRundeGewonnen(false);
             this.com1.setRundeGewonnen(true);
@@ -81,7 +80,7 @@ class Model{
             this.com3.setRundeGewonnen(true);
         }else if(this.com3.getRundeGewonnen() == true){
             this.com3.setRundeGewonnen(false);
-            this.player.setRundeGewonnen(true);
+            this.plyer.setRundeGewonnen(true);
         }
     }
     
@@ -184,9 +183,9 @@ class Model{
         this.gewinnerfarbe = "";
     }
     
-    /**
-     * gibt an wer am meisten stiche angesagt hat und giebt diese person zurück
-     * @return {Person} Person
+    /** 
+     * giebt an wer am meisten stiche angesagt hat und giebt diese person zurück
+     * @return {Person} eine Person
      */
     prePlay(){
         if(this.player.getSticheAngesagt > this.com1.getSticheAngesagt && this.player.getSticheAngesagt > this.com2.getSticheAngesagt && this.player.getSticheAngesagt > this.com3.getSticheAngesagt){
@@ -204,35 +203,36 @@ class Model{
         }
     }
     
-    /** 
-     * Bestimmt welche der 4 Karten die höchste ist und setzt den Gewinner
+    /**
+     *
      */
-    play(){
-        if(this.player.getRundeGewonnen())this.gewinnerfarbe=this.stack[0].getColor();
-        else if(this.com1.getRundeGewonnen())this.gewinnerfarbe=this.stack[1].getColor();
-        else if(this.com2.getRundeGewonnen())this.gewinnerfarbe=this.stack[2].getColor();
-        else if(this.com3.getRundeGewonnen())this.gewinnerfarbe=this.stack[3].getColor();
+   play(){
+        if(this.player.getRundeGewonnen())this.gewinnerfarbe=card1.getColor();
+        else if(this.com1.getRundeGewonnen())this.gewinnerfarbe=comcard1.getColor();
+        else if(this.com2.getRundeGewonnen())this.gewinnerfarbe=comcard2.getColor();
+        else if(this.com3.getRundeGewonnen())this.gewinnerfarbe=comcard3.getColor();
+        // Hier kommt noch die Methode für die Stiche damit bei der ersten Runde der Spieler mit der höchsten Stichanzahl als erstes Spielt und somit die Gewinnerfarbe bestimmt
         
-        this.ar[0]=this.stack[0];
+        ar[0]=card1
         // Schauen welche Karten die Trumpffarbe haben, und die höchste Trumpffarbenkarte bestimmen
             for(var i = 0;i<4;i++){
-                if(this.stack[i].getColor()==this.trumpffarbe && 
-                   this.stack[i].getNumber()>=this.ar[0].getNumber()) {
-                    this.ar[0]=this.stack[i];                                   
+                if(stack[i].getColor()==this.trumpffarbe && 
+                   stack[i].getNumber()>=ar[0].getNumber()) {
+                    ar[0]=stack[i];                                   
                     this.trumpfVorhanden = true;
                 }
             }
         // Falls die Trupffarbe nicht vorkommt gewinnt die höchste Karte mit der Gewinnerfarbe
             if(this.trumpfVorhanden===false) {
                 for(i = 0;i<4;i++){
-                    if(this.stack[i].getColor()==this.gewinnerfarbefarbe && 
-                       this.stack[i].getNumber()>this.ar[0].getNumber()) {
-                        this.ar[0]=this.stack[i];
+                    if(stack[i].getColor()==this.gewinnerfarbefarbe && 
+                       stack[i].getNumber()>ar[0].getNumber()) {
+                        ar[0]=stack[i];
                     }
                 }
             }
         // Falls der Spieler die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
-            if(this.ar[0]==this.stack[0]) {
+            if(ar[0]==this.player) {
                 this.player.setSticheBekommen(this.player.getSticheBekommen()+1);
                 this.player.setRundeGewonnen(true);
                 this.com1.setRundeGewonnen(false);
@@ -240,7 +240,7 @@ class Model{
                 this.com3.setRundeGewonnen(false);
             }
         // Falls der Com1 die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
-            if(this.ar[0]==this.stack[1]) {
+            if(ar[0]==this.com1) {
                 this.com1.setSticheBekommen(this.com1.getSticheBekommen()+1);
                 this.player.setRundeGewonnen(false);
                 this.com1.setRundeGewonnen(true);
@@ -248,7 +248,7 @@ class Model{
                 this.com3.setRundeGewonnen(false);
             }
         // Falls der Com2 die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
-            if(this.ar[0]==this.stack[2]) {
+            if(ar[0]==this.com2) {
                 this.com2.setSticheBekommen(this.com2.getSticheBekommen()+1);
                 this.player.setRundeGewonnen(false);
                 this.com1.setRundeGewonnen(false);
@@ -256,7 +256,7 @@ class Model{
                 this.com3.setRundeGewonnen(false);
             }
         // Falls der Com3 die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
-            if(this.ar[0]==this.stack[3]) {
+            if(ar[0]==this.com3) {
                 this.com3.setSticheBekommen(this.com3.getSticheBekommen()+1);
                 this.player.setRundeGewonnen(false);
                 this.com1.setRundeGewonnen(false);
