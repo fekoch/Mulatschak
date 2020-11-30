@@ -1,4 +1,3 @@
-
 /**
  * The Gamelogic
  * @author David Hegyi
@@ -23,6 +22,7 @@ class Model{
         var gewinnerfarbe = "";
         this.player.setRundeGewonnen(true);
     }
+	
     /**
 	 * Setzt Karten im Array
 	 * @param {Card} card1 - Karte des Spielers 
@@ -34,11 +34,16 @@ class Model{
         this.com2.shift();
         this.stack.push(this.com3.getCard(1));
         this.com3.shift();
-	}
+    }
+
+	/**
+	 * TODO DOC
+	 */
     setPlayerinStack(card1){
         this.stack.push(card1);
         this.player.delcard(card1);
     }
+	
 	/**
 	 * Gibt den Array mit den Karten zurueck
 	 * @return {Array} stack - Array mit den Karten der jetztigen Runde
@@ -50,7 +55,7 @@ class Model{
     
     /**
      * gives you the current playing player
-     * @retrun {Player} the current playing player
+     * @return {Player} the current playing player
      */
     getSpieleranderReihe(){
         if(this.player.getRundeGewonnen() == true){
@@ -68,7 +73,7 @@ class Model{
     /**
      * änderet den derzeit spielenden spieler(diese methode muss 4mal eingesetzt werden bevor das model spielt mit es auf den anfangswert wieder zurück gesetzt wird, DANKE!!)
      */
-    nächsterSpieler(){
+    naechsterSpieler(){
         if(this.player.getRundeGewonnen() == true){
            this.player.setRundeGewonnen(false);
             this.com1.setRundeGewonnen(true);
