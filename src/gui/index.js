@@ -104,7 +104,8 @@ class PlayGame extends Phaser.Scene {
         this.input.on('drag',function (pointer,gameObject,dragX,dragY) {
             gameObject.x = dragX;
             gameObject.y = dragY;
-        });
+            if (this.cardDragEnabled && gameObject.outline !== undefined) gameObject.outline()
+        },this);
 
         // setup player hand array
         this.playerHandCards = [];
@@ -149,10 +150,24 @@ class PlayGame extends Phaser.Scene {
             this.playerHandCards.push(card);
 
             // hover-listener
+            card.outlineGraphic = this.add.graphics();
+            card.outline = function() {
+                this.outlineGraphic.clear();
+                if (this.enableOutline) {
+                    this.outlineGraphic.lineStyle(5,0x0CF2FF);
+                    let b = card.getBounds();
+                    this.outlineGraphic.strokeRoundedRect(b.x,b.y,b.width,b.height);
+                }
+            }
+            card.enableOutline = false;
+            //console.log("pointerover:");
             card.on('pointerover',(pointer,localX,localY,event)=>{
-                //console.log("pointerover:");
                 //console.log(card);
-                if (this.cardDragEnabled) card.y= card.y-PlayGame.HOVEROFFSET;
+                if (this.cardDragEnabled) {
+                    card.enableOutline = true;
+                    card.outline();
+                }
+                //if (this.cardDragEnabled) card.y= card.y-PlayGame.HOVEROFFSET;
             });
 
             // TODO isnt executed on mobile
@@ -160,7 +175,9 @@ class PlayGame extends Phaser.Scene {
             card.on('pointerout',(pointer,localX,localY,event)=>{
                 //console.log("pointerout:");
                 //console.log(card);
-                if (this.cardDragEnabled) card.y= card.y+30;
+                //if (this.cardDragEnabled) card.y= card.y+30;
+                card.outlineGraphic.clear();
+                card.enableOutline = false;
             });
         }
         this.setCardDragEnabled(true);
@@ -217,7 +234,8 @@ class PlayGame extends Phaser.Scene {
             if (dropZone === this.dropZone) {
                 gameObject.input.enabled = false; // disable further input on the card
                 gameObject.x = dropZone.x;
-                gameObject.y = dropZone.y - PlayGame.HOVEROFFSET;
+                //gameObject.y = dropZone.y - PlayGame.HOVEROFFSET;
+                gameObject.y = dropZone.y;
                 this.controller.playCard(gameObject.getData('object'));
             }
         },this);
