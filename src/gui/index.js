@@ -89,6 +89,7 @@ class PlayGame extends Phaser.Scene {
         console.log("begin load");
         this.load.spritesheet("cards","./assets/cardsheet_big.png", {frameWidth: gameOptions.cardWidth, frameHeight: gameOptions.cardHeight}); // TODO spritesheet vs altas
         this.load.image('dropzone','assets/testdrop.png');
+        this.load.bitmapFont('gothic','assets/fonts/gothic.png','assets/fonts/gothic.xml');
         console.log("load finnished");
     }
 
@@ -281,7 +282,6 @@ class PlayGame extends Phaser.Scene {
      */
     drawComs() {
         const comDrawFunction = function(comid) {
-            this.clear();
             this.fillStyle(0x636363,1)
             this.fillCircle(game.config.width*gameOptions.com_x*(comid+1),gameOptions.com_y,game.config.width*gameOptions.com_radius);
         };
@@ -289,6 +289,7 @@ class PlayGame extends Phaser.Scene {
 
         graphics.drawCom = comDrawFunction;
 
+        graphics.clear();
         graphics.drawCom(0);
         graphics.drawCom(1);
         graphics.drawCom(2);
@@ -307,6 +308,12 @@ class PlayGame extends Phaser.Scene {
         this.comGraphics[2].drawMyself = comDrawFunction;
         this.comGraphics[2].drawMyself();
 */
+
+        let x = game.config.width*gameOptions.com_x*1;
+        let y = gameOptions.com_y;
+        this.add.bitmapText(x,y,'gothic','COM1').setOrigin(0.5,0).setFontSize(32);
+        this.add.bitmapText(x*2,y,'gothic','COM2').setOrigin(0.5,0).setFontSize(32);
+        this.add.bitmapText(x*3,y,'gothic','COM3').setOrigin(0.5,0).setFontSize(32);
 
 
 
