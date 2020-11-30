@@ -333,5 +333,40 @@ class PlayGame extends Phaser.Scene {
         this.add.bitmapText(x*2,y,'gothic','COM2').setOrigin(0.5,0).setFontSize(32);
         this.add.bitmapText(x*3,y,'gothic','COM3').setOrigin(0.5,0).setFontSize(32);
     }
+
+    /**
+     * Displays a Message over the whole screen, that will fade out
+     * You can use PlayGame.SHORT_DELAY, MEDIUM_DELAY, LONG_DELAY or a custom amount
+     * @param msg {String} the message
+     * @param delay {number} the delay before the message beginns to disapper (in ms)
+     *  is no delay specified, SHORT_DELAY is used
+     */
+    displayFadeOutMessage(msg,delay= PlayGame.SHORT_DELAY) {
+        let mytext = this.add.dynamicBitmapText(game.config.width / 2,game.config.height / 3,'gothic',msg).setOrigin(0.5,0.5).setFontSize(82);
+        let hminus = mytext.height;
+        this.tweens.add({
+            targets: mytext,
+            y: -hminus,
+            alpha: 0,
+            delay: delay,
+            duration: 3000
+        });
+    }
+
+    /**
+     * A delay of 50ms
+     * @type {number}
+     */
+    static SHORT_DELAY = 50;
+    /**
+     * a delay of a second
+     * @type {number}
+     */
+    static MEDIUM_DELAY = 1000;
+    /**
+     * a delay of two seconds
+     * @type {number}
+     */
+    static LONG_DELAY = 2000;
 }
 
