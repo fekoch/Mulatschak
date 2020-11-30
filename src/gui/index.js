@@ -314,9 +314,6 @@ class PlayGame extends Phaser.Scene {
         this.add.bitmapText(x,y,'gothic','COM1').setOrigin(0.5,0).setFontSize(32);
         this.add.bitmapText(x*2,y,'gothic','COM2').setOrigin(0.5,0).setFontSize(32);
         this.add.bitmapText(x*3,y,'gothic','COM3').setOrigin(0.5,0).setFontSize(32);
-
-
-
     }
 }
 
