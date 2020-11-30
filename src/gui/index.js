@@ -327,7 +327,7 @@ class PlayGame extends Phaser.Scene {
         this.comGraphics[2].drawMyself();
 */
 
-        let x = game.config.width*gameOptions.com_x*1;
+        let x = game.config.width * gameOptions.com_x;
         let y = gameOptions.com_y;
         this.add.bitmapText(x,y,'gothic','COM1').setOrigin(0.5,0).setFontSize(32);
         this.add.bitmapText(x*2,y,'gothic','COM2').setOrigin(0.5,0).setFontSize(32);
