@@ -75,8 +75,6 @@ class PlayGame extends Phaser.Scene {
      */
     playerHandCards;
 
-    comGraphics;
-
     /**
      * generate Scene
      */
@@ -110,32 +108,9 @@ class PlayGame extends Phaser.Scene {
         // setup player hand array
         this.playerHandCards = [];
 
+        // draw Coms
+        this.drawComs();
 
-        // set-up Com Graphics
-        this.comGraphics = [];
-        this.comGraphics[0] = this.add.graphics();
-        this.comGraphics[0].drawMyself = function() {
-            this.clear();
-            //this.lineStyle(10,0x636363,1);
-            this.fillStyle(0x636363,1)
-            this.fillCircle(game.config.width*gameOptions.com_x,gameOptions.com_y,game.config.width*gameOptions.com_radius);
-            //this.strokeCircle(x,y,radius);
-        }
-        this.comGraphics[0].drawMyself();
-        this.comGraphics[1] = this.add.graphics();
-        this.comGraphics[1].drawMyself = function() {
-            this.clear();
-            this.fillStyle(0x636363,1)
-            this.fillCircle(game.config.width*gameOptions.com_x*2,gameOptions.com_y,game.config.width*gameOptions.com_radius);
-        }
-        this.comGraphics[1].drawMyself();
-        this.comGraphics[2] = this.add.graphics();
-        this.comGraphics[2].drawMyself = function() {
-            this.clear();
-            this.fillStyle(0x636363,1)
-            this.fillCircle(game.config.width*gameOptions.com_x*3,gameOptions.com_y,game.config.width*gameOptions.com_radius);
-        }
-        this.comGraphics[2].drawMyself();
         // old code
         //this.model = new Model();
         //this.model.handOut();
@@ -299,6 +274,42 @@ class PlayGame extends Phaser.Scene {
         let cardSprite = this.add.sprite(x,y, "cards", card.getSpriteID());
         cardSprite.setScale(gameOptions.com_cardScale);
         //TODO y-alingnment?
+    }
+
+    /**
+     * Draws the Com-Circles
+     */
+    drawComs() {
+        const comDrawFunction = function(comid) {
+            this.clear();
+            this.fillStyle(0x636363,1)
+            this.fillCircle(game.config.width*gameOptions.com_x*(comid+1),gameOptions.com_y,game.config.width*gameOptions.com_radius);
+        };
+        let graphics  = this.add.graphics();
+
+        graphics.drawCom = comDrawFunction;
+
+        graphics.drawCom(0);
+        graphics.drawCom(1);
+        graphics.drawCom(2);
+/*
+        this.comGraphics = [];
+        this.comGraphics[0] = this.add.graphics();
+        this.comGraphics[0].comid = 1;
+        this.comGraphics[0].drawMyself = comDrawFunction;
+        this.comGraphics[0].drawMyself();
+        this.comGraphics[1] = this.add.graphics();
+        this.comGraphics[1].comid = 2;
+        this.comGraphics[1].drawMyself = comDrawFunction;
+        this.comGraphics[1].drawMyself();
+        this.comGraphics[2] = this.add.graphics();
+        this.comGraphics[2].comid = 3;
+        this.comGraphics[2].drawMyself = comDrawFunction;
+        this.comGraphics[2].drawMyself();
+*/
+
+
+
     }
 }
 
