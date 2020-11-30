@@ -16,6 +16,7 @@ class Controller {
         this.view = view;
         // creates the dropzone; it is linked to the playCard()-Method
         this.view.createDropzones();
+        this.roundCounter = 0;
     }
 
     /*
@@ -41,7 +42,7 @@ class Controller {
     startPlay() {
         // TODO implement
         this.model.handOut();
-
+        this.roundCounter = 0;
         this.newRound();
     }
 
@@ -50,9 +51,15 @@ class Controller {
      * (one run for each player)
      */
     newRound() {
+        this.roundCounter++;
+        if(this.roundCounter == 6){
+            // Punkteberechnen
+        }else{
+            this.newRun();
+        }
         // TODO implement ?
 
-        this.newRun();
+
     }
 
     /**
@@ -62,6 +69,11 @@ class Controller {
     newRun() {
         let currPlayer = this.model.getSpieleranderReihe();
         if (currPlayer === -1) {
+            // Model returns den Stecher
+            // View gets Stecher
+            // View shows Stecher
+            // Model clears Stack
+            // Model sets new first Player
             // TODO end of round
             // View shows all cards which are were played
             console.log("end of round");
@@ -92,8 +104,9 @@ class Controller {
         console.log(card);
         this.view.setCardDragEnabled(false);
         this.view.hideDropzone();
-        // Model gets card
-        // Model returns Stecher
+        this.model.setPlayerinStack(card);
+
+        new Run();
 
     }
 }
