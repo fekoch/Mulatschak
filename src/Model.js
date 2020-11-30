@@ -22,7 +22,7 @@ class Model{
         var gewinnerfarbe = "";
         this.player.setRundeGewonnen(true);
     }
-	
+	// TODO Doc of SetStack
     /**
 	 * Setzt Karten im Array
 	 * @param {Card} card1 - Karte des Spielers 
@@ -71,7 +71,8 @@ class Model{
     }
     
     /**
-     * änderet den derzeit spielenden spieler(diese methode muss 4mal eingesetzt werden bevor das model spielt mit es auf den anfangswert wieder zurück gesetzt wird, DANKE!!)
+     * Änderet den derzeitig spielenden Spieler
+     * (diese methode muss 4mal eingesetzt werden bevor das model spielt mit es auf den anfangswert wieder zurück gesetzt wird, DANKE!!)
      */
     naechsterSpieler(){
         if(this.player.getRundeGewonnen() == true){
@@ -85,7 +86,7 @@ class Model{
             this.com3.setRundeGewonnen(true);
         }else if(this.com3.getRundeGewonnen() == true){
             this.com3.setRundeGewonnen(false);
-            this.plyer.setRundeGewonnen(true);
+            this.player.setRundeGewonnen(true);
         }
     }
     
@@ -189,7 +190,7 @@ class Model{
     }
     
     /** 
-     * giebt an wer am meisten stiche angesagt hat und giebt diese person zurück
+     * gibt an wer am meisten stiche angesagt hat und giebt diese person zurück
      * @return {Person} eine Person
      */
     prePlay(){
