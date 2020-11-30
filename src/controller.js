@@ -40,6 +40,7 @@ class Controller {
      */
     startPlay() {
         // TODO implement
+        this.model.handOut();
 
         this.newRound();
     }
@@ -50,7 +51,6 @@ class Controller {
      */
     newRound() {
         // TODO implement ?
-        this.model.handOut();
 
         this.newRun();
     }
