@@ -90,6 +90,7 @@ class Controller {
         // TODO implement
         console.log("Played CARD:");
         console.log(card);
+        this.view.setCardDragEnabled(false);
         this.view.hideDropzone();
         // Model gets card
         // Model returns Stecher
