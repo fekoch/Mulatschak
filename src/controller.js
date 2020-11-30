@@ -106,7 +106,7 @@ class Controller {
         this.view.hideDropzone();
         this.model.setPlayerinStack(card);
 
-        new Run();
+        newRun();
 
     }
 }
