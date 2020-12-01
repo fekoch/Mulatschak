@@ -96,6 +96,7 @@ class Controller {
             }else if(currPlayer === this.model.getCom3()){
                 this.view.comPlayCard(2,ar[3]);
             }
+            this.model.naechsterSpieler();
             this.newRun()
             // TODO com play
             // View shows COM Animation of playing cards
