@@ -97,7 +97,8 @@ class Controller {
                 this.view.comPlayCard(2,ar[3]);
             }
             this.model.naechsterSpieler();
-            this.newRun()
+
+            setTimeout(function (context) {context.newRun()},1000,this); // makes game more smooth
             // TODO com play
             // View shows COM Animation of playing cards
             // View shows all played cards
@@ -120,7 +121,7 @@ class Controller {
         // Model accepts the card or rejected it
         // if the card is accepted
         this.model.naechsterSpieler();
-        this.newRun();
+        setTimeout(function (context) {context.newRun()},1000,this); // makes game more smooth
         // else view starts a new user input
         // this.view.showHand
         // this.view showDropzone
