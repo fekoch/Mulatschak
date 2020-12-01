@@ -349,6 +349,40 @@ class PlayGame extends Phaser.Scene {
         this.pptxt.text=String.valueOf(punkte);
     }
 
+    /**
+     * TODO
+     * Sets the tricks (=Stiche) that the player declared
+     * @param tricks {number} declared tricks
+     */
+    setPlayerDeclaredTricks(tricks) {}
+
+    /**
+     * Indicates that someone still has to do Tricks
+     * @type {number}
+     */
+    static TRICKS_TODO = 0;
+
+    /**
+     * Indicates that someone has the declared amount of tricks
+     * @type {number}
+     */
+    static TRICKS_CORRECT = 1;
+
+    /**
+     * Indicates that someone has more tricks than declared
+     * @type {number}
+     */
+    static TRICKS_TOO_MUCH = -1;
+
+    /**
+     * TODO
+     * Sets the tricks (=Stiche) that the player has done
+     * @param tricks {number} the tricks that the player did
+     * @param state {number} Has the player done enough Tricks?
+     *  one of {@link TRICKS_TODO}, {@link TRICKS_CORRECT} and {@link TRICKS_TOO_MUCH}
+     */
+    setPlayerDoneTricks(tricks,state=PlayGame.TRICKS_TODO) {}
+
     static PURPLE_COLOR = 0x7430AA;
 
     /**
@@ -376,8 +410,6 @@ class PlayGame extends Phaser.Scene {
         this.add.bitmapText(x,y,'gothic','COM1').setOrigin(0.5,0).setFontSize(32);
         this.add.bitmapText(x*2,y,'gothic','COM2').setOrigin(0.5,0).setFontSize(32);
         this.add.bitmapText(x*3,y,'gothic','COM3').setOrigin(0.5,0).setFontSize(32);
-
-
     }
 
 }
