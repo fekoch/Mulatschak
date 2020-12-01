@@ -137,7 +137,7 @@ class PlayGame extends Phaser.Scene {
         const handLength = 5 * cardWidth; // max total length of hand
         const margin_left = game.config.width / 2 - handLength / 2 + cardWidth/2; // center Hand
         const handHeight = game.config.height;
-        console.log("ML: "+margin_left);
+        //console.log("ML: "+margin_left);
         for (let i = 0; i < hand.length; i++) {
             let card = this.add.sprite(margin_left+i*cardWidth,handHeight, "cards", hand[i].getSpriteID());
             card.setData('ID',hand[i].getSpriteID()); // add the SpriteID to be queried with getData('ID')
