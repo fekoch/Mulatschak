@@ -102,11 +102,14 @@ class Controller {
         // TODO implement
         console.log("Played CARD:");
         console.log(card);
-        this.view.setCardDragEnabled(false);
         this.view.hideDropzone();
         this.model.setPlayerinStack(card);
-
-        newRun();
+        // Model accepts the card or rejected it
+        // if the card is accepted
+        this.newRun();
+        // else view starts a new user input
+        // this.view.showHand
+        // this.view showDropzone
 
     }
 }
