@@ -296,7 +296,7 @@ class PlayGame extends Phaser.Scene {
     }
 
     /**
-     * Draws the Com-Circles
+     * Draws the Com-Circles at the start of the game
      */
     drawComs() {
         const comDrawFunction = function(comid) {
