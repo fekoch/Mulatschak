@@ -346,7 +346,7 @@ class PlayGame extends Phaser.Scene {
      * @param punkte {number} the remaining points
      */
     setPlayerVerbleibendePunkte(punkte) {
-        this.pptxt.text=String.valueOf(punkte);
+        this.pptxt.text=punkte.toString();
     }
 
     /**
