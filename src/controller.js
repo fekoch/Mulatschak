@@ -56,6 +56,7 @@ class Controller {
             // Punkteberechnen
             this.newPlay();
         }else{
+            this.model.setStack()
             this.newRun();
         }
         // TODO implement ?
@@ -81,12 +82,21 @@ class Controller {
         }
         else if (currPlayer === this.model.getPlayer()) {
             // TODO player input
-            // Model returns played cards
-            // View shows played cards
+
             this.view.showHand(currPlayer.getHand());
             this.view.showDropzone();
         }
         else {
+            var ar = []
+            ar = this.model.getStack();
+            if(currPlayer === this.model.getCom1()){
+                this.view.comPlayCard(0,ar[1]);
+            }else if(currPlayer === this.model.getCom2()){
+                this.view.comPlayCard(1,ar[2]);
+            }else if(currPlayer === this.model.getCom3()){
+                this.view.comPlayCard(2,ar[3]);
+            }
+            this.newRun()
             // TODO com play
             // View shows COM Animation of playing cards
             // View shows all played cards
@@ -104,6 +114,7 @@ class Controller {
         console.log("Played CARD:");
         console.log(card);
         this.view.hideDropzone();
+        this.view.setCardDragEnabled(false);
         this.model.setPlayerinStack(card);
         // Model accepts the card or rejected it
         // if the card is accepted

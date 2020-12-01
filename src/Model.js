@@ -29,11 +29,11 @@ class Model{
 	 */
     setStack() {
         this.stack.push(this.com1.getCard(1));
-        this.com1.shift();
+        this.com1.hand.shift();
         this.stack.push(this.com2.getCard(1));
-        this.com2.shift();
+        this.com2.hand.shift();
         this.stack.push(this.com3.getCard(1));
-        this.com3.shift();
+        this.com3.hand.shift();
     }
 
 	/**
