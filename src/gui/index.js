@@ -13,8 +13,7 @@ let gameOptions = {
     // props of com circle
     com_radius: 1 / 8 / 2,
     com_y: 20,
-    com_x: 1 / 4,
-    com_cardScale: 0.6
+    com_x: 1 / 4
 
 }
 
@@ -286,12 +285,12 @@ class PlayGame extends Phaser.Scene {
      * @param comID {int} the comID from 0-2
      */
     comPlayCard(comID,card) {
-        const cardWidth = gameOptions.cardWidth * gameOptions.com_cardScale;
+        const com_cardScale = 0.8;
+        const cardWidth = gameOptions.cardWidth * com_cardScale;
         let x = game.config.width*gameOptions.com_x*(comID+1);
-        let y = gameOptions.com_y+gameOptions.com_radius*0.5+gameOptions.cardHeight*gameOptions.com_cardScale;
-        let cardSprite = this.add.sprite(x,y, "cards", card.getSpriteID());
-        cardSprite.setScale(gameOptions.com_cardScale);
-        //TODO y-alingnment?
+        let y = gameOptions.com_y+gameOptions.com_radius*game.config.width-30;
+        let cardSprite = this.add.sprite(x,y, "cards", card.getSpriteID()).setOrigin(0.5,0);
+        cardSprite.setScale(com_cardScale);
     }
 
     /**
