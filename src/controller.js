@@ -54,6 +54,7 @@ class Controller {
         this.roundCounter++;
         if(this.roundCounter == 6){
             // Punkteberechnen
+            this.newPlay();
         }else{
             this.newRun();
         }
@@ -106,6 +107,7 @@ class Controller {
         this.model.setPlayerinStack(card);
         // Model accepts the card or rejected it
         // if the card is accepted
+        this.model.naechsterSpieler();
         this.newRun();
         // else view starts a new user input
         // this.view.showHand
