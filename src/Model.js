@@ -46,7 +46,7 @@ class Model{
     
     /**
      * gives you the current playing player
-     * @return {Player} the current playing player
+     * @return {Player|Number} the current playing player
      */
     getSpieleranderReihe(){
         if(this.justacounter == 4){
