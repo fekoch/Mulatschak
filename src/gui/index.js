@@ -423,47 +423,76 @@ class PlayGame extends Phaser.Scene {
         }
     }
 
-    /**
-     * @type {number}
-     */
-    static PURPLE_COLOR = 0x7430AA;
 
     /**
      * Sets up all the static graphics
      * called by create()
      */
     setUpGraphics() {
+        const PURPLE_COLOR = 0x7430AA;
         const gheight = game.config.height;
         const gwidth = game.config.width;
 
         let gr = this.add.graphics();
 
-        gr.fillStyle(PlayGame.PURPLE_COLOR,1);
+        // player pts-display
+        gr.fillStyle(PURPLE_COLOR,1);
         gr.fillRect(20,gheight/2,160,80);
         this.pptxt = this.add.bitmapText(100,gheight/2,'gothic','-').setOrigin(0.5,0);
 
-        this.pdtt = this.add.bitmapText(gwidth-75,gheight/2,'gothic','0').setOrigin(0.5,0);
+        this.pdtt = this.add.bitmapText(gwidth-75,gheight/2,'gothic','-').setOrigin(0.5,0);
         this.pdtt.setTintFill(PlayGame.DEFAULT_BLUE_COLOR);
 
         this.add.bitmapText(gwidth-110,gheight/2,'gothic','/').setOrigin(0.5,0);
 
-        this.pdtt2 = this.add.bitmapText(gwidth-145,gheight/2,'gothic','0').setOrigin(0.5,0);
+        this.pdtt2 = this.add.bitmapText(gwidth-145,gheight/2,'gothic','-').setOrigin(0.5,0);
         this.pdtt2.setTintFill(PlayGame.DEFAULT_BLUE_COLOR);
 
+        // draw coms
         gr.drawCom = function (comid) {
             this.fillStyle(0x636363, 1)
             this.fillCircle(game.config.width * gameOptions.com_x * (comid + 1), gameOptions.com_y, game.config.width * gameOptions.com_radius);
+            this.fillStyle(PURPLE_COLOR);
+            let xoffset = 70+gameOptions.com_radius*gwidth +5;
+            this.fillRect(gwidth*gameOptions.com_x*(comid + 1)-xoffset, 8,70,50);
         };
 
         gr.drawCom(0);
         gr.drawCom(1);
         gr.drawCom(2);
 
-        let x = game.config.width * gameOptions.com_x;
-        let y = gameOptions.com_y;
+        // add com points-remaining-texts
+        let x = gwidth*gameOptions.com_x-35-5-gameOptions.com_radius*gwidth;
+        let y =8+24;
+        this.comptd = [];
+        this.comptd.push(this.add.bitmapText(x,y,'gothic','-').setOrigin(0.5,0.5).setFontSize(32));
+        x = 2*gwidth*gameOptions.com_x-35-5-gameOptions.com_radius*gwidth;
+        this.comptd.push(this.add.bitmapText(x,y,'gothic','-').setOrigin(0.5,0.5).setFontSize(32));
+        x = 3*gwidth*gameOptions.com_x-35-5-gameOptions.com_radius*gwidth;
+        this.comptd.push(this.add.bitmapText(x,y,'gothic','-').setOrigin(0.5,0.5).setFontSize(32));
+
+        x = game.config.width * gameOptions.com_x;
+        y = gameOptions.com_y;
         this.add.bitmapText(x,y,'gothic','COM1').setOrigin(0.5,0).setFontSize(32);
         this.add.bitmapText(x*2,y,'gothic','COM2').setOrigin(0.5,0).setFontSize(32);
         this.add.bitmapText(x*3,y,'gothic','COM3').setOrigin(0.5,0).setFontSize(32);
+
+    }
+
+    /**
+     * an Array of the Text-Objects for the Com-Points-remaining
+     * @type Phaser.GameObjects.BitmapText[]
+     */
+    comptd;
+
+    /**
+     * Sets the remaining points for a COM-player
+     * @param comid {number} the ID of the com from 0-2
+     * @param points {number} the remaining points of the com
+     */
+    setComRemainingPoints(comid, points) {
+        let txt = this.comptd[comid];
+        if (txt != null) txt.text = points.toString();
     }
 
 }
