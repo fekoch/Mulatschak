@@ -359,11 +359,18 @@ class PlayGame extends Phaser.Scene {
     }
 
     /**
-     * TODO
+     * PlayerDeclaredTrickstext
+     * @type Phaser.GameObjects.BitmapText
+     */
+    pdtt;
+
+    /**
      * Sets the tricks (=Stiche) that the player declared
      * @param tricks {number} declared tricks
      */
-    setPlayerDeclaredTricks(tricks) {}
+    setPlayerDeclaredTricks(tricks) {
+        this.pdtt.text = tricks.toString();
+    }
 
     /**
      * Indicates that someone still has to do Tricks
@@ -383,15 +390,42 @@ class PlayGame extends Phaser.Scene {
      */
     static TRICKS_TOO_MUCH = -1;
 
+    static DEFAULT_BLUE_COLOR = 0x1B1BAA;
     /**
-     * TODO
+     * PlayerDoneTricksText
+     * @type Phaser.GameObjects.BitmapText
+     */
+    pdtt2;
+
+    /**
      * Sets the tricks (=Stiche) that the player has done
      * @param tricks {number} the tricks that the player did
      * @param state {number} Has the player done enough Tricks?
      *  one of {@link TRICKS_TODO}, {@link TRICKS_CORRECT} and {@link TRICKS_TOO_MUCH}
      */
-    setPlayerDoneTricks(tricks,state=PlayGame.TRICKS_TODO) {}
+    setPlayerDoneTricks(tricks,state=PlayGame.TRICKS_TODO) {
+        const TRICKS_TOO_MUCH_COLOR = 0xE40100;
+        const TRICKS_CORRECT_COLOR = 0x47E400;
+        const TRICKS_TODO_COLOR = 0xE48F12;
 
+        this.pdtt2.text = tricks.toString();
+        if (state == PlayGame.TRICKS_TODO) {
+            this.pdtt2.setTintFill(TRICKS_TODO_COLOR);
+        }
+        else if (state == PlayGame.TRICKS_TOO_MUCH) {
+            this.pdtt2.setTintFill(TRICKS_TOO_MUCH_COLOR);
+        }
+        else if (state == PlayGame.TRICKS_CORRECT) {
+            this.pdtt2.setTintFill(TRICKS_CORRECT_COLOR);
+        }
+        else {
+            this.pdtt2.setTintFill(PlayGame.DEFAULT_BLUE_COLOR);
+        }
+    }
+
+    /**
+     * @type {number}
+     */
     static PURPLE_COLOR = 0x7430AA;
 
     /**
@@ -399,11 +433,22 @@ class PlayGame extends Phaser.Scene {
      * called by create()
      */
     setUpGraphics() {
+        const gheight = game.config.height;
+        const gwidth = game.config.width;
+
         let gr = this.add.graphics();
 
         gr.fillStyle(PlayGame.PURPLE_COLOR,1);
-        gr.fillRect(20,game.config.height/2,160,80);
-        this.pptxt = this.add.bitmapText(100,game.config.height/2,'gothic','-').setOrigin(0.5,0);
+        gr.fillRect(20,gheight/2,160,80);
+        this.pptxt = this.add.bitmapText(100,gheight/2,'gothic','-').setOrigin(0.5,0);
+
+        this.pdtt = this.add.bitmapText(gwidth-75,gheight/2,'gothic','0').setOrigin(0.5,0);
+        this.pdtt.setTintFill(PlayGame.DEFAULT_BLUE_COLOR);
+
+        this.add.bitmapText(gwidth-110,gheight/2,'gothic','/').setOrigin(0.5,0);
+
+        this.pdtt2 = this.add.bitmapText(gwidth-145,gheight/2,'gothic','0').setOrigin(0.5,0);
+        this.pdtt2.setTintFill(PlayGame.DEFAULT_BLUE_COLOR);
 
         gr.drawCom = function (comid) {
             this.fillStyle(0x636363, 1)
