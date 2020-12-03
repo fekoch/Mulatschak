@@ -4,7 +4,7 @@
  * @version 8/11/2020
  */
 class Model{
-    
+    // TODO DOCUMENTATION
     /**
      *
      */
@@ -31,7 +31,7 @@ class Model{
         this.com2.playCard(this.com2.getCard(1));
         this.com3.playCard(this.com3.getCard(1));
 	}
-    
+    // TODO DOCUMENTATION
     setPlayerinStack(card1){
         this.player.playCard(card1);
     }
@@ -46,7 +46,7 @@ class Model{
     
     /**
      * gives you the current playing player
-     * @return {Player} the current playing player
+     * @return {Player|Number} the current playing player
      */
     getSpieleranderReihe(){
         if(this.justacounter == 4){
