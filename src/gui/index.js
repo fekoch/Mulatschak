@@ -133,6 +133,11 @@ class PlayGame extends Phaser.Scene {
      *  @param hand {Array<Card>} ein Array mit den Handkarten
      */
     showHand(hand) {
+        for (let i = 0; i < this.playerHandCards.length; i++) {
+            this.playerHandCards[i].destroy();
+        }
+        this.playerHandCards = [];
+
         const cardWidth = gameOptions.cardWidth * gameOptions.cardScale;
         const handLength = 5 * cardWidth; // max total length of hand
         const margin_left = game.config.width / 2 - handLength / 2 + cardWidth/2; // center Hand
@@ -240,13 +245,18 @@ class PlayGame extends Phaser.Scene {
 
         // reset card after unsuccesfull drop
         this.input.on('dragend',function(pointer,gameObject,dropped){
-            console.log("draggend");
+            //console.log("draggend");
             if(!dropped){
-                console.log("not dropped");
+                //console.log("not dropped");
                 gameObject.x = gameObject.input.dragStartX;
                 gameObject.y = gameObject.input.dragStartY;
             }
             this.dropZoneGraphic.drawMyself();
+            if (gameObject.outline !== undefined) {
+                //console.log("outline");
+                gameObject.enableOutline = gameObject.getBounds().contains(pointer.x, pointer.y);
+                gameObject.outline();
+            }
         },this);
 
         this.hideDropzone();
