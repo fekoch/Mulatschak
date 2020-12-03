@@ -22,26 +22,18 @@ class Model{
         var gewinnerfarbe = "";
         this.player.setRundeGewonnen(true);
     }
-	// TODO Doc of SetStack
     /**
-	 * Setzt Karten im Array
+	* Setzt Karten im Array
 	 * @param {Card} card1 - Karte des Spielers 
 	 */
     setStack() {
-        this.stack.push(this.com1.getCard(1));
-        this.com1.hand.shift();
-        this.stack.push(this.com2.getCard(1));
-        this.com2.hand.shift();
-        this.stack.push(this.com3.getCard(1));
-        this.com3.hand.shift();
-    }
-
-	/**
-	 * TODO DOC
-	 */
+        this.com1.playCard(this.com1.getCard(1));
+        this.com2.playCard(this.com2.getCard(1));
+        this.com3.playCard(this.com3.getCard(1));
+	}
+    
     setPlayerinStack(card1){
-        this.stack.push(card1);
-        this.player.delcard(card1);
+        this.player.playCard(card1);
     }
 	
 	/**
@@ -52,22 +44,29 @@ class Model{
 		return this.stack;
 	}
     
-    
     /**
      * gives you the current playing player
-     * @return {Player} the current playing player
+     * @retrun {Player} the current playing player
      */
     getSpieleranderReihe(){
+        if(this.justacounter == 4){
+            this.justacounter = 0;
+            return -1;
+        }
         if(this.player.getRundeGewonnen() == true){
+            this.justacounter + 1;
            return this.player;
         } else if(this.com1.getRundeGewonnen() == true){
+            this.justacounter + 1;
             return this.com1;
         }else if(this.com2.getRundeGewonnen() == true){
+            this.justacounter + 1;
             return this.com2;
         }else if(this.com3.getRundeGewonnen() == true){
+            this.justacounter + 1;
             return this.com3;
         }
-        return -1;
+        
     }
     
     /**
@@ -92,7 +91,7 @@ class Model{
     
     /**
      * setzt die Trumpffarbe
-     * @param farbe - die neue trumpffarbe
+     * @param {String} farbe - die neue trumpffarbe
      */
     setTrumpffarbe(farbe){
         this.trumpffarbe = farbe;
@@ -100,7 +99,7 @@ class Model{
     
     /**
      *  set SticheAngesagt
-     *  @param anzahl 
+     *  @param {Integer} anzahl 
      */
     setSticheAngesagt(anzahl) {
         this.setSticheAngesagt = anzahl;
@@ -108,28 +107,28 @@ class Model{
     
     /**
      * Get Player
-     * @return player obj
+     * @return {Player} player obj
      */
     getPlayer() {
         return this.player;
     }
     /**
      * Get Com1 
-     * @return com1 obj
+     * @return {Player} com1 obj
      */
     getCom1() {
         return this.com1;
     }
     /**
      * Get Com2 
-     * @return com2 obj
+     * @return {Player} com2 obj
      */
     getCom2() {
         return this.com2;
     }
     /**
      * Get Com3
-     * @return com3 obj
+     * @return {Player} com3 obj
      */
     getCom3() {
         return this.com3;
@@ -167,16 +166,15 @@ class Model{
     
     /**
      * discarded eine zahl an Karten für einen bestimmten spieler
-     * @param {Player} player - spieler
      * @param {Integer} num - ein Array, dieses sagt welche Karte (nach der nummer der reihenfolgen 0-5) gelöscht werden soll
      */
-    discard(player, num){
-        if(num.length <= 5){
+    discard(num){
+        if(num.length <= 5 && this.trumpffarbe != "Herz"){
             for(var i = 0;i<num.length;i++){
-                player.delcard(player.getCard(num[i]));
+                this.player.delcard(this.player.getCard(num[i]));
             }
         }else{
-            alert("You don't have that many Cards to discard");
+            alert("You can't discard a card");
         }
     }
     
