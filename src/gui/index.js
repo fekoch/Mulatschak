@@ -292,12 +292,12 @@ class PlayGame extends Phaser.Scene {
     /**
      * Shows that a com plays a card
      * @param card {Card} the Card that the com plays
-     * @param comID {int} the comID from 0-2
+     * @param comID {int} the comID from 1-3
      */
     comPlayCard(comID,card) {
         const com_cardScale = 0.8;
         const cardWidth = gameOptions.cardWidth * com_cardScale;
-        let x = game.config.width*gameOptions.com_x*(comID+1);
+        let x = game.config.width*gameOptions.com_x*(comID);
         let y = gameOptions.com_y+gameOptions.com_radius*game.config.width-30;
         let cardSprite = this.add.sprite(x,y, "cards", card.getSpriteID()).setOrigin(0.5,0);
         cardSprite.setScale(com_cardScale);
