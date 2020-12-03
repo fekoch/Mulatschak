@@ -477,7 +477,34 @@ class PlayGame extends Phaser.Scene {
         this.add.bitmapText(x*2,y,'gothic','COM2').setOrigin(0.5,0).setFontSize(32);
         this.add.bitmapText(x*3,y,'gothic','COM3').setOrigin(0.5,0).setFontSize(32);
 
+        // com tricks display
+        x = gwidth*gameOptions.com_x * 1 + gwidth*gameOptions.com_radius + 5 +35;
+        y =8+24;
+        this.comtdonet = [];
+        this.comtdeclardt = [];
+        this.comtdonet.push(this.add.bitmapText(x-20,y,'gothic','-').setOrigin(0.5,0.5).setFontSize(32).setTintFill(PlayGame.DEFAULT_BLUE_COLOR));
+        this.add.bitmapText(x,y,'gothic','/').setOrigin(0.5,0.5).setFontSize(32);
+        this.comtdeclardt.push(this.add.bitmapText(x+20,y,'gothic','-').setOrigin(0.5,0.5).setFontSize(32).setTintFill(PlayGame.DEFAULT_BLUE_COLOR));
+        x = gwidth*gameOptions.com_x * 2 + gwidth*gameOptions.com_radius + 5 +35;
+        this.comtdonet.push(this.add.bitmapText(x-20,y,'gothic','-').setOrigin(0.5,0.5).setFontSize(32).setTintFill(PlayGame.DEFAULT_BLUE_COLOR));
+        this.add.bitmapText(x,y,'gothic','/').setOrigin(0.5,0.5).setFontSize(32)
+        this.comtdeclardt.push(this.add.bitmapText(x+20,y,'gothic','-').setOrigin(0.5,0.5).setFontSize(32).setTintFill(PlayGame.DEFAULT_BLUE_COLOR));
+        x = gwidth*gameOptions.com_x * 3 + gwidth*gameOptions.com_radius + 5 +35;
+        this.comtdonet.push(this.add.bitmapText(x-20,y,'gothic','-').setOrigin(0.5,0.5).setFontSize(32).setTintFill(PlayGame.DEFAULT_BLUE_COLOR));
+        this.add.bitmapText(x,y,'gothic','/').setOrigin(0.5,0.5).setFontSize(32)
+        this.comtdeclardt.push(this.add.bitmapText(x+20,y,'gothic','-').setOrigin(0.5,0.5).setFontSize(32).setTintFill(PlayGame.DEFAULT_BLUE_COLOR));
     }
+
+    /**
+     * COM Tricks done texts
+     * @type Phaser.GameObjects.BitmapText[]
+     */
+    comtdonet;
+    /**
+     * COM Tricks declared texts
+     * @type Phaser.GameObjects.BitmapText[]
+     */
+    comtdeclardt;
 
     /**
      * an Array of the Text-Objects for the Com-Points-remaining
@@ -493,6 +520,43 @@ class PlayGame extends Phaser.Scene {
     setComRemainingPoints(comid, points) {
         let txt = this.comptd[comid];
         if (txt != null) txt.text = points.toString();
+    }
+
+    /**
+     * Sets the declared tricks for a COM-player
+     * @param comid {number} the ID of the com from 0-2
+     * @param points {number} the declared tricks of the com
+     */
+    setComDeclaredTricks(comid,points) {
+        let txt = this.comtdeclardt[comid];
+        if (txt != null) txt.text = points.toString();
+    }
+
+    /**
+     * Sets the tricks (=Stiche) that the player has done
+     * @param comid {number} the com for who to set the stat
+     * @param tricks {number} the tricks that the player did
+     * @param state {number} Has the player done enough Tricks?
+     *  one of {@link TRICKS_TODO}, {@link TRICKS_CORRECT} and {@link TRICKS_TOO_MUCH}
+     */
+    setComDoneTricks(comid, tricks, state) {
+        const TRICKS_TOO_MUCH_COLOR = 0xE40100;
+        const TRICKS_CORRECT_COLOR = 0x47E400;
+        const TRICKS_TODO_COLOR = 0xE48F12;
+
+        this.comtdonet[comid].text = tricks.toString();
+        if (state === PlayGame.TRICKS_TODO) {
+            this.comtdonet[comid].setTintFill(TRICKS_TODO_COLOR);
+        }
+        else if (state === PlayGame.TRICKS_TOO_MUCH) {
+            this.comtdonet[comid].setTintFill(TRICKS_TOO_MUCH_COLOR);
+        }
+        else if (state === PlayGame.TRICKS_CORRECT) {
+            this.comtdonet[comid].setTintFill(TRICKS_CORRECT_COLOR);
+        }
+        else {
+            this.comtdonet[comid].setTintFill(PlayGame.DEFAULT_BLUE_COLOR);
+        }
     }
 
 }
