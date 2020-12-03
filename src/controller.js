@@ -51,17 +51,15 @@ class Controller {
      * (one run for each player)
      */
     newRound() {
-        this.roundCounter++;
-        if(this.roundCounter == 6){
+
+        if(this.roundCounter == 5){
             // Punkteberechnen
             this.newPlay();
         }else{
+            this.roundCounter++;
             this.model.setStack()
             this.newRun();
         }
-        // TODO implement ?
-
-
     }
 
     /**
@@ -71,13 +69,14 @@ class Controller {
     newRun() {
         let currPlayer = this.model.getSpieleranderReihe();
         if (currPlayer === -1) {
-            // Model returns den Stecher
+            // Model returns den Stecher in der Play Methode sollte es funktionieren
             // View gets Stecher
             // View shows Stecher
             // Model clears Stack
             // Model sets new first Player
             // TODO end of round
             // View shows all cards which are were played
+            this.newRound()
             console.log("end of round");
         }
         else if (currPlayer === this.model.getPlayer()) {
@@ -87,21 +86,20 @@ class Controller {
             this.view.showDropzone();
         }
         else {
-            var ar = []
-            ar = this.model.getStack();
+
             if(currPlayer === this.model.getCom1()){
-                this.view.comPlayCard(0,ar[1]);
+                this.view.comPlayCard(1,this.model.getCom1().getPlayedCard());
             }else if(currPlayer === this.model.getCom2()){
-                this.view.comPlayCard(1,ar[2]);
+                this.view.comPlayCard(2,this.model.getCom2().getPlayedCard());
+
             }else if(currPlayer === this.model.getCom3()){
-                this.view.comPlayCard(2,ar[3]);
+                this.view.comPlayCard(3,this.model.getCom3().getPlayedCard());
             }
             this.model.naechsterSpieler();
 
             setTimeout(function (context) {context.newRun()},1000,this); // makes game more smooth
             // TODO com play
-            // View shows COM Animation of playing cards
-            // View shows all played cards
+
             console.log("COM ist an der Reihe");
         }
 
@@ -120,11 +118,12 @@ class Controller {
         this.model.setPlayerinStack(card);
         // Model accepts the card or rejected it
         // if the card is accepted
-        this.model.naechsterSpieler();
-        setTimeout(function (context) {context.newRun()},1000,this); // makes game more smooth
         // else view starts a new user input
         // this.view.showHand
         // this.view showDropzone
+        this.model.naechsterSpieler();
+        setTimeout(function (context) {context.newRun()},1000,this); // makes game more smooth
+
 
     }
 }
