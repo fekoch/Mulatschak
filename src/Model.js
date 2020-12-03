@@ -35,15 +35,6 @@ class Model{
     setPlayerinStack(card1){
         this.player.playCard(card1);
     }
-	
-	/**
-	 * Gibt den Array mit den Karten zurueck
-	 * @return {Array} stack - Array mit den Karten der jetztigen Runde
-	 */
-	getStack() {
-		return this.stack;
-	}
-    
     /**
      * gives you the current playing player
      * @return {Player|Number} the current playing player
@@ -189,7 +180,7 @@ class Model{
     
     /** 
      * gibt an wer am meisten stiche angesagt hat und giebt diese person zurück
-     * @return {Person} eine Person
+     * @return {Player} eine Person
      */
     prePlay(){
         if(this.player.getSticheAngesagt > this.com1.getSticheAngesagt && this.player.getSticheAngesagt > this.com2.getSticheAngesagt && this.player.getSticheAngesagt > this.com3.getSticheAngesagt){
