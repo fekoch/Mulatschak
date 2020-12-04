@@ -157,7 +157,7 @@ class PlayGame extends Phaser.Scene {
             card.outline = function() {
                 this.outlineGraphic.clear();
                 if (this.enableOutline) {
-                    this.outlineGraphic.lineStyle(5,0x0CF2FF);
+                    this.outlineGraphic.lineStyle(2,0x0CF2FF);
                     let b = card.getBounds();
                     this.outlineGraphic.strokeRoundedRect(b.x,b.y,b.width,b.height);
                 }
@@ -209,12 +209,12 @@ class PlayGame extends Phaser.Scene {
         // methods to easily draw the visual
         this.dropZoneGraphic.drawMyself = function () {
             this.clear();
-            this.lineStyle(4,0x636363);
+            this.lineStyle(2,0x636363);
             this.strokeRoundedRect(zoneXg,zoneYg,zoneWidth,zoneHeight);
         }
         this.dropZoneGraphic.drawMyselfHighlighted = function () {
             this.clear();
-            this.lineStyle(5,0x00FF28);
+            this.lineStyle(2,0x00FF28);
             this.strokeRoundedRect(zoneXg,zoneYg,zoneWidth,zoneHeight);
 
         }
