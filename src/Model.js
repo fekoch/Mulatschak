@@ -4,6 +4,9 @@
  * @version 8/11/2020
  */
 class Model{
+    // TODO Playmethode Stecher zurück geben
+    // TODO Punkteberechnung
+    // TODO Weli-suchen
     // TODO DOCUMENTATION
     /**
      *
@@ -36,7 +39,7 @@ class Model{
         this.player.playCard(card1);
     }
     /**
-     * gives you the current playing player
+     * Gives you the current playing player
      * @return {Player|Number} the current playing player
      */
     getSpieleranderReihe(){
