@@ -4,6 +4,10 @@
  * @version 8/11/2020
  */
 class Model{
+    // TODO Playmethode Stecher zurück geben
+    // DONE
+    // TODO Punkteberechnung
+    // TODO Weli-suchen
     // TODO DOCUMENTATION
     /**
      *
@@ -31,12 +35,16 @@ class Model{
         this.com2.playCard(this.com2.getCard(1));
         this.com3.playCard(this.com3.getCard(1));
 	}
-    // TODO DOCUMENTATION
+
+    /**
+     * the play playes a card
+     * @param {Card} card1
+     */
     setPlayerinStack(card1){
         this.player.playCard(card1);
     }
     /**
-     * gives you the current playing player
+     * Gives you the current playing player
      * @return {Player|Number} the current playing player
      */
     getSpieleranderReihe(){
@@ -202,6 +210,10 @@ class Model{
      * Bestimmt welche der 4 Karten die höchste ist und setzt den Gewinner
      */
     play(){
+        this.stack[0] = this.player.getPlayedCard();
+        this.stack[1] = this.com1.getPlayedCard();
+        this.stack[2] = this.com2.getPlayedCard();
+        this.stack[3] = this.com3.getPlayedCard();
         if(this.player.getRundeGewonnen())this.gewinnerfarbe=this.stack[0].getColor();
         else if(this.com1.getRundeGewonnen())this.gewinnerfarbe=this.stack[1].getColor();
         else if(this.com2.getRundeGewonnen())this.gewinnerfarbe=this.stack[2].getColor();
@@ -257,5 +269,6 @@ class Model{
                 this.com2.setRundeGewonnen(false);
                 this.com3.setRundeGewonnen(true);
             }
+            return this.getSpieleranderReihe();
         }
 }

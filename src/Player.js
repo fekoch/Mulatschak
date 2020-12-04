@@ -13,6 +13,7 @@ class Player{
      * Creates a new Player
      */
     constructor(){
+        var name = "";
         this.hand = [];
         var counter = 21;
         var reihe = false;
@@ -144,5 +145,21 @@ class Player{
      */
     clearPlayedCard() {
         this.playedCard = null;
+    }
+
+    /**
+     * setzt den namen eines spielers
+     * @param {String} name
+     */
+    setName(name){
+        this.name = name;
+    }
+
+    /**
+     * gibt den name eines spieler zurück
+     * @returns {string} name des palyers
+     */
+    getName(){
+        return name;
     }
 }
