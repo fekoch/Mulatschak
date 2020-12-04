@@ -208,6 +208,7 @@ class Model{
     
    /** 
      * Bestimmt welche der 4 Karten die höchste ist und setzt den Gewinner
+    * @return {Player} der Spieler der den Stich gemacht hat
      */
     play(){
         this.stack[0] = this.player.getPlayedCard();
