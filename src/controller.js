@@ -41,8 +41,21 @@ class Controller {
      */
     startPlay() {
         // TODO implement
+        this.model.restart();
         this.model.handOut();
         this.roundCounter = 0;
+        this.view.showHand(currPlayer.getHand());
+        // View gives the Userinput of the angesagten Stiche zurück
+        // Model gets angesagte Stiche of the Player
+
+        // Player with the highest angesagte Stiche must set the trumpffarbe
+        // if it is the player the views shows that
+        // Model gets the trumpfarbe
+
+        // first player starts to discard cards (and the other players also)
+
+
+        this.model.prePlay();
         this.newRound();
     }
 
@@ -69,10 +82,10 @@ class Controller {
     newRun() {
         let currPlayer = this.model.getSpieleranderReihe();
         if (currPlayer === -1) {
-            // Model returns den Stecher in der Play Methode sollte es funktionieren
-            // View gets Stecher
-            // View shows Stecher
-            // Model clears Stack
+            var stecher =this.model.play();
+            this.view.displayFadeOutMessage(stecher.getName()+" hat den Stich gemacht!");
+
+
             // Model sets new first Player
             // TODO end of round
             // View shows all cards which are were played
@@ -82,7 +95,7 @@ class Controller {
         else if (currPlayer === this.model.getPlayer()) {
             // TODO player input
 
-            this.view.showHand(currPlayer.getHand());
+
             this.view.showDropzone();
         }
         else {

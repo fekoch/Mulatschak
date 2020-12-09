@@ -9,6 +9,7 @@ class Model{
     // TODO Punkteberechnung
     // TODO Weli-suchen
     // TODO DOCUMENTATION
+    // TODO Überprüfung der User Karte
     /**
      *
      */
@@ -187,7 +188,7 @@ class Model{
     }
     
     /** 
-     * gibt an wer am meisten stiche angesagt hat und giebt diese person zurück
+     * gibt an wer am meisten stiche angesagt hat und gibt diese person zurück
      * @return {Player} eine Person
      */
     prePlay(){
