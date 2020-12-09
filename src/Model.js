@@ -9,6 +9,7 @@ class Model{
     // TODO Punkteberechnung
     // TODO Weli-suchen
     // TODO DOCUMENTATION
+    // TODO Überprüfung der User Karte
     /**
      *
      */
