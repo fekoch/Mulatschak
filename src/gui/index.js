@@ -559,5 +559,33 @@ class PlayGame extends Phaser.Scene {
         }
     }
 
+    /**
+     * Displays an Option to choose how many tricks the player believes they will do
+     * @param choices {number} The number of choices the player has left:
+     *  5 = [yield,1,2,3,4,5]
+     *  4 = [yield,2,3,4,5]
+     *  3 = [yield,3,4,5]
+     *  ...
+     *  1 = [yield,5]
+     *  0 = [yield]
+     */
+    displayTrickPicker(choices = 5) {
+        let gr = this.add.graphics();
+        let options = [];
+        let texts = [];
+        const sh = game.config.height;
+        const yoff = sh/2-sh/10;
+        const sw = game.config.width;
+        const margin = 20;
+        const offset = (sw - 2*margin)/5;
+
+        for (let i = 1; i <= choices; i++) {
+            if (i < (5-choices) ) {
+            }
+            else{
+                let r = this.add.rectangle(margin+offset*(i-1),yoff,offset,offset,0xffffff).setStroke(2,0x000000);
+            }
+        }
+    }
 }
 

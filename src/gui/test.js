@@ -1,7 +1,13 @@
 var config = {
-    width: 800,
-    height: 600,
     type: Phaser.AUTO,
+    backgroundColor: "#618f4d",
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        parent: "thegame",
+        height: 750,
+        width: 1334
+    },
     parent: 'phaser-example',
     scene: {
         create: create
@@ -14,15 +20,29 @@ var graphics;
 
 function create ()
 {
-    graphics = this.add.graphics();
+    const choices = 5;
+    
+    let gr = this.add.graphics();
+    let options = [];
+    let texts = [];
+    const sh = game.config.height;
+    const yoff = sh/2-sh/10;
+    const sw = game.config.width;
+    const margin = 20;
+    const offset = (sw - 2*margin)/5;
 
-    graphics.lineStyle(1, 0xff00ff, 1);
-
-    //  32px radius on the corners
-    graphics.strokeRoundedRect(32, 32, 300, 200);
-
-    graphics.lineStyle(6, 0xffff00, 1);
-
-    //  Using an object to define a different radius per corner
-    graphics.strokeRoundedRect(360, 240, 400, 300, { tl: 64, tr: 22, bl: 12, br: 0 });
+    for (let i = 1; i <= 5; i++) {
+        // todo text
+        if (i < (6-choices) ) {
+            let r = this.add.rectangle(margin+offset*(i-1)+offset/2,yoff,offset*0.8,offset*0.8,0x838383).setOrigin(0.5,0.5).setStrokeStyle(2,0x000000);
+        }
+        else{
+            let r = this.add.rectangle(margin+offset*(i-1)+offset/2,yoff,offset*0.8,offset*0.8,0xffffff).setOrigin(0.5,0.5).setStrokeStyle(2,0x000000);
+            r.setInteractive();
+            r.on('pointerup',function (pointer,localx,localy,event) {
+                // todo
+            },this);
+            // todo hover
+        }
+    }
 }
