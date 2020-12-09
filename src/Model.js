@@ -187,7 +187,7 @@ class Model{
     }
     
     /** 
-     * gibt an wer am meisten stiche angesagt hat und giebt diese person zurück
+     * gibt an wer am meisten stiche angesagt hat und gibt diese person zurück
      * @return {Player} eine Person
      */
     prePlay(){
