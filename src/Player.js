@@ -20,6 +20,7 @@ class Player{
         var sticheAngesagt = 0;
         var sticheBekommen = 0;
         this.rundeGewonnen = false;
+        var reihe;
         this.playedCard = null;
     }
     
@@ -88,12 +89,20 @@ class Player{
     getSticheBekommen() {
         return this.sticheBekommen;
     }
+
+    /**
+     * fügt einen bekommenen stich hinzu
+     */
+    addStich(){
+        this.sticheBekommen + 1;
+    }
     /**
      * sets rundeGewonnen
      * @param gewonnen {boolean} if the player has won
      */
     setRundeGewonnen(gewonnen) {
         this.rundeGewonnen=gewonnen;
+        this.reihe = gewonnen;
     }
 
     /**
@@ -161,5 +170,21 @@ class Player{
      */
     getName(){
         return name;
+    }
+
+    /**
+     * setzt den namen eines spielers
+     * @param {Boolean} name
+     */
+    setReihe(reihe){
+        this.reihe = reihe;
+    }
+
+    /**
+     * gibt den name eines spieler zurück
+     * @returns {string} name des palyers
+     */
+    getReihe(){
+        return this.reihe;
     }
 }
