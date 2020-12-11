@@ -4,12 +4,12 @@
  * @version 8/11/2020
  */
 class Model{
-    // TODO Playmethode Stecher zurück geben
-    // DONE
+
     // TODO Punkteberechnung
-    // TODO Weli-suchen
     // TODO DOCUMENTATION
-    // TODO Überprüfung der User Karte
+    // TODO Hohen Karten zählen
+    // TODO SetTrumpffarbe COMS
+    // TODO SetStiche COMS (mit den hohen Karten)
     /**
      *
      */
