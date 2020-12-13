@@ -618,5 +618,12 @@ class PlayGame extends Phaser.Scene {
         options.push(r);
         texts.push(t);
     }
+
+    /**
+     * Displays the Icon of the Trumpffarbe
+     * @param trumpffarbe {String} one of `Deck.BLATT_FARBE`, `Deck.GLOCKE_FARBE`, `Deck.HERZ_FARBE` or `Deck.NUSS_FARBE`
+     */
+    displayTrumpffarbe(trumpffarbe) {
+    }
 }
 
