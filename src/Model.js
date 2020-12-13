@@ -380,7 +380,7 @@ class Model{
             return this.getSpieleranderReihe();
         }
 
-    punkteauszählung(){
+    punkteauszaehlung(){
         var p = this.player.getSticheBekommen();
         var c1 = this.com1.getSticheBekommen();
         var c2 = this.com2.getSticheBekommen();
