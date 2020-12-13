@@ -87,8 +87,12 @@ class PlayGame extends Phaser.Scene {
     preload() {
         console.log("begin load");
         this.load.spritesheet("cards","./assets/cardsheet_big.png", {frameWidth: gameOptions.cardWidth, frameHeight: gameOptions.cardHeight}); // TODO spritesheet vs altas
-        this.load.image('dropzone','assets/testdrop.png');
+        //this.load.image('dropzone','assets/testdrop.png');
         this.load.bitmapFont('gothic','assets/fonts/gothic.png','assets/fonts/gothic.xml');
+        this.load.image('nuss-icon','assets/eichel_icon.png');
+        this.load.image('herz-icon','assets/herz_icon.png');
+        this.load.image('blatt-icon','assets/blatt_icon.png');
+        this.load.image('glocke-icon','assets/glocke_icon.png');
         console.log("load finnished");
     }
 
@@ -624,6 +628,29 @@ class PlayGame extends Phaser.Scene {
      * @param trumpffarbe {String} one of `Deck.BLATT_FARBE`, `Deck.GLOCKE_FARBE`, `Deck.HERZ_FARBE` or `Deck.NUSS_FARBE`
      */
     displayTrumpffarbe(trumpffarbe) {
+        let xOff = 50;
+        let yOff = game.config.height/2 - 150;
+        let width = 100;
+        let height = 100;
+        let ox = xOff+(width/2);
+        let oy = yOff+(height/2);
+
+        if(this.trumprect === undefined) this.trumprect = this.add.rectangle(xOff,yOff,width,height,0xffffff).setOrigin(0,0);
+        if(this.trumpicon != null) this.trumpicon.destroy();
+        switch (trumpffarbe) {
+            case Deck.BLATT_FARBE:
+                this.trumpicon = this.add.sprite(ox,oy,'blatt-icon').setOrigin(0.5,0.5).setScale(0.8);
+                break;
+            case Deck.HERZ_FARBE:
+                this.trumpicon = this.add.sprite(ox,oy,'herz-icon').setOrigin(0.5,0.5).setScale(0.8);
+                break;
+            case Deck.GLOCKE_FARBE:
+                this.trumpicon = this.add.sprite(ox,oy,'glocke-icon').setOrigin(0.5,0.5).setScale(0.8);
+                break;
+            case Deck.NUSS_FARBE:
+                this.trumpicon = this.add.sprite(ox,oy,'nuss-icon').setOrigin(0.5,0.5).setScale(0.8);
+                break;
+        }
     }
 }
 
