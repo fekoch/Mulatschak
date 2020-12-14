@@ -14,6 +14,7 @@ class Controller {
      */
     constructor(view) {
         this.view = view;
+        this.deck = new Deck();
         // creates the dropzone; it is linked to the playCard()-Method
         this.view.createDropzones();
         this.roundCounter = 0;
@@ -29,9 +30,7 @@ class Controller {
      * Plays a Game which consists of an undefined number of Plays
      */
     playGame() {
-        // TODO implement
         this.model = new Model();
-
         this.startPlay();
     }
 
@@ -47,28 +46,10 @@ class Controller {
             this.view.displayFadeOutMessage("Der Multiplikator für diese Runde wurde bereits erhöht er lautet"+this.model.getMulti());
         }
         this.roundCounter = 0;
-        this.view.showHand(currPlayer.getHand());
+        this.view.showHand(this.model.getPlayer().getHand());
 
-        // View gives the Userinput of the angesagten Stiche zurück
-        // Model gets angesagte Stiche of the Player:
-        var stiche = this.model.setSticheAngesagt(this.view.displayTrickPicker(5))
-        this.model.prePlay();
-        this.view.setComDeclaredTricks(0,this.model.getCom1().getSticheAngesagt());
-        this.view.setComDeclaredTricks(1,this.model.getCom2().getSticheAngesagt());
-        this.view.setComDeclaredTricks(2,this.model.getCom3().getSticheAngesagt());
+        this.view.displayTrickPicker(5);
 
-        // TODO falls die Coms es schaffen mehr anzuzeigen dann muss man die angesgaten Stiche anders setzen
-
-        // Player with the highest angesagte Stiche must set the trumpffarbe
-        // if it is the player the views shows that
-        // Model gets the trumpfarbe
-
-        // first player starts to discard cards (and the other players also)
-        // if players step out
-
-
-
-        this.newRound();
     }
 
     /**
@@ -79,11 +60,11 @@ class Controller {
 
         if(this.roundCounter == 5){
             this.model.punkteauszaehlung();
-            // view gets the points
+            // TODO view gets the points
             this.startPlay();
         }else{
             this.roundCounter++;
-            this.model.setStack()
+
             this.newRun();
         }
     }
@@ -97,18 +78,10 @@ class Controller {
         if (currPlayer === -1) {
             var stecher =this.model.play();
             this.view.displayFadeOutMessage(stecher.getName()+" hat den Stich gemacht!");
-
-
-            // Model sets new first Player
-            // TODO end of round
-            // View shows all cards which are were played
             this.newRound()
             console.log("end of round");
         }
         else if (currPlayer === this.model.getPlayer()) {
-            // TODO player input
-
-
             this.view.showDropzone();
         }
         else {
@@ -148,12 +121,44 @@ class Controller {
         // this.view.showHand
         // this.view showDropzone
         this.model.naechsterSpieler();
+        this.model.setStack();
+        this.newRun();
         setTimeout(function (context) {context.newRun()},1000,this); // makes game more smooth
 
 
     }
 
+    /**
+     * Angesagt Stiche vom Player
+     * @param tricks
+     */
     tricksChosen(tricks) {
+        var stiche = this.model.setSticheAngesagt(tricks)
+        this.model.prePlay();
+        this.view.setComDeclaredTricks(0,this.model.getCom1().getSticheAngesagt());
+        this.view.setComDeclaredTricks(1,this.model.getCom2().getSticheAngesagt());
+        this.view.setComDeclaredTricks(2,this.model.getCom3().getSticheAngesagt());
 
+        // TODO falls die Coms es schaffen mehr anzuzeigen dann muss man die angesgaten Stiche anders setzen
+
+        // Player with the highest angesagte Stiche must set the trumpffarbe
+
+        // if it is the player the views shows that
+        // Model gets the trumpfarbe
+        this.view.displayFadeOutMessage(stiche);
+
+        if(stiche == -1){
+            // TODO VIEW METHOD TO GET TRUMPFFARBE
+            this.model.setTrumpffarbe(this.deck.GLOCKE_FARBE);
+            this.view.displayFadeOutMessage("Die Trumpffarbe ist Glocken!");
+        }
+
+        // TODO Discard Cards
+        // first player starts to discard cards (and the other players also)
+        // if players step out
+
+
+
+        this.newRound();
     }
 }
