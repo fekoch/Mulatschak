@@ -139,4 +139,8 @@ class Controller {
 
 
     }
+
+    tricksChosen(tricks) {
+
+    }
 }

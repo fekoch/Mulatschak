@@ -87,8 +87,12 @@ class PlayGame extends Phaser.Scene {
     preload() {
         console.log("begin load");
         this.load.spritesheet("cards","./assets/cardsheet_big.png", {frameWidth: gameOptions.cardWidth, frameHeight: gameOptions.cardHeight}); // TODO spritesheet vs altas
-        this.load.image('dropzone','assets/testdrop.png');
+        //this.load.image('dropzone','assets/testdrop.png');
         this.load.bitmapFont('gothic','assets/fonts/gothic.png','assets/fonts/gothic.xml');
+        this.load.image('nuss-icon','assets/eichel_icon.png');
+        this.load.image('herz-icon','assets/herz_icon.png');
+        this.load.image('blatt-icon','assets/blatt_icon.png');
+        this.load.image('glocke-icon','assets/glocke_icon.png');
         console.log("load finnished");
     }
 
@@ -525,7 +529,7 @@ class PlayGame extends Phaser.Scene {
     /**
      * Sets the declared tricks for a COM-player
      * @param comid {number} the ID of the com from 0-2
-     * @param points {number} the declared tricks of the com
+     * @param points {number|String} the declared tricks of the com
      */
     setComDeclaredTricks(comid,points) {
         let txt = this.comtdeclardt[comid];
@@ -568,23 +572,84 @@ class PlayGame extends Phaser.Scene {
      *  ...
      *  1 = [yield,5]
      *  0 = [yield]
+     *  @param listener {Controller} Objekt mit der Callback-Methode `tricksChosen(number)`
      */
-    displayTrickPicker(choices = 5) {
+    displayTrickPicker(choices = 5,listener=this.controller) {
         let gr = this.add.graphics();
         let options = [];
         let texts = [];
         const sh = game.config.height;
-        const yoff = sh/2-sh/10;
+        const yoff = sh / 2 - sh / 10;
         const sw = game.config.width;
         const margin = 20;
-        const offset = (sw - 2*margin)/5;
+        const offset = (sw - 2 * margin) / 5;
 
-        for (let i = 1; i <= choices; i++) {
-            if (i < (5-choices) ) {
+        for (let i = 1; i <= 5; i++) {
+            let tcolor;
+            let r;
+            if (i < (6 - choices)) {
+                r = this.add.rectangle(margin + offset * (i - 1) + offset / 2, yoff, offset * 0.8, offset * 0.8, 0x838383).setOrigin(0.5, 0.5).setStrokeStyle(2, 0x000000);
+                tcolor = 0xBBBBBB;
+            } else {
+                r = this.add.rectangle(margin + offset * (i - 1) + offset / 2, yoff, offset * 0.8, offset * 0.8, 0xffffff).setOrigin(0.5, 0.5).setStrokeStyle(2, 0x000000);
+                r.setInteractive();
+                r.on('pointerup', function (pointer, localx, localy, event) {
+                    for (let j = 0; j < options.length; j++) {
+                        options[j].destroy();
+                        texts[j].destroy();
+                    }
+                    //console.log("clicked: i=" + i)
+                    listener.tricksChosen(i);
+                }, this);
+                tcolor = 0x000000;
             }
-            else{
-                let r = this.add.rectangle(margin+offset*(i-1),yoff,offset,offset,0xffffff).setStroke(2,0x000000);
+            let bitmaptext = this.add.bitmapText(margin + offset * (i - 1) + offset / 2, yoff, "gothic", "" + i).setOrigin(0.5, 0.5).setTintFill(tcolor);
+
+            options.push(r);
+            texts.push(bitmaptext);
+        }
+
+        let r = this.add.rectangle(margin + offset * 0.5, yoff + offset / 2 * 1.2, 4 * offset, offset * 0.6, 0xffffff).setOrigin(0, 0).setStrokeStyle(2, 0x000000).setInteractive();
+        r.on('pointerup', function (pointer, localx, localy, event) {
+            for (let j = 0; j < options.length; j++) {
+                options[j].destroy();
+                texts[j].destroy();
             }
+            //console.log("clicked: passen")
+            listener.tricksChosen(0);
+        }, this);
+        let t = this.add.bitmapText(sw / 2, yoff + offset / 2 * 1.2 + offset * 0.3, "gothic", "Passen").setOrigin(0.5, 0.5).setTintFill(0x000000);
+        options.push(r);
+        texts.push(t);
+    }
+
+    /**
+     * Displays the Icon of the Trumpffarbe
+     * @param trumpffarbe {String} one of `Deck.BLATT_FARBE`, `Deck.GLOCKE_FARBE`, `Deck.HERZ_FARBE` or `Deck.NUSS_FARBE`
+     */
+    displayTrumpffarbe(trumpffarbe) {
+        let xOff = 50;
+        let yOff = game.config.height/2 - 150;
+        let width = 100;
+        let height = 100;
+        let ox = xOff+(width/2);
+        let oy = yOff+(height/2);
+
+        if(this.trumprect === undefined) this.trumprect = this.add.rectangle(xOff,yOff,width,height,0xffffff).setOrigin(0,0);
+        if(this.trumpicon != null) this.trumpicon.destroy();
+        switch (trumpffarbe) {
+            case Deck.BLATT_FARBE:
+                this.trumpicon = this.add.sprite(ox,oy,'blatt-icon').setOrigin(0.5,0.5).setScale(0.8);
+                break;
+            case Deck.HERZ_FARBE:
+                this.trumpicon = this.add.sprite(ox,oy,'herz-icon').setOrigin(0.5,0.5).setScale(0.8);
+                break;
+            case Deck.GLOCKE_FARBE:
+                this.trumpicon = this.add.sprite(ox,oy,'glocke-icon').setOrigin(0.5,0.5).setScale(0.8);
+                break;
+            case Deck.NUSS_FARBE:
+                this.trumpicon = this.add.sprite(ox,oy,'nuss-icon').setOrigin(0.5,0.5).setScale(0.8);
+                break;
         }
     }
 }
