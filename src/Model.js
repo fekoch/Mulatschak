@@ -37,6 +37,19 @@ class Model{
         this.com1.setSticheAngesagt(1);
         this.com2.setSticheAngesagt(1);
         this.com3.setSticheAngesagt(1);
+	var arr = [
+         Deck.HERZ_FARBE,
+         Deck.GLOCKE_FARBE,
+         Deck.BLATT_FARBE,
+         Deck.NUSS_FARBE
+        ];
+        if(this.stichsager() == this.player()){
+            //player wählt
+            return -1;
+        } else{
+            var randomIndex = Math.floor(Math.random() * textArray.length);
+            this.setTrumpffarbe(arr[randomIndex]);
+        }
     }
 
     /**
@@ -94,16 +107,16 @@ class Model{
      * @return {Player} eine Person
      */
     prePlay(){
-        if(this.player.getSticheAngesagt > this.com1.getSticheAngesagt && this.player.getSticheAngesagt > this.com2.getSticheAngesagt && this.player.getSticheAngesagt > this.com3.getSticheAngesagt){
+        if(this.stichsager() == this.player){
             this.player.setRundeGewonnen(true);
             return this.player;
-        }else if(this.player.getSticheAngesagt < this.com1.getSticheAngesagt && this.com1.getSticheAngesagt > this.com2.getSticheAngesagt && this.com1.getSticheAngesagt > this.com3.getSticheAngesagt){
+        }else if(this.stichsager() == this.com1){
             this.com1.setRundeGewonnen(true);
             return this.com1;
-        }else if(this.com2.getSticheAngesagt > this.com1.getSticheAngesagt && this.player.getSticheAngesagt < this.com2.getSticheAngesagt && this.com2.getSticheAngesagt > this.com3.getSticheAngesagt){
+        }else if(this.stichsager() == this.com2){
             this.com2.setRundeGewonnen(true);
             return this.com2;
-        }else if(this.com3.getSticheAngesagt > this.com1.getSticheAngesagt && this.player.getSticheAngesagt > this.com2.getSticheAngesagt && this.com3.getSticheAngesagt < this.com3.getSticheAngesagt){
+        }else if(this.stichsager() == this.com3){
             this.com3.setRundeGewonnen(true);
             return this.com3;
         }
@@ -310,8 +323,24 @@ class Model{
     }
     
     /**
-     * setzt die werte zurück
+     * gibt an wer am meisten stiche angesagt hat und gibt diese person zurück
+     * @return {Player} eine Person
      */
+    stichsager(){
+        if(this.player.getSticheAngesagt > this.com1.getSticheAngesagt && this.player.getSticheAngesagt > this.com2.getSticheAngesagt && this.player.getSticheAngesagt > this.com3.getSticheAngesagt){
+
+            return this.player;
+        }else if(this.player.getSticheAngesagt < this.com1.getSticheAngesagt && this.com1.getSticheAngesagt > this.com2.getSticheAngesagt && this.com1.getSticheAngesagt > this.com3.getSticheAngesagt){
+
+            return this.com1;
+        }else if(this.com2.getSticheAngesagt > this.com1.getSticheAngesagt && this.player.getSticheAngesagt < this.com2.getSticheAngesagt && this.com2.getSticheAngesagt > this.com3.getSticheAngesagt){
+
+            return this.com2;
+        }else if(this.com3.getSticheAngesagt > this.com1.getSticheAngesagt && this.player.getSticheAngesagt > this.com2.getSticheAngesagt && this.com3.getSticheAngesagt < this.com3.getSticheAngesagt){
+
+            return this.com3;
+        }
+    }
     
    /** 
      * Bestimmt welche der 4 Karten die höchste ist und setzt den Gewinner
@@ -381,10 +410,20 @@ class Model{
         }
 
     punkteauszaehlung(){
-        var p = this.player.getSticheBekommen();
-        var c1 = this.com1.getSticheBekommen();
-        var c2 = this.com2.getSticheBekommen();
-        var c3 = this.com3.getSticheBekommen();
+        var pl = [this.player,this.com1,this.com2,this.com3]
+        for(var i = 0;i>4;i++) {
+            if(this.stichsager() == pl[i]){
+                if(pl[i].getSticheBekommen() >= pl[i].getSticheAngesagt()){
+                    pl[i].setCounter(pl[i].getCounter() - pl[i].getSticheBekommen() * this.multi);
+                } else {
+                    pl[i].setCounter(pl[i].getCounter() +10 * this.multi);
+                }
+            }else if (pl[i].getSticheBekommen()>0) {
+                pl[i].setCounter(pl[i].getCounter() - pl[i].getSticheBekommen() * this.multi);
+            } else {
+                pl[i].setCounter(pl[i].getCounter() +5 * this.multi);
+            }
+        }
         this.player.setSticheBekommen(0);
         this.com1.setSticheBekommen(0);
         this.com2.setSticheBekommen(0);
