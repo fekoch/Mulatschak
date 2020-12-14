@@ -17,4 +17,4 @@ He states:
 
 > » Copyright (C) 2004 Gunter Gerhardt (http://www.xskat.de) 
 
-The joker and the card-back are adaptions of the work from Mfrasca. The whole Project is licensed under 
+The joker and the card-back are adaptions of the work from Mfrasca. The whole Project is licensed under GPL-3.0
