@@ -49,6 +49,7 @@ class Model{
         } else{
             var randomIndex = Math.floor(Math.random() * arr.length);
             this.setTrumpffarbe(arr[randomIndex]);
+            return 0;
         }
     }
 
