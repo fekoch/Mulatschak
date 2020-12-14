@@ -29,50 +29,27 @@ function create ()
 {
     let trumpffarbe = Deck.NUSS_FARBE;
 
-    let xOff = 100;
-    let yOff = 100;
-    let width = 100;
-    let height = 100;
-    let ox = xOff+(width/2);
-    let oy = yOff+(height/2);
-    this.trumprect = this.add.rectangle(xOff,yOff,width,height,0xffffff).setOrigin(0,0);
-    switch (trumpffarbe) {
-        case Deck.BLATT_FARBE:
-            this.trumpicon = this.add.sprite(ox,oy,'blatt-icon').setOrigin(0.5,0.5).setScale(0.8);
-            break;
-        case Deck.HERZ_FARBE:
-            this.trumpicon = this.add.sprite(ox,oy,'herz-icon').setOrigin(0.5,0.5).setScale(0.8);
-            break;
-        case Deck.GLOCKE_FARBE:
-            this.trumpicon = this.add.sprite(ox,oy,'glocke-icon').setOrigin(0.5,0.5).setScale(0.8);
-            break;
-        case Deck.NUSS_FARBE:
-            this.trumpicon = this.add.sprite(ox,oy,'nuss-icon').setOrigin(0.5,0.5).setScale(0.8);
-            break;
-    }
+    const sh = game.config.height;
+    const yOff = sh / 2 - sh / 10;
+    const sw = game.config.width;
+    const margin = 20;
+    const offset = (sw - 2 * margin) / 4;
 
-    trumpffarbe = Deck.GLOCKE_FARBE;
-    if(this.trumprect === undefined) this.trumprect = this.add.rectangle(xOff,yOff,width,height,0xffffff).setOrigin(0,0);
-    if(this.trumpicon != null) this.trumpicon.destroy();
-    switch (trumpffarbe) {
-        case Deck.BLATT_FARBE:
-            this.trumpicon = this.add.sprite(ox,oy,'blatt-icon').setOrigin(0.5,0.5).setScale(0.8);
-            break;
-        case Deck.HERZ_FARBE:
-            this.trumpicon = this.add.sprite(ox,oy,'herz-icon').setOrigin(0.5,0.5).setScale(0.8);
-            break;
-        case Deck.GLOCKE_FARBE:
-            this.trumpicon = this.add.sprite(ox,oy,'glocke-icon').setOrigin(0.5,0.5).setScale(0.8);
-            break;
-        case Deck.NUSS_FARBE:
-            this.trumpicon = this.add.sprite(ox,oy,'nuss-icon').setOrigin(0.5,0.5).setScale(0.8);
-            break;
-    }
-}
+    let width = offset/2;
+    let height = offset/2;
 
-/**
- * Displays the Icon of the Trumpffarbe
- * @param trumpffarbe {String} one of `Deck.BLATT_FARBE`, `Deck.GLOCKE_FARBE`, `Deck.HERZ_FARBE` or `Deck.NUSS_FARBE`
- */
-function displayTrumpffarbe(trumpffarbe) {
+    let tpr = [];
+    let tpi = [];
+    let farbenarray = [Deck.HERZ_FARBE,Deck.BLATT_FARBE,Deck.GLOCKE_FARBE,Deck.NUSS_FARBE];
+    let ffa = ["herz-icon","blatt-icon","glocke-icon","nuss-icon"];
+
+    for (let i = 0; i < farbenarray.length; i++) {
+        tpr.push(this.add.rectangle(margin+offset*i+width/2,yOff,width,height,0xffffff).setOrigin(0,0));
+        tpr[i].setInteractive().on('pointerup',function () {
+            // TODO call listener
+            console.log(farbenarray[i]+" was picked");
+            for (let j = 0; j < farbenarray.length; j++) { tpr.pop().destroy(); tpi.pop().destroy(); } // clear picker
+        },this);
+        tpi.push(this.add.sprite(margin+offset*i+width,yOff+height/2,ffa[i]).setOrigin(0.5,0.5).setScale(1));
+    }
 }

@@ -681,7 +681,29 @@ class PlayGame extends Phaser.Scene {
      * @param listener {Controller} Objekt mit der Callback-Methode `trumpffarbePicked(String)`
      */
     displayTrumpffarbenPicker(listener=this.controller) {
-        listener.trumpffarbePicked(Deck.GLOCKE_FARBE);
+        const sh = game.config.height;
+        const yOff = sh / 2 - sh / 10;
+        const sw = game.config.width;
+        const margin = 20;
+        const offset = (sw - 2 * margin) / 4;
+
+        let width = offset/2;
+        let height = offset/2;
+
+        let tpr = [];
+        let tpi = [];
+        let farbenarray = [Deck.HERZ_FARBE,Deck.BLATT_FARBE,Deck.GLOCKE_FARBE,Deck.NUSS_FARBE];
+        let ffa = ["herz-icon","blatt-icon","glocke-icon","nuss-icon"];
+
+        for (let i = 0; i < farbenarray.length; i++) {
+            tpr.push(this.add.rectangle(margin+offset*i+width/2,yOff,width,height,0xffffff).setOrigin(0,0));
+            tpr[i].setInteractive().on('pointerup',function () {
+                listener.trumpffarbePicked(farbenarray[i]);
+                console.log(farbenarray[i]+" was picked");
+                for (let j = 0; j < farbenarray.length; j++) { tpr.pop().destroy(); tpi.pop().destroy(); } // clear picker
+            },this);
+            tpi.push(this.add.sprite(margin+offset*i+width,yOff+height/2,ffa[i]).setOrigin(0.5,0.5).setScale(1));
+        }
     }
 }
 
