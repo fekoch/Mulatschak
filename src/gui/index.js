@@ -544,7 +544,7 @@ class PlayGame extends Phaser.Scene {
 
     /**
      * Sets the tricks (=Stiche) that the player has done
-     * @param comid {number} the com for who to set the stat
+     * @param comid {number} the com for who to set the stat {0,1,2}
      * @param tricks {number} the tricks that the player did
      * @param state {number} Has the player done enough Tricks?
      *  one of {@link TRICKS_TODO}, {@link TRICKS_CORRECT} and {@link TRICKS_TOO_MUCH}
