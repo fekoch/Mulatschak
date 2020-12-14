@@ -20,11 +20,11 @@ class Model{
         this.com2 = new Player();
         this.com3 = new Player();
         this.ar = [];
-        var multi = 1;
-        var trumpffarbe = "";
+        this.multi = 1;
+        this.trumpffarbe = "";
         this.stack = [];
-        var trumpfVorhanden = false;
-        var gewinnerfarbe = "";
+        this.trumpfVorhanden = false;
+        this.gewinnerfarbe = "";
         this.player.setRundeGewonnen(true);
     }
 
@@ -86,6 +86,14 @@ class Model{
         console.log(this.com1);
         console.log(this.com2);
         console.log(this.com3);
+    }
+
+    /**
+     * Gibt den Multiplikator zurueck
+     * @returns {Integer}
+     */
+    getMulti(){
+        return this.multi;
     }
 
     /**
