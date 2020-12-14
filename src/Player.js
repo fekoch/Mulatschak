@@ -13,14 +13,14 @@ class Player{
      * Creates a new Player
      */
     constructor(){
-        var name = "";
+        this.name = "";
         this.hand = [];
-        var counter = 21;
-        var reihe = false;
-        var sticheAngesagt = 0;
-        var sticheBekommen = 0;
+        this.counter = 21;
+        this.reihe = false;
+        this.sticheAngesagt = 0;
+        this.sticheBekommen = 0;
         this.rundeGewonnen = false;
-        var reihe;
+        this.reihe;
         this.playedCard = null;
     }
     
