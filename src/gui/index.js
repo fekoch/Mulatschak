@@ -531,7 +531,7 @@ class PlayGame extends Phaser.Scene {
      * @param comid {number} the ID of the com from 0-2
      * @param points {number|String} the declared tricks of the com
      */
-    setComDeclaredTricks(comid,points) {
+    setComDeclaredTricks(comid, points) {
         let txt = this.comtdeclardt[comid];
         if (txt != null) txt.text = points.toString();
     }
