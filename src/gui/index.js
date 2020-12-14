@@ -477,9 +477,15 @@ class PlayGame extends Phaser.Scene {
 
         x = game.config.width * gameOptions.com_x;
         y = gameOptions.com_y;
-        this.add.bitmapText(x,y,'gothic','COM1').setOrigin(0.5,0).setFontSize(32);
-        this.add.bitmapText(x*2,y,'gothic','COM2').setOrigin(0.5,0).setFontSize(32);
-        this.add.bitmapText(x*3,y,'gothic','COM3').setOrigin(0.5,0).setFontSize(32);
+
+        /**
+         * The Texts "COM1", "COM2" and "COM3"
+         * @type {Phaser.GameObjects.BitmapText[]}
+         */
+        this.com_texts = [];
+        this.com_texts[0] = this.add.bitmapText(x,y,'gothic','COM1').setOrigin(0.5,0).setFontSize(32);
+        this.com_texts[1] = this.add.bitmapText(x*2,y,'gothic','COM2').setOrigin(0.5,0).setFontSize(32);
+        this.com_texts[2] = this.add.bitmapText(x*3,y,'gothic','COM3').setOrigin(0.5,0).setFontSize(32);
 
         // com tricks display
         x = gwidth*gameOptions.com_x * 1 + gwidth*gameOptions.com_radius + 5 +35;
@@ -651,6 +657,21 @@ class PlayGame extends Phaser.Scene {
                 this.trumpicon = this.add.sprite(ox,oy,'nuss-icon').setOrigin(0.5,0.5).setScale(0.8);
                 break;
         }
+    }
+
+    /**
+     * Sets a COM enabled or disabled
+     * @param comid {number} which com [0,1,2]
+     * @param enable {boolean} enable or disable?
+     */
+    setComEnabled(comid,enable) {
+        if (!(comid in [0,1,2])) {
+            console.error("Not a valid COM-ID:"+comid);
+            return;
+        }
+        this.com_texts[comid].setTintFill(enable?0xffffff:0x999999);
+        this.setComDeclaredTricks(comid,"-");
+        this.setComDoneTricks(comid,'-');
     }
 }
 
