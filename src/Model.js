@@ -134,80 +134,170 @@ class Model{
             var i1 = 0;
             var i2 = 0;
             var i3 = 0;
-            for(;i1<6;i++){
-                if(this.com1.getCard(i).getColor() == color||this.com1.getCard(i).getColor() == this.trumpffarbe){
+            //com1
+            for(;i1<6;i1++){
+                if((this.com1.getCard(i1).getColor() == color && this.com1.getCard(i1).getNumber() > this.player.getPlayedCard().getNumber())||(this.com1.getCard(i1).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
                     break;
-                } else{
-                    i1 = 0;
                 }
             }
-            for(;i2<6;i++){
-                if(this.com2.getCard(i).getColor() == color||this.com2.getCard(i).getColor() == this.trumpffarbe){
-                    break;
-                } else{
-                    i2 = 0;
+            if(i1 == 6){
+                i1 = 0;
+                for(;i1<6;i1++){
+                    if(this.com1.getCard(i1).getColor() == color ||this.com1.getCard(i1).getColor() == this.trumpffarbe){
+                        break;
+                    }
                 }
             }
-            for(;i3<6;i++){
-                if(this.com3.getCard(i).getColor() == color||this.com3.getCard(i).getColor() == this.trumpffarbe){
+            if(i1 == 6){
+                i1 = 0;
+            }
+            //com2
+            for(;i2<6;i2++){
+                if((this.com2.getCard(i2).getColor() == color && this.com2.getCard(i2).getNumber() > this.player.getPlayedCard().getNumber())||(this.com2.getCard(i2).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
                     break;
-                } else {
-                    i3 = 0;
                 }
+            }
+            if(i2 == 6){
+                i2 = 0;
+                for(;i2<6;i2++){
+                    if(this.com2.getCard(i2).getColor() == color ||this.com1.getCard(i2).getColor() == this.trumpffarbe){
+                        break;
+                    }
+                }
+            }
+            if(i2 == 6){
+                i2 = 0;
+            }
+            //com3
+            for(;i3<6;i3++){
+                if((this.com3.getCard(i3).getColor() == color && this.com3.getCard(i3).getNumber() > this.player.getPlayedCard().getNumber())||(this.com1.getCard(i3).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
+                    break;
+                }
+            }
+            if(i3 == 6){
+                i3 = 0;
+                for(;i3<6;i3++){
+                    if(this.com3.getCard(i3).getColor() == color ||this.com1.getCard(i3).getColor() == this.trumpffarbe){
+                        break;
+                    }
+                }
+            }
+            if(i3 == 6){
+                i3 = 0;
             }
         } else if(this.getRundenBeginner() == this.com1){
             var color = this.com1.getCard(0).getColor();
             var i2 = 0;
             var i3 = 0;
-            for(;i2<6;i++){
-                if(this.com2.getCard(i).getColor() == color||this.com2.getCard(i).getColor() == this.trumpffarbe){
+            //com2
+            for(;i2<6;i2++){
+                if((this.com2.getCard(i2).getColor() == color && this.com2.getCard(i2).getNumber() > this.player.getPlayedCard().getNumber())||(this.com2.getCard(i2).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
                     break;
-                } else{
-                    i2 = 0;
                 }
             }
-            for(;i3<6;i++){
-                if(this.com3.getCard(i).getColor() == color||this.com3.getCard(i).getColor() == this.trumpffarbe){
-                    break;
-                } else {
-                    i3 = 0;
+            if(i2 == 6){
+                i2 = 0;
+                for(;i2<6;i2++){
+                    if(this.com2.getCard(i2).getColor() == color ||this.com1.getCard(i2).getColor() == this.trumpffarbe){
+                        break;
+                    }
                 }
+            }
+            if(i2 == 6){
+                i2 = 0;
+            }
+            //com3
+            for(;i3<6;i3++){
+                if((this.com3.getCard(i3).getColor() == color && this.com3.getCard(i3).getNumber() > this.player.getPlayedCard().getNumber())||(this.com1.getCard(i3).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
+                    break;
+                }
+            }
+            if(i3 == 6){
+                i3 = 0;
+                for(;i3<6;i3++){
+                    if(this.com3.getCard(i3).getColor() == color ||this.com1.getCard(i3).getColor() == this.trumpffarbe){
+                        break;
+                    }
+                }
+            }
+            if(i3 == 6){
+                i3 = 0;
             }
         } else if(this.getRundenBeginner() == this.com2){
             var color = this.com2.getCard(0).getColor();
             var i1 = 0;
             var i3 = 0;
+            //com1
             for(;i1<6;i++){
-                if(this.com1.getCard(i).getColor() == color||this.com1.getCard(i).getColor() == this.trumpffarbe){
+                if((this.com1.getCard(i).getColor() == color && this.com1.getCard(i).getNumber() > this.player.getPlayedCard().getNumber())||(this.com1.getCard(i).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
                     break;
-                } else{
-                    i1 = 0;
                 }
             }
-            for(;i3<6;i++){
-                if(this.com3.getCard(i).getColor() == color||this.com3.getCard(i).getColor() == this.trumpffarbe){
-                    break;
-                } else {
-                    i3 = 0;
+            if(i1 == 6){
+                i1 = 0;
+                for(;i1<6;i++){
+                    if(this.com1.getCard(i).getColor() == color ||this.com1.getCard(i).getColor() == this.trumpffarbe){
+                        break;
+                    }
                 }
+            }
+            if(i1 == 6){
+                i1 = 0;
+            }
+            //com3
+            for(;i3<6;i3++){
+                if((this.com3.getCard(i3).getColor() == color && this.com3.getCard(i3).getNumber() > this.player.getPlayedCard().getNumber())||(this.com1.getCard(i3).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
+                    break;
+                }
+            }
+            if(i3 == 6){
+                i3 = 0;
+                for(;i3<6;i3++){
+                    if(this.com3.getCard(i3).getColor() == color ||this.com1.getCard(i3).getColor() == this.trumpffarbe){
+                        break;
+                    }
+                }
+            }
+            if(i3 == 6){
+                i3 = 0;
             }
         } else if(this.getRundenBeginner() == this.com3){
             var color = this.com3.getCard(0).getColor();
             var i1 = 0;
             var i2 = 0;
+            //com1
             for(;i1<6;i++){
-                if(this.com1.getCard(i).getColor() == color||this.com1.getCard(i).getColor() == this.trumpffarbe){
+                if((this.com1.getCard(i).getColor() == color && this.com1.getCard(i).getNumber() > this.player.getPlayedCard().getNumber())||(this.com1.getCard(i).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
                     break;
-                } else{
-                    i1 = 0;
                 }
             }
-            for(;i2<6;i++){
-                if(this.com2.getCard(i).getColor() == color||this.com2.getCard(i).getColor() == this.trumpffarbe){
-                    break;
-                } else{
-                    i2 = 0;
+            if(i1 == 6){
+                i1 = 0;
+                for(;i1<6;i++){
+                    if(this.com1.getCard(i).getColor() == color ||this.com1.getCard(i).getColor() == this.trumpffarbe){
+                        break;
+                    }
                 }
+            }
+            if(i1 == 6){
+                i1 = 0;
+            }
+            //com2
+            for(;i2<6;i2++){
+                if((this.com2.getCard(i2).getColor() == color && this.com2.getCard(i2).getNumber() > this.player.getPlayedCard().getNumber())||(this.com2.getCard(i2).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
+                    break;
+                }
+            }
+            if(i2 == 6){
+                i2 = 0;
+                for(;i2<6;i2++){
+                    if(this.com2.getCard(i2).getColor() == color ||this.com1.getCard(i2).getColor() == this.trumpffarbe){
+                        break;
+                    }
+                }
+            }
+            if(i2 == 6){
+                i2 = 0;
             }
         }
 
