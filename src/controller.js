@@ -41,21 +41,33 @@ class Controller {
      */
     startPlay() {
         // TODO implement
-        this.model.restart();
+
         this.model.handOut();
+        if(this.model.getMulti() > 1){
+            this.view.displayFadeOutMessage("Der Multiplikator für diese Runde wurde bereits erhöht er lautet"+this.model.getMulti());
+        }
         this.roundCounter = 0;
         this.view.showHand(currPlayer.getHand());
+
         // View gives the Userinput of the angesagten Stiche zurück
-        // Model gets angesagte Stiche of the Player
+        // Model gets angesagte Stiche of the Player:
+        var stiche = this.model.setSticheAngesagt(this.view.displayTrickPicker(5))
+        this.model.prePlay();
+        this.view.setComDeclaredTricks(0,this.model.getCom1().getSticheAngesagt());
+        this.view.setComDeclaredTricks(1,this.model.getCom2().getSticheAngesagt());
+        this.view.setComDeclaredTricks(2,this.model.getCom3().getSticheAngesagt());
+
+        // TODO falls die Coms es schaffen mehr anzuzeigen dann muss man die angesgaten Stiche anders setzen
 
         // Player with the highest angesagte Stiche must set the trumpffarbe
         // if it is the player the views shows that
         // Model gets the trumpfarbe
 
         // first player starts to discard cards (and the other players also)
+        // if players step out
 
 
-        this.model.prePlay();
+
         this.newRound();
     }
 
@@ -66,8 +78,9 @@ class Controller {
     newRound() {
 
         if(this.roundCounter == 5){
-            // Punkteberechnen
-            this.newPlay();
+            this.model.punkteauszaehlung();
+            // view gets the points
+            this.startPlay();
         }else{
             this.roundCounter++;
             this.model.setStack()
