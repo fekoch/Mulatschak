@@ -675,5 +675,13 @@ class PlayGame extends Phaser.Scene {
         this.setComDeclaredTricks(comid,"-");
         this.setComDoneTricks(comid,'-');
     }
+
+    /**
+     * Displays the Trumpffarben-Picker
+     * @param listener {Controller} Objekt mit der Callback-Methode `trumpffarbePicked(String)`
+     */
+    displayTrumpffarbenPicker(listener=this.controller) {
+        listener.trumpffarbePicked(Deck.GLOCKE_FARBE);
+    }
 }
 
