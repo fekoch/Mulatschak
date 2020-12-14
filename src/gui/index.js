@@ -605,6 +605,7 @@ class PlayGame extends Phaser.Scene {
                         texts[j].destroy();
                     }
                     //console.log("clicked: i=" + i)
+                    this.setPlayerDeclaredTricks(i);
                     listener.tricksChosen(i);
                 }, this);
                 tcolor = 0x000000;
@@ -622,6 +623,7 @@ class PlayGame extends Phaser.Scene {
                 texts[j].destroy();
             }
             //console.log("clicked: passen")
+            this.setPlayerDeclaredTricks("1");
             listener.tricksChosen(0);
         }, this);
         let t = this.add.bitmapText(sw / 2, yoff + offset / 2 * 1.2 + offset * 0.3, "gothic", "Passen").setOrigin(0.5, 0.5).setTintFill(0x000000);
