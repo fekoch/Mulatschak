@@ -48,9 +48,9 @@ class Card{
       switch (this.color) {
           case Deck.GLOCKE_FARBE:
               return this.getNumber()-7;
-          case Deck.NUSS_FARBE:
-              return this.getNumber()-7+8;
           case Deck.HERZ_FARBE:
+              return this.getNumber()-7+8;
+          case Deck.NUSS_FARBE:
               return this.getNumber()-7+16;
           case Deck.BLATT_FARBE:
               return this.getNumber()-7+24;
