@@ -43,11 +43,11 @@ class Model{
          Deck.BLATT_FARBE,
          Deck.NUSS_FARBE
         ];
-        if(this.stichsager() == this.player()){
+        if(this.stichsager() == this.player){
             //player wählt
             return -1;
         } else{
-            var randomIndex = Math.floor(Math.random() * textArray.length);
+            var randomIndex = Math.floor(Math.random() * arr.length);
             this.setTrumpffarbe(arr[randomIndex]);
         }
     }
