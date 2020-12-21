@@ -18,11 +18,11 @@ class Model{
         this.player = new Player();
         this.player.setName("Du");
         this.com1 = new Player();
-        this.player.setName("COM1");
+        this.com1.setName("COM1");
         this.com2 = new Player();
-        this.player.setName("COM2");
+        this.com2.setName("COM2");
         this.com3 = new Player();
-        this.player.setName("COM3");
+        this.com3.setName("COM3");
         this.ar = [];
         this.multi = 1;
         this.trumpffarbe = "";
