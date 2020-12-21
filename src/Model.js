@@ -157,179 +157,236 @@ class Model{
 	 */
     setStack() {
         //falls player als erstes ist
+        var outofbounds = true;
         if(this.getRundenBeginner() == this.player){
             var color = this.player.getPlayedCard().getColor();
             var i1 = 0;
             var i2 = 0;
             var i3 = 0;
-            //com1
-            for(;i1<6;i1++){
+
+            /*
+            COM 1
+             */
+            outofbounds == true;
+            for(;i1<5;i1++){
                 if((this.com1.getCard(i1).getColor() == color && this.com1.getCard(i1).getNumber() > this.player.getPlayedCard().getNumber())||(this.com1.getCard(i1).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
+                    outofbounds = false;
                     break;
                 }
             }
-            if(i1 == 6){
+            if(outofbounds == true){
                 i1 = 0;
-                for(;i1<6;i1++){
+                for(;i1<5;i1++){
                     if(this.com1.getCard(i1).getColor() == color ||this.com1.getCard(i1).getColor() == this.trumpffarbe){
+                        outofbounds = false;
                         break;
                     }
                 }
+                if(outofbounds == true){
+                    i1 = 0;
+                }
             }
-            if(i1 == 6){
-                i1 = 0;
-            }
-            //com2
-            for(;i2<6;i2++){
+
+            /*
+            COM 2
+             */
+            outofbounds == true;
+            for(;i2<5;i2++){
                 if((this.com2.getCard(i2).getColor() == color && this.com2.getCard(i2).getNumber() > this.player.getPlayedCard().getNumber())||(this.com2.getCard(i2).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
+                    outofbounds = false;
                     break;
                 }
             }
-            if(i2 == 6){
+            if(outofbounds == true){
                 i2 = 0;
-                for(;i2<6;i2++){
-                    if(this.com2.getCard(i2).getColor() == color ||this.com1.getCard(i2).getColor() == this.trumpffarbe){
+                for(;i2<5;i2++){
+                    if(this.com2.getCard(i2).getColor() == color ||this.com2.getCard(i2).getColor() == this.trumpffarbe){
+                        outofbounds = false;
                         break;
                     }
                 }
+                if(outofbounds == true){
+                    i2 = 0;
+                }
             }
-            if(i2 == 6){
-                i2 = 0;
-            }
-            //com3
-            for(;i3<6;i3++){
-                if((this.com3.getCard(i3).getColor() == color && this.com3.getCard(i3).getNumber() > this.player.getPlayedCard().getNumber())||(this.com1.getCard(i3).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
+
+            /*
+            COM 3
+             */
+            outofbounds == true;
+            for(;i3<5;i3++){
+                if((this.com3.getCard(i3).getColor() == color && this.com3.getCard(i3).getNumber() > this.player.getPlayedCard().getNumber())||(this.com3.getCard(i3).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
+                    outofbounds = false;
                     break;
                 }
             }
-            if(i3 == 6){
+            if(outofbounds == true){
                 i3 = 0;
-                for(;i3<6;i3++){
-                    if(this.com3.getCard(i3).getColor() == color ||this.com1.getCard(i3).getColor() == this.trumpffarbe){
+                for(;i3<5;i3++){
+                    if(this.com3.getCard(i3).getColor() == color ||this.com3.getCard(i3).getColor() == this.trumpffarbe){
+                        outofbounds = false;
                         break;
                     }
                 }
+                if(outofbounds == true){
+                    i3 = 0;
+                }
             }
-            if(i3 == 6){
-                i3 = 0;
-            }
+        // Falls Com1 die Runde beginnt
         } else if(this.getRundenBeginner() == this.com1){
             var color = this.com1.getCard(0).getColor();
             var i2 = 0;
             var i3 = 0;
-            //com2
-            for(;i2<6;i2++){
+            /*
+            COM 2
+             */
+            outofbounds == true;
+            for(;i2<5;i2++){
                 if((this.com2.getCard(i2).getColor() == color && this.com2.getCard(i2).getNumber() > this.player.getPlayedCard().getNumber())||(this.com2.getCard(i2).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
+                    outofbounds = false;
                     break;
                 }
             }
-            if(i2 == 6){
+            if(outofbounds == true){
                 i2 = 0;
-                for(;i2<6;i2++){
-                    if(this.com2.getCard(i2).getColor() == color ||this.com1.getCard(i2).getColor() == this.trumpffarbe){
+                for(;i2<5;i2++){
+                    if(this.com2.getCard(i2).getColor() == color ||this.com2.getCard(i2).getColor() == this.trumpffarbe){
+                        outofbounds = false;
                         break;
                     }
                 }
+                if(outofbounds == true){
+                    i2 = 0;
+                }
             }
-            if(i2 == 6){
-                i2 = 0;
-            }
-            //com3
-            for(;i3<6;i3++){
-                if((this.com3.getCard(i3).getColor() == color && this.com3.getCard(i3).getNumber() > this.player.getPlayedCard().getNumber())||(this.com1.getCard(i3).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
+            /*
+            COM 3
+             */
+            outofbounds == true;
+            for(;i3<5;i3++){
+                if((this.com3.getCard(i3).getColor() == color && this.com3.getCard(i3).getNumber() > this.player.getPlayedCard().getNumber())||(this.com3.getCard(i3).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
+                    outofbounds = false;
                     break;
                 }
             }
-            if(i3 == 6){
+            if(outofbounds == true){
                 i3 = 0;
-                for(;i3<6;i3++){
-                    if(this.com3.getCard(i3).getColor() == color ||this.com1.getCard(i3).getColor() == this.trumpffarbe){
+                for(;i3<5;i3++){
+                    if(this.com3.getCard(i3).getColor() == color ||this.com3.getCard(i3).getColor() == this.trumpffarbe){
+                        outofbounds = false;
                         break;
                     }
                 }
+                if(outofbounds == true){
+                    i3 = 0;
+                }
             }
-            if(i3 == 6){
-                i3 = 0;
-            }
+        // Falls COM 2 beginnt
         } else if(this.getRundenBeginner() == this.com2){
             var color = this.com2.getCard(0).getColor();
             var i1 = 0;
             var i3 = 0;
-            //com1
-            for(;i1<6;i++){
+            /*
+            COM 1
+             */
+            outofbounds == true;
+            for(;i1<5;i1++){
                 if((this.com1.getCard(i1).getColor() == color && this.com1.getCard(i1).getNumber() > this.player.getPlayedCard().getNumber())||(this.com1.getCard(i1).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
+                    outofbounds = false;
                     break;
                 }
             }
-            if(i1 == 6){
+            if(outofbounds == true){
                 i1 = 0;
-                for(;i1<6;i++){
+                for(;i1<5;i1++){
                     if(this.com1.getCard(i1).getColor() == color ||this.com1.getCard(i1).getColor() == this.trumpffarbe){
+                        outofbounds = false;
                         break;
                     }
                 }
+                if(outofbounds == true){
+                    i1 = 0;
+                }
             }
-            if(i1 == 6){
-                i1 = 0;
-            }
-            //com3
-            for(;i3<6;i3++){
-                if((this.com3.getCard(i3).getColor() == color && this.com3.getCard(i3).getNumber() > this.player.getPlayedCard().getNumber())||(this.com1.getCard(i3).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
+
+            /*
+            COM 3
+             */
+            outofbounds == true;
+            for(;i3<5;i3++){
+                if((this.com3.getCard(i3).getColor() == color && this.com3.getCard(i3).getNumber() > this.player.getPlayedCard().getNumber())||(this.com3.getCard(i3).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
+                    outofbounds = false;
                     break;
                 }
             }
-            if(i3 == 6){
+            if(outofbounds == true){
                 i3 = 0;
-                for(;i3<6;i3++){
-                    if(this.com3.getCard(i3).getColor() == color ||this.com1.getCard(i3).getColor() == this.trumpffarbe){
+                for(;i3<5;i3++){
+                    if(this.com3.getCard(i3).getColor() == color ||this.com3.getCard(i3).getColor() == this.trumpffarbe){
+                        outofbounds = false;
                         break;
                     }
                 }
+                if(outofbounds == true){
+                    i3 = 0;
+                }
             }
-            if(i3 == 6){
-                i3 = 0;
-            }
+        // Falls COM 3 beginnt
         } else if(this.getRundenBeginner() == this.com3){
             var color = this.com3.getCard(0).getColor();
             var i1 = 0;
             var i2 = 0;
             //com1
-            for(;i1<6;i++){
+            /*
+            COM 1
+             */
+            outofbounds == true;
+            for(;i1<5;i1++){
                 if((this.com1.getCard(i1).getColor() == color && this.com1.getCard(i1).getNumber() > this.player.getPlayedCard().getNumber())||(this.com1.getCard(i1).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
+                    outofbounds = false;
                     break;
                 }
             }
-            if(i1 == 6){
+            if(outofbounds == true){
                 i1 = 0;
-                for(;i1<6;i++){
+                for(;i1<5;i1++){
                     if(this.com1.getCard(i1).getColor() == color ||this.com1.getCard(i1).getColor() == this.trumpffarbe){
+                        outofbounds = false;
                         break;
                     }
                 }
+                if(outofbounds == true){
+                    i1 = 0;
+                }
             }
-            if(i1 == 6){
-                i1 = 0;
-            }
-            //com2
-            for(;i2<6;i2++){
+
+            /*
+            COM 2
+             */
+            outofbounds == true;
+            for(;i2<5;i2++){
                 if((this.com2.getCard(i2).getColor() == color && this.com2.getCard(i2).getNumber() > this.player.getPlayedCard().getNumber())||(this.com2.getCard(i2).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
+                    outofbounds = false;
                     break;
                 }
             }
-            if(i2 == 6){
+            if(outofbounds == true){
                 i2 = 0;
-                for(;i2<6;i2++){
-                    if(this.com2.getCard(i2).getColor() == color ||this.com1.getCard(i2).getColor() == this.trumpffarbe){
+                for(;i2<5;i2++){
+                    if(this.com2.getCard(i2).getColor() == color ||this.com2.getCard(i2).getColor() == this.trumpffarbe){
+                        outofbounds = false;
                         break;
                     }
                 }
-            }
-            if(i2 == 6){
-                i2 = 0;
+                if(outofbounds == true){
+                    i2 = 0;
+                }
             }
 
         }
         console.log(i1);
+        console.log(i2);
+        console.log(i3);
         this.com1.playCard(this.com1.getCard(i1));
         this.com2.playCard(this.com2.getCard(i2));
         this.com3.playCard(this.com3.getCard(i3));
