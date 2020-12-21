@@ -118,7 +118,7 @@ class Player{
      *  @param anzahl
      */
     setSticheAngesagt(anzahl) {
-        this.setSticheAngesagt=anzahl;
+        this.sticheAngesagt=anzahl;
     }
     /**
      * get sticheAngesagt
