@@ -628,6 +628,8 @@ class PlayGame extends Phaser.Scene {
             this.setPlayerDeclaredTricks("1");
             listener.tricksChosen(0);
         }, this);
+        r.on('pointerover',function(){r.setStrokeStyle(5,0x0CF2FF)});
+        r.on('pointerout',function(){r.setStrokeStyle()});
         let t = this.add.bitmapText(sw / 2, yoff + offset / 2 * 1.2 + offset * 0.3, "gothic", "Passen").setOrigin(0.5, 0.5).setTintFill(0x000000);
         options.push(r);
         texts.push(t);
