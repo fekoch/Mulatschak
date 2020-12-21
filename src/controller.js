@@ -49,9 +49,9 @@ class Controller {
         this.roundCounter = 0;
         this.view.showHand(this.model.getPlayer().getHand());
 
-        setTimeout(function (context) {context.view.displayFadeOutMessage("Stiche ansagen");},4000,this);
+        setTimeout(function (context) {context.view.displayFadeOutMessage("Stiche ansagen");},1500,this);
 
-        setTimeout(function (context) {context.view.displayTrickPicker(5);},8000,this);
+        setTimeout(function (context) {context.view.displayTrickPicker(5);},2000,this);
 
 
     }
