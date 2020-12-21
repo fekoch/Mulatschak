@@ -169,7 +169,7 @@ class Player{
      * @returns {string} name des palyers
      */
     getName(){
-        return name;
+        return this.name;
     }
 
     /**
