@@ -321,7 +321,9 @@ class PlayGame extends Phaser.Scene {
      *  is no delay specified, SHORT_DELAY is used
      */
     displayFadeOutMessage(msg,delay= PlayGame.SHORT_DELAY) {
-        let mytext = this.add.dynamicBitmapText(game.config.width / 2,game.config.height / 3,'gothic',msg).setOrigin(0.5,0.5).setFontSize(82);
+        //let mytext = this.add.dynamicBitmapText(game.config.width / 2,game.config.height / 3,'gothic',msg).setOrigin(0.5,0.5).setFontSize(82);
+        let mytext = this.add.text(game.config.width / 2,game.config.height / 3, msg, { fontFamily: "Arial Black", fontSize: 74, color: "#ffffff" }).setOrigin(0.5,0.5);
+        mytext.setStroke('#000000', 16);
         let hminus = mytext.height;
         this.tweens.add({
             targets: mytext,
@@ -330,6 +332,8 @@ class PlayGame extends Phaser.Scene {
             delay: delay,
             duration: 3000
         });
+        setTimeout(function (){mytext.destroy();},3002);
+
     }
 
     /**
