@@ -31,6 +31,7 @@ class Controller {
      */
     playGame() {
         this.model = new Model();
+        this.view.displayFadeOutMessage("Das Spiel beginnt!");
         this.startPlay();
     }
 
@@ -48,7 +49,10 @@ class Controller {
         this.roundCounter = 0;
         this.view.showHand(this.model.getPlayer().getHand());
 
-        this.view.displayTrickPicker(5);
+        setTimeout(function (context) {context.view.displayFadeOutMessage("Stiche ansagen");},4000,this);
+
+        setTimeout(function (context) {context.view.displayTrickPicker(5);},8000,this);
+
 
     }
 
@@ -122,10 +126,7 @@ class Controller {
         // this.view showDropzone
         this.model.naechsterSpieler();
         this.model.setStack();
-        this.newRun();
         setTimeout(function (context) {context.newRun()},1000,this); // makes game more smooth
-
-
     }
 
     /**
