@@ -89,27 +89,28 @@ class Model{
         var handc1 = [];
         var handc2 = [];
         var handc3 = [];
-        var j= 0;
-        //do{
+        var j = 0;
+        do{
         for(var i = 0;i<5;i++){
             this.player.addcard(this.deck.draw());
             this.com1.addcard(this.deck.draw());
             this.com2.addcard(this.deck.draw());
             this.com3.addcard(this.deck.draw());
         }
-       //  if(j>=1){
-         //   this.multi=this.multi*2;
-        // }
-         //j=1;
-       // handp = this.player.getHand();
-          //  handc1 = this.player.getHand();
-           // handc2 = this.player.getHand();
-           // handc3 = this.player.getHand();
-         //} while(((handp[0].number > 10||handp[1].number > 10||handp[2].number > 10||handp[3].number > 10) && (handc1[0].number > 10||handc1[1].number > 10||handc1[2].number > 10||handc1[3].number > 10) && (handc2[0].number > 10||handc2[1].number > 10||handc2[2].number > 10||handc2[3].number > 10)&&(handc3[0].number > 10||handc3[1].number > 10||handc3[2].number > 10||handc3[3].number > 10)) == false);
+         if(j=1){
+            this.multi=this.multi*2;
+         }
+         j=1;
+        handp = this.player.getHand();
+            handc1 = this.player.getHand();
+            handc2 = this.player.getHand();
+            handc3 = this.player.getHand();
+         } while(Math.max(handp[0].getNumber(),handp[1].getNumber(),handp[2].getNumber(),handp[3].getNumber()) < 10 && Math.max(handc1[0].getNumber(),handc1[1].getNumber(),handc1[2].getNumber(),handc1[3].getNumber()) < 10 && Math.max(handc2[0].getNumber(),handc2[1].getNumber(),handc2[2].getNumber(),handc2[3].getNumber()) < 10 && Math.max(handc3[0].getNumber(),handc3[1].getNumber(),handc3[2].getNumber(),handc3[3].getNumber()) < 10);
         console.log(this.player);
         console.log(this.com1);
         console.log(this.com2);
         console.log(this.com3);
+        console.log(this.multi);
     }
 
     /**
