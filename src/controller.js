@@ -146,12 +146,11 @@ class Controller {
 
         // if it is the player the views shows that
         // Model gets the trumpfarbe
-        this.view.displayFadeOutMessage(stiche);
 
         if(stiche == -1){
             // TODO VIEW METHOD TO GET TRUMPFFARBE
-            this.model.setTrumpffarbe(this.deck.GLOCKE_FARBE);
-            this.view.displayFadeOutMessage("Die Trumpffarbe ist Glocken!");
+            setTimeout(function (context) {context.view.displayTrumpffarbenPicker(context)},1000,this); // makes game more smooth
+
         }
 
         // TODO Discard Cards
@@ -160,6 +159,14 @@ class Controller {
 
 
 
+
+    }
+    /**
+     *
+     */
+    trumpffarbePicked(farbe){
+        this.model.setTrumpffarbe(farbe);
+        this.view.displayTrumpffarbe(farbe);
         this.newRound();
     }
 }
