@@ -50,9 +50,9 @@ class Model{
      */
     setSticheAngesagt(anzahl) {
         this.player.setSticheAngesagt(anzahl);
-        this.com1.setSticheAngesagt(1);
-        this.com2.setSticheAngesagt(1);
-        this.com3.setSticheAngesagt(1);
+        this.com1.setSticheAngesagt(Math.floor(Math.random() * Math.floor(3)));
+        this.com2.setSticheAngesagt(Math.floor(Math.random() * Math.floor(3)));
+        this.com3.setSticheAngesagt(Math.floor(Math.random() * Math.floor(3)));
 	var arr = [
          Deck.HERZ_FARBE,
          Deck.GLOCKE_FARBE,
@@ -80,25 +80,27 @@ class Model{
      * Lässt alle Personen 5 Kartenziehen
      */
     handOut(){
-        var handp;
-        var handc1;
-        var handc2;
-        var handc3;
-        //do{
-        // var j= 0;
+        var handp = [];
+        var handc1 = [];
+        var handc2 = [];
+        var handc3 = [];
+        do{
+         var j= 0;
         for(var i = 0;i<5;i++){
             this.player.addcard(this.deck.draw());
             this.com1.addcard(this.deck.draw());
             this.com2.addcard(this.deck.draw());
             this.com3.addcard(this.deck.draw());
         }
-        // if(j=1){
-        //    this.multi=this.multi*2;
-        // }
-        // j=1;
-        //handp = this.player.getHand;
-        // } while(j=0);
-        //(handp[0].number > 10||handp[1].number > 10||handp[2].number > 10||handp[3].number > 10)&&(handc1[0].number > 10||handc1[1].number > 10||handc1[2].number > 10||handc1[3].number > 10)&&(handc2[0].number > 10||handc2[1].number > 10||handc2[2].number > 10||handc2[3].number > 10)&&(handc3[0].number > 10||handc3[1].number > 10||handc3[2].number > 10||handc3[3].number > 10)
+         if(j>=1){
+            this.multi=this.multi*2;
+         }
+         j=1;
+        handp = this.player.getHand();
+            handc1 = this.player.getHand();
+            handc2 = this.player.getHand();
+            handc3 = this.player.getHand();
+         } while((handp[0].number > 10||handp[1].number > 10||handp[2].number > 10||handp[3].number > 10) && (handc1[0].number > 10||handc1[1].number > 10||handc1[2].number > 10||handc1[3].number > 10) && (handc2[0].number > 10||handc2[1].number > 10||handc2[2].number > 10||handc2[3].number > 10)&&(handc3[0].number > 10||handc3[1].number > 10||handc3[2].number > 10||handc3[3].number > 10));
         console.log(this.player);
         console.log(this.com1);
         console.log(this.com2);
@@ -118,7 +120,7 @@ class Model{
      * @param {Integer} num - ein Array, dieses sagt welche Karte (nach der nummer der reihenfolgen 0-5) gelöscht werden soll
      */
     discard(num){
-        if(num.length <= 5 && this.trumpffarbe != "Herz"){
+        if(num.length <= 5 && this.trumpffarbe != Deck.HERZ_FARBE){
             for(var i = 0;i<num.length;i++){
                 this.player.delcard(this.player.getCard(num[i]));
             }
@@ -333,12 +335,12 @@ class Model{
 
     /**
      * the play playes a card
-     * @param {Card|-1} card1
+     * @param {Card} card1
      */
     setPlayerinStack(card1){
         if(this.getRundenBeginner() != this.player){
             var color = this.getRundenBeginner().getPlayedCard().getColor();
-            if(card1.getColor() == color||card1.getColor() == this.trumpffarbe){
+            if(card1.getColor() != color && card1.getColor() != this.trumpffarbe){
                 return false;
             }
         }
@@ -436,7 +438,7 @@ class Model{
     getCom3() {
         return this.com3;
     }
-    
+
 
    /** 
      * Bestimmt welche der 4 Karten die höchste ist und setzt den Gewinner
@@ -464,7 +466,7 @@ class Model{
         // Falls die Trupffarbe nicht vorkommt gewinnt die höchste Karte mit der Gewinnerfarbe
             if(this.trumpfVorhanden===false) {
                 for(i = 0;i<4;i++){
-                    if(this.stack[i].getColor()==this.gewinnerfarbefarbe && 
+                    if(this.stack[i].getColor()==this.gewinnerfarbe &&
                        this.stack[i].getNumber()>this.ar[0].getNumber()) {
                         this.ar[0]=this.stack[i];
                     }

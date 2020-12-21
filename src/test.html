@@ -10,27 +10,20 @@
     
 <script src="Card.js"></script>
 <script src="Deck.js"></script>
+<script src="Player.js"></script>
+<script src="Model.js"></script>
 
 <script>
 
-var deck = new Deck();
-    function myFunction() {
-  
-  
-  var txt;
-  var r = confirm("Press a button!");
-  if (r == true) {
-      var card = deck.draw();
-    if(deck.nofcards = 0){
-       txt= "aus";
-       }else{
-        txt = card.color+", "+card.number;
-       }
-  } else {
-    txt = "You pressed Cancel!";
-  }
-  document.getElementById("demo").innerHTML = txt;
-}
+var model = new Model();
+
+
+    model.handOut();
+
+   console.log(model.getPlayer().getHand());
+        console.log(model.getCom1().getHand());
+        console.log(model.getCom2().getHand());
+        console.log(model.getCom3().getHand());
 </script>
 
 </body>
