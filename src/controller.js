@@ -68,7 +68,6 @@ class Controller {
             this.startPlay();
         }else{
             this.roundCounter++;
-
             this.newRun();
         }
     }
@@ -78,18 +77,22 @@ class Controller {
      *  or ends the Round if all players played
      */
     newRun() {
+        console.log("NewRun")
         let currPlayer = this.model.getSpieleranderReihe();
+        console.log("getSpieler an der Reihe")
         if (currPlayer === -1) {
+            console.log("-1")
             var stecher =this.model.play();
             this.view.displayFadeOutMessage(stecher.getName()+" hat den Stich gemacht!");
             this.newRound()
             console.log("end of round");
         }
         else if (currPlayer === this.model.getPlayer()) {
+            console.log("Player")
             this.view.showDropzone();
         }
         else {
-
+            console.log("Com")
             if(currPlayer === this.model.getCom1()){
                 this.view.comPlayCard(1,this.model.getCom1().getPlayedCard());
             }else if(currPlayer === this.model.getCom2()){
@@ -124,8 +127,11 @@ class Controller {
         // else view starts a new user input
         // this.view.showHand
         // this.view showDropzone
-        this.model.naechsterSpieler();
+
         this.model.setStack();
+        console.log("SetStack")
+        this.model.naechsterSpieler();
+        console.log("NextPlayer")
         setTimeout(function (context) {context.newRun()},1000,this); // makes game more smooth
     }
 
