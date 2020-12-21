@@ -26,6 +26,7 @@ class Model{
         this.trumpfVorhanden = false;
         this.gewinnerfarbe = "";
         this.player.setRundeGewonnen(true);
+        this.justacounter = 0;
     }
     /**
      * gibt an wer am meisten stiche angesagt hat und gibt diese person zurück
@@ -374,16 +375,16 @@ class Model{
             return -1;
         }
         if(this.player.getReihe() == true){
-            this.justacounter + 1;
+            this.justacounter += 1;
            return this.player;
         } else if(this.com1.getReihe() == true){
-            this.justacounter + 1;
+            this.justacounter += 1;
             return this.com1;
         }else if(this.com2.getReihe() == true){
-            this.justacounter + 1;
+            this.justacounter += 1;
             return this.com2;
         }else if(this.com3.getReihe() == true){
-            this.justacounter + 1;
+            this.justacounter += 1;
             return this.com3;
         }
         
