@@ -50,6 +50,12 @@ function create ()
             console.log(farbenarray[i]+" was picked");
             for (let j = 0; j < farbenarray.length; j++) { tpr.pop().destroy(); tpi.pop().destroy(); } // clear picker
         },this);
+        tpr[i].on('pointerover',function () {
+            tpr[i].setStrokeStyle(5,0x0CF2FF);
+        },this);
+        tpr[i].on('pointerout',function () {
+            tpr[i].setStrokeStyle();
+        });
         tpi.push(this.add.sprite(margin+offset*i+width,yOff+height/2,ffa[i]).setOrigin(0.5,0.5).setScale(1));
     }
 }

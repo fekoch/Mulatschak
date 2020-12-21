@@ -609,6 +609,8 @@ class PlayGame extends Phaser.Scene {
                     listener.tricksChosen(i);
                 }, this);
                 tcolor = 0x000000;
+                r.on('pointerover',function(){r.setStrokeStyle(5,0x0CF2FF)});
+                r.on('pointerout',function(){r.setStrokeStyle()});
             }
             let bitmaptext = this.add.bitmapText(margin + offset * (i - 1) + offset / 2, yoff, "gothic", "" + i).setOrigin(0.5, 0.5).setTintFill(tcolor);
 
@@ -626,6 +628,8 @@ class PlayGame extends Phaser.Scene {
             this.setPlayerDeclaredTricks("1");
             listener.tricksChosen(0);
         }, this);
+        r.on('pointerover',function(){r.setStrokeStyle(5,0x0CF2FF)});
+        r.on('pointerout',function(){r.setStrokeStyle()});
         let t = this.add.bitmapText(sw / 2, yoff + offset / 2 * 1.2 + offset * 0.3, "gothic", "Passen").setOrigin(0.5, 0.5).setTintFill(0x000000);
         options.push(r);
         texts.push(t);
@@ -702,6 +706,12 @@ class PlayGame extends Phaser.Scene {
                 console.log(farbenarray[i]+" was picked");
                 for (let j = 0; j < farbenarray.length; j++) { tpr.pop().destroy(); tpi.pop().destroy(); } // clear picker
             },this);
+            tpr[i].on('pointerover',function () {
+                tpr[i].setStrokeStyle(5,0x0CF2FF);
+            },this);
+            tpr[i].on('pointerout',function () {
+                tpr[i].setStrokeStyle();
+            });
             tpi.push(this.add.sprite(margin+offset*i+width,yOff+height/2,ffa[i]).setOrigin(0.5,0.5).setScale(1));
         }
     }
