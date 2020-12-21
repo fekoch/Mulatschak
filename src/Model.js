@@ -256,14 +256,14 @@ class Model{
             var i3 = 0;
             //com1
             for(;i1<6;i++){
-                if((this.com1.getCard(i).getColor() == color && this.com1.getCard(i).getNumber() > this.player.getPlayedCard().getNumber())||(this.com1.getCard(i).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
+                if((this.com1.getCard(i1).getColor() == color && this.com1.getCard(i1).getNumber() > this.player.getPlayedCard().getNumber())||(this.com1.getCard(i1).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
                     break;
                 }
             }
             if(i1 == 6){
                 i1 = 0;
                 for(;i1<6;i++){
-                    if(this.com1.getCard(i).getColor() == color ||this.com1.getCard(i).getColor() == this.trumpffarbe){
+                    if(this.com1.getCard(i1).getColor() == color ||this.com1.getCard(i1).getColor() == this.trumpffarbe){
                         break;
                     }
                 }
@@ -294,14 +294,14 @@ class Model{
             var i2 = 0;
             //com1
             for(;i1<6;i++){
-                if((this.com1.getCard(i).getColor() == color && this.com1.getCard(i).getNumber() > this.player.getPlayedCard().getNumber())||(this.com1.getCard(i).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
+                if((this.com1.getCard(i1).getColor() == color && this.com1.getCard(i1).getNumber() > this.player.getPlayedCard().getNumber())||(this.com1.getCard(i1).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
                     break;
                 }
             }
             if(i1 == 6){
                 i1 = 0;
                 for(;i1<6;i++){
-                    if(this.com1.getCard(i).getColor() == color ||this.com1.getCard(i).getColor() == this.trumpffarbe){
+                    if(this.com1.getCard(i1).getColor() == color ||this.com1.getCard(i1).getColor() == this.trumpffarbe){
                         break;
                     }
                 }
