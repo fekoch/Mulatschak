@@ -27,13 +27,29 @@ class Model{
         this.gewinnerfarbe = "";
         this.player.setRundeGewonnen(true);
     }
+    /**
+     * gibt an wer am meisten stiche angesagt hat und gibt diese person zurück
+     * @return {Player} eine Person
+     */
+    stichsager(){
+
+        if((this.player.getSticheAngesagt() > this.com1.getSticheAngesagt()) && (this.player.getSticheAngesagt() > this.com2.getSticheAngesagt()) && (this.player.getSticheAngesagt() > this.com3.getSticheAngesagt())){
+            return this.player;
+        }else if(this.player.getSticheAngesagt() < this.com1.getSticheAngesagt() && this.com1.getSticheAngesagt() > this.com2.getSticheAngesagt() && this.com1.getSticheAngesagt() > this.com3.getSticheAngesagt()){
+            return this.com1;
+        }else if(this.com2.getSticheAngesagt() > this.com1.getSticheAngesagt() && this.player.getSticheAngesagt() < this.com2.getSticheAngesagt() && this.com2.getSticheAngesagt() > this.com3.getSticheAngesagt()){
+            return this.com2;
+        }else if(this.com3.getSticheAngesagt() > this.com1.getSticheAngesagt() && this.player.getSticheAngesagt() < this.com3.getSticheAngesagt() && this.com2.getSticheAngesagt() < this.com3.getSticheAngesagt()){
+            return this.com3;
+        }
+    }
 
     /**
      *  set SticheAngesagt
      *  @param {Integer} anzahl
      */
     setSticheAngesagt(anzahl) {
-        this.player.setSticheAngesagt = anzahl;
+        this.player.setSticheAngesagt(anzahl);
         this.com1.setSticheAngesagt(1);
         this.com2.setSticheAngesagt(1);
         this.com3.setSticheAngesagt(1);
@@ -421,26 +437,7 @@ class Model{
         return this.com3;
     }
     
-    /**
-     * gibt an wer am meisten stiche angesagt hat und gibt diese person zurück
-     * @return {Player} eine Person
-     */
-    stichsager(){
-        if(this.player.getSticheAngesagt > this.com1.getSticheAngesagt && this.player.getSticheAngesagt > this.com2.getSticheAngesagt && this.player.getSticheAngesagt > this.com3.getSticheAngesagt){
 
-            return this.player;
-        }else if(this.player.getSticheAngesagt < this.com1.getSticheAngesagt && this.com1.getSticheAngesagt > this.com2.getSticheAngesagt && this.com1.getSticheAngesagt > this.com3.getSticheAngesagt){
-
-            return this.com1;
-        }else if(this.com2.getSticheAngesagt > this.com1.getSticheAngesagt && this.player.getSticheAngesagt < this.com2.getSticheAngesagt && this.com2.getSticheAngesagt > this.com3.getSticheAngesagt){
-
-            return this.com2;
-        }else if(this.com3.getSticheAngesagt > this.com1.getSticheAngesagt && this.player.getSticheAngesagt < this.com3.getSticheAngesagt && this.com2.getSticheAngesagt < this.com3.getSticheAngesagt){
-
-            return this.com3;
-        }
-    }
-    
    /** 
      * Bestimmt welche der 4 Karten die höchste ist und setzt den Gewinner
     * @return {Player} der Spieler der den Stich gemacht hat
