@@ -609,6 +609,8 @@ class PlayGame extends Phaser.Scene {
                     listener.tricksChosen(i);
                 }, this);
                 tcolor = 0x000000;
+                r.on('pointerover',function(){r.setStrokeStyle(5,0x0CF2FF)});
+                r.on('pointerout',function(){r.setStrokeStyle()});
             }
             let bitmaptext = this.add.bitmapText(margin + offset * (i - 1) + offset / 2, yoff, "gothic", "" + i).setOrigin(0.5, 0.5).setTintFill(tcolor);
 
