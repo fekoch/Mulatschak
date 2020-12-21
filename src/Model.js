@@ -84,23 +84,23 @@ class Model{
         var handc1 = [];
         var handc2 = [];
         var handc3 = [];
-        do{
-         var j= 0;
+        var j= 0;
+        //do{
         for(var i = 0;i<5;i++){
             this.player.addcard(this.deck.draw());
             this.com1.addcard(this.deck.draw());
             this.com2.addcard(this.deck.draw());
             this.com3.addcard(this.deck.draw());
         }
-         if(j>=1){
-            this.multi=this.multi*2;
-         }
-         j=1;
-        handp = this.player.getHand();
-            handc1 = this.player.getHand();
-            handc2 = this.player.getHand();
-            handc3 = this.player.getHand();
-         } while((handp[0].number > 10||handp[1].number > 10||handp[2].number > 10||handp[3].number > 10) && (handc1[0].number > 10||handc1[1].number > 10||handc1[2].number > 10||handc1[3].number > 10) && (handc2[0].number > 10||handc2[1].number > 10||handc2[2].number > 10||handc2[3].number > 10)&&(handc3[0].number > 10||handc3[1].number > 10||handc3[2].number > 10||handc3[3].number > 10));
+       //  if(j>=1){
+         //   this.multi=this.multi*2;
+        // }
+         //j=1;
+       // handp = this.player.getHand();
+          //  handc1 = this.player.getHand();
+           // handc2 = this.player.getHand();
+           // handc3 = this.player.getHand();
+         //} while(((handp[0].number > 10||handp[1].number > 10||handp[2].number > 10||handp[3].number > 10) && (handc1[0].number > 10||handc1[1].number > 10||handc1[2].number > 10||handc1[3].number > 10) && (handc2[0].number > 10||handc2[1].number > 10||handc2[2].number > 10||handc2[3].number > 10)&&(handc3[0].number > 10||handc3[1].number > 10||handc3[2].number > 10||handc3[3].number > 10)) == false);
         console.log(this.player);
         console.log(this.com1);
         console.log(this.com2);
@@ -326,8 +326,9 @@ class Model{
             if(i2 == 6){
                 i2 = 0;
             }
-        }
 
+        }
+        console.log(i1);
         this.com1.playCard(this.com1.getCard(i1));
         this.com2.playCard(this.com2.getCard(i2));
         this.com3.playCard(this.com3.getCard(i3));
@@ -394,17 +395,17 @@ class Model{
      */
     naechsterSpieler(){
         if(this.player.getReihe() == true){
-           this.player.getReihe(false);
-            this.com1.getReihe(true);
+           this.player.setReihe(false);
+            this.com1.setReihe(true);
         } else if(this.com1.getReihe() == true){
-            this.com1.getReihe(false);
-            this.com2.getReihe(true);
+            this.com1.setReihe(false);
+            this.com2.setReihe(true);
         }else if(this.com2.getReihe() == true){
-            this.com2.getReihe(false);
-            this.com3.getReihe(true);
+            this.com2.setReihe(false);
+            this.com3.setReihe(true);
         }else if(this.com3.getRundeGewonnen() == true){
-            this.com3.getReihe(false);
-            this.player.getReihe(true);
+            this.com3.setReihe(false);
+            this.player.setReihe(true);
         }
     }
     
