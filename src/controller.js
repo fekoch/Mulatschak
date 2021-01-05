@@ -159,9 +159,8 @@ class Controller {
         // if it is the player the views shows that
         // Model gets the trumpfarbe
 
-        if(stiche === -1){
+        if(stiche === -1){ // is the Player the Stichsager
             setTimeout(function (context) {context.view.displayTrumpffarbenPicker(context)},1000,this); // makes game more smooth
-
         }
 
         // TODO Discard Cards
