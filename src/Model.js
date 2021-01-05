@@ -51,7 +51,8 @@ class Model{
 
     /**
      *  set SticheAngesagt
-     *  @param {Integer} anzahl
+     *  @param {Integer} anzahl TODO document
+     *  @return -1, if the player is the Stichsager
      */
     setSticheAngesagt(anzahl) {
         this.player.setSticheAngesagt(anzahl);
