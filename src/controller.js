@@ -68,7 +68,7 @@ class Controller {
      */
     newRound() {
 
-        if(this.roundCounter == 5){
+        if(this.roundCounter === 5){
             this.model.punkteauszaehlung();
             // TODO view gets the points
             this.startPlay();
@@ -159,8 +159,7 @@ class Controller {
         // if it is the player the views shows that
         // Model gets the trumpfarbe
 
-        if(stiche == -1){
-            // TODO VIEW METHOD TO GET TRUMPFFARBE
+        if(stiche === -1){
             setTimeout(function (context) {context.view.displayTrumpffarbenPicker(context)},1000,this); // makes game more smooth
 
         }
