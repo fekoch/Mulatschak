@@ -430,7 +430,7 @@ class Model{
     }
     /**
      * Gives you the current playing player
-     * @return {Player|-1} the current playing player
+     * @return {Player|-1} the current playing player, or -1 if all had their turn
      */
     getSpieleranderReihe(){
         if(this.justacounter == 4){
