@@ -146,7 +146,7 @@ class Controller {
      * @param tricks
      */
     tricksChosen(tricks) {
-        var stiche = this.model.setSticheAngesagt(tricks)
+        var stiche = this.model.setSticheAngesagt(tricks);
         this.model.prePlay();
         this.view.setComDeclaredTricks(0,this.model.getCom1().getSticheAngesagt());
         this.view.setComDeclaredTricks(1,this.model.getCom2().getSticheAngesagt());
