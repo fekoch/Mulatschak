@@ -44,14 +44,20 @@ class Controller {
 
         this.model.handOut();
         if(this.model.getMulti() > 1){
-            this.view.displayFadeOutMessage("Der Multiplikator für diese Runde wurde bereits erhöht er lautet"+this.model.getMulti());
+            setTimeout(function () {
+                context.view.displayFadeOutMessage("Der Multiplikator fuer diese Runde wurde bereits erhoeht er lautet"+context.model.getMulti());
+                },500,this);
         }
         this.roundCounter = 0;
         this.view.showHand(this.model.getPlayer().getHand());
 
-        setTimeout(function (context) {context.view.displayFadeOutMessage("Stiche ansagen");},1500,this);
+        setTimeout(function (context) {
+            context.view.displayFadeOutMessage("Stiche ansagen");
+            },1500,this);
 
-        setTimeout(function (context) {context.view.displayTrickPicker(5);},2000,this);
+        setTimeout(function (context) {
+            context.view.displayTrickPicker(5);
+            },2000,this);
 
 
     }
