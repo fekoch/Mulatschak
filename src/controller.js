@@ -43,21 +43,23 @@ class Controller {
         // TODO implement
 
         this.model.handOut();
+        let time_plus = 0;
         if(this.model.getMulti() > 1){
-            setTimeout(function () {
+            setTimeout(function (context) {
                 context.view.displayFadeOutMessage("Der Multiplikator fuer diese Runde wurde bereits erhoeht er lautet"+context.model.getMulti());
-                },500,this);
+                },1000,this);
+            time_plus = 1000;
         }
         this.roundCounter = 0;
         this.view.showHand(this.model.getPlayer().getHand());
 
         setTimeout(function (context) {
             context.view.displayFadeOutMessage("Stiche ansagen");
-            },1500,this);
+            },1500+time_plus,this);
 
         setTimeout(function (context) {
             context.view.displayTrickPicker(5);
-            },2000,this);
+            },2000+time_plus,this);
 
 
     }
