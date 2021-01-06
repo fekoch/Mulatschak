@@ -14,7 +14,6 @@ class Model{
      *
      */
     constructor(){
-        this.deck = new Deck();
         this.player = new Player();
         this.player.setName("Du");
         this.com1 = new Player();
@@ -92,6 +91,7 @@ class Model{
         var handc3 = [];
         var j = 0;
         do{
+            this.deck = new Deck();
         for(var i = 0;i<5;i++){
             this.player.addcard(this.deck.draw());
             this.com1.addcard(this.deck.draw());
