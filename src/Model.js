@@ -638,7 +638,7 @@ class Model{
 
     punkteauszaehlung(){
         var pl = [this.player,this.com1,this.com2,this.com3]
-        for(var i = 0;i>4;i++) {
+        for(var i = 0;i<4;i++) {
             if(this.stichsager() == pl[i]){
                 if(pl[i].getSticheBekommen() >= pl[i].getSticheAngesagt()){
                     pl[i].setCounter(pl[i].getCounter() - pl[i].getSticheBekommen() * this.multi);
