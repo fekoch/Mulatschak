@@ -47,7 +47,7 @@ class Controller {
      * (because everyone has 5 Cards)
      */
     startPlay() {
-        // TODO implement
+        // TODO end Game if one has less than 21 Points (counter)
 
         this.resetStichDisplay();
         this.model.handOut();
