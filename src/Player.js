@@ -98,7 +98,7 @@ class Player{
      * fügt einen bekommenen stich hinzu
      */
     addStich(){
-        this.sticheBekommen + 1;
+        this.setSticheBekommen(this.getSticheBekommen()+1);
     }
     /**
      * sets rundeGewonnen

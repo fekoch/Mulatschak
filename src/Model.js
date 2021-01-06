@@ -596,7 +596,7 @@ class Model{
             }
         // Falls der Spieler die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
             if(this.ar[0]==this.stack[0]) {
-                this.player.setSticheBekommen(this.player.addStich());
+                this.player.addStich()
                 this.player.setRundeGewonnen(true);
                 this.com1.setRundeGewonnen(false);
                 this.com2.setRundeGewonnen(false);
@@ -605,7 +605,7 @@ class Model{
             }
         // Falls der Com1 die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
             if(this.ar[0]==this.stack[1]) {
-                this.com1.setSticheBekommen(this.com1.addStich());
+                this.com1.addStich();
                 this.player.setRundeGewonnen(false);
                 this.com1.setRundeGewonnen(true);
                 this.com2.setRundeGewonnen(false);
@@ -614,7 +614,7 @@ class Model{
             }
         // Falls der Com2 die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
             if(this.ar[0]==this.stack[2]) {
-                this.com2.setSticheBekommen(this.com2.addStich());
+                this.com2.addStich();
                 this.player.setRundeGewonnen(false);
                 this.com1.setRundeGewonnen(false);
                 this.com2.setRundeGewonnen(true);
@@ -623,7 +623,7 @@ class Model{
             }
         // Falls der Com3 die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
             if(this.ar[0]==this.stack[3]) {
-                this.com3.setSticheBekommen(this.com3.addStich());
+                this.com3.addStich();
                 this.player.setRundeGewonnen(false);
                 this.com1.setRundeGewonnen(false);
                 this.com2.setRundeGewonnen(false);
