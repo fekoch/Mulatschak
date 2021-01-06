@@ -115,6 +115,13 @@ class Controller {
             this.view.displayFadeOutMessage(stecher.getName()+" hat den Stich gemacht!");
             this.view.hideDropzone();
             this.view.setCardDragEnabled(false);
+
+            let sticheG = stecher.getSticheBekommen();
+            let sticheAn = stecher.getSticheAngesagt();
+            let stichFarbe = sticheG>=sticheAn?PlayGame.TRICKS_CORRECT:PlayGame.TRICKS_TODO;
+            if (stecher === this.model.getPlayer()) this.view.setPlayerDoneTricks(sticheG,stichFarbe);
+            else this.view.setComDoneTricks(this.comarray.indexOf(stecher),sticheG,stichFarbe);
+
             setTimeout(function (context) {context.view.clearComCards();}, 500,this);
             setTimeout(function (context) {context.view.clearPlayerCard()}, 500,this);
             setTimeout(function (context) { return context.startRound(); },1000,this);
