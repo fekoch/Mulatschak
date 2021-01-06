@@ -31,6 +31,11 @@ class Controller {
      */
     playGame() {
         this.model = new Model();
+        /**
+         * An array that contains all the coms
+         * @type {Player[]}
+         */
+        this.comarray  = [this.model.getCom1(),this.model.getCom2(),this.model.getCom3()];
         this.view.displayFadeOutMessage("Das Spiel beginnt!");
         this.startPlay();
     }
