@@ -36,6 +36,8 @@ class Controller {
          * @type {Player[]}
          */
         this.comarray  = [this.model.getCom1(),this.model.getCom2(),this.model.getCom3()];
+        for (let comarrayKey in this.comarray) { this.view.setComRemainingPoints(comarrayKey,21); }
+        this.view.setPlayerVerbleibendePunkte(21);
         this.view.displayFadeOutMessage("Das Spiel beginnt!");
         this.startPlay();
     }
@@ -87,7 +89,10 @@ class Controller {
         console.log("startRound()");
         if(this.roundCounter === 5){
             this.model.punkteauszaehlung();
-            // TODO view gets the points
+            for (let comid in this.comarray) {
+                this.view.setComRemainingPoints(comid, this.comarray[comid].counter);
+            }
+            this.view.setPlayerVerbleibendePunkte(this.model.getPlayer().counter);
             setTimeout(function (context) { return context.startPlay(); },2000,this);
         }else{
             this.roundCounter++;
