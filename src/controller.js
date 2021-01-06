@@ -44,24 +44,15 @@ class Controller {
 
         this.model.handOut();
         let time_plus = 0;
-        if(this.model.getMulti() > 1){
+        if(this.model.getMulti() > 1){ // Message about Multi
             setTimeout(function (context) {
                 context.view.displayFadeOutMessage("Der Multiplikator fuer diese Runde wurde bereits erhoeht er lautet"+context.model.getMulti());
                 },1000,this);
             time_plus = 1000;
         }
+
         this.roundCounter = 0;
-        this.view.showHand(this.model.getPlayer().getHand());
-
-        setTimeout(function (context) {
-            context.view.displayFadeOutMessage("Stiche ansagen");
-            },1500+time_plus,this);
-
-        setTimeout(function (context) {
-            context.view.displayTrickPicker(5);
-            },2000+time_plus,this);
-
-
+        setTimeout(function (context) {context.newRound();},time_plus,this);
     }
 
     /**
@@ -69,6 +60,25 @@ class Controller {
      * (one run for each player)
      */
     newRound() {
+
+
+        this.view.showHand(this.model.getPlayer().getHand());
+
+        setTimeout(function (context) {
+            context.view.displayFadeOutMessage("Stiche ansagen");
+        }, 1500, this);
+
+        setTimeout(function (context) {
+            context.view.displayTrickPicker(5);
+        }, 2000, this);
+
+    }
+
+    /**
+     * Starts the Round for real, is called by trumpffarbePicked()
+     */
+    startRound() {
+        console.log("startRound()");
 
         if(this.roundCounter === 5){
             this.model.punkteauszaehlung();
@@ -92,8 +102,9 @@ class Controller {
             console.log("-1")
             var stecher =this.model.play();
             this.view.displayFadeOutMessage(stecher.getName()+" hat den Stich gemacht!");
-            this.newRound()
-            console.log("end of round");
+            this.view.hideDropzone();
+            this.view.setCardDragEnabled(false);
+            this.startRound();
         }
         else if (currPlayer === this.model.getPlayer()) {
             console.log("Player")
@@ -179,6 +190,6 @@ class Controller {
     trumpffarbePicked(farbe){
         this.model.setTrumpffarbe(farbe);
         this.view.displayTrumpffarbe(farbe);
-        this.newRound();
+        this.startRound();
     }
 }
