@@ -83,7 +83,7 @@ class Controller {
         if(this.roundCounter === 5){
             this.model.punkteauszaehlung();
             // TODO view gets the points
-            this.startPlay();
+            setTimeout(function (context) { return context.startPlay(); },2000,this);
         }else{
             this.roundCounter++;
             /*
