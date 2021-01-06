@@ -601,6 +601,7 @@ class Model{
                 this.com1.setRundeGewonnen(false);
                 this.com2.setRundeGewonnen(false);
                 this.com3.setRundeGewonnen(false);
+                return this.player;
             }
         // Falls der Com1 die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
             if(this.ar[0]==this.stack[1]) {
@@ -609,6 +610,7 @@ class Model{
                 this.com1.setRundeGewonnen(true);
                 this.com2.setRundeGewonnen(false);
                 this.com3.setRundeGewonnen(false);
+                return this.com1;
             }
         // Falls der Com2 die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
             if(this.ar[0]==this.stack[2]) {
@@ -617,6 +619,7 @@ class Model{
                 this.com1.setRundeGewonnen(false);
                 this.com2.setRundeGewonnen(true);
                 this.com3.setRundeGewonnen(false);
+                return this.com2;
             }
         // Falls der Com3 die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
             if(this.ar[0]==this.stack[3]) {
@@ -625,8 +628,8 @@ class Model{
                 this.com1.setRundeGewonnen(false);
                 this.com2.setRundeGewonnen(false);
                 this.com3.setRundeGewonnen(true);
+                return this.com3;
             }
-            return this.getSpieleranderReihe();
         }
 
     punkteauszaehlung(){
