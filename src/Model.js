@@ -240,9 +240,24 @@ class Model{
             }
         // Falls Com1 die Runde beginnt
         } else if(this.getRundenBeginner() == this.com1){
-            var color = this.com1.getCard(0).getColor();
+            var i1 = 0;
             var i2 = 0;
             var i3 = 0;
+
+            /*
+            COM 1
+             */
+            outofbounds = true;
+            for(;i1<this.player.getHand().length;i1++){
+                if(this.com1.getCard(i1).getColor() == this.trumpffarbe ){
+                    outofbounds = false;
+                    break;
+                }
+            }
+                if(outofbounds == true){
+                    i1 = 0;
+                }
+            var color = this.com1.getCard(i1).getColor();
             /*
             COM 2
              */
@@ -289,31 +304,23 @@ class Model{
             }
         // Falls COM 2 beginnt
         } else if(this.getRundenBeginner() == this.com2){
-            var color = this.com2.getCard(0).getColor();
-            var i1 = 0;
+            var i2 = 0;
             var i3 = 0;
+            var i1 = 0;
             /*
-            COM 1
+            COM 2
              */
             outofbounds = true;
-            for(;i1<this.player.getHand().length;i1++){
-                if((this.com1.getCard(i1).getColor() == color && this.com1.getCard(i1).getNumber() > this.player.getPlayedCard().getNumber())||(this.com1.getCard(i1).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
+            for(;i2<this.player.getHand().length;i2++){
+                if(this.com1.getCard(i2).getColor() == this.trumpffarbe ){
                     outofbounds = false;
                     break;
                 }
             }
             if(outofbounds == true){
-                i1 = 0;
-                for(;i1<this.player.getHand().length;i1++){
-                    if(this.com1.getCard(i1).getColor() == color ||this.com1.getCard(i1).getColor() == this.trumpffarbe){
-                        outofbounds = false;
-                        break;
-                    }
-                }
-                if(outofbounds == true){
-                    i1 = 0;
-                }
+                i2 = 0;
             }
+            var color = this.com2.getCard(i2).getColor();
 
             /*
             COM 3
@@ -337,12 +344,50 @@ class Model{
                     i3 = 0;
                 }
             }
-        // Falls COM 3 beginnt
+
+            /*
+            COM 1
+             */
+            outofbounds = true;
+            for(;i1<this.player.getHand().length;i1++){
+                if((this.com1.getCard(i1).getColor() == color && this.com1.getCard(i1).getNumber() > this.player.getPlayedCard().getNumber())||(this.com1.getCard(i1).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
+                    outofbounds = false;
+                    break;
+                }
+            }
+            if(outofbounds == true){
+                i1 = 0;
+                for(;i1<this.player.getHand().length;i1++){
+                    if(this.com1.getCard(i1).getColor() == color ||this.com1.getCard(i1).getColor() == this.trumpffarbe){
+                        outofbounds = false;
+                        break;
+                    }
+                }
+                if(outofbounds == true){
+                    i1 = 0;
+                }
+            }
+
+            // Falls COM 3 beginnt
         } else if(this.getRundenBeginner() == this.com3){
-            var color = this.com3.getCard(0).getColor();
+            var i3 = 0;
             var i1 = 0;
             var i2 = 0;
-            //com1
+            /*
+            COM 3
+             */
+            outofbounds = true;
+            for(;i3<this.player.getHand().length;i3++){
+                if(this.com1.getCard(i3).getColor() == this.trumpffarbe ){
+                    outofbounds = false;
+                    break;
+                }
+            }
+            if(outofbounds == true){
+                i3 = 0;
+            }
+            var color = this.com3.getCard(i3).getColor();
+
             /*
             COM 1
              */
