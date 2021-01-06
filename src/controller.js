@@ -86,6 +86,11 @@ class Controller {
             this.startPlay();
         }else{
             this.roundCounter++;
+            /*
+             * if a com starts, call setStack
+             * (this ignores the played card of the player for the coms, who come after him/her)
+             */
+            if (this.model.getRundenBeginner() !== this.model.getPlayer()) this.model.setStack();
             this.newRun();
         }
     }
