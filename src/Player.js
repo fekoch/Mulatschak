@@ -47,7 +47,11 @@ class Player{
      * @param {number} int - is the value for the number of the card in the array
      */
     getCard(int){
-        return this.hand[int];
+        if(int <0 || int >= this.hand.length) {
+            console.error("INDEX OUT OF BOUNDS :(");
+            return null;
+        }
+        else return this.hand[int];
     }
     
     /**
