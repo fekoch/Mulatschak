@@ -52,8 +52,8 @@ class Deck{
      * @return gives you a random Card
      */
     draw(){
-        console.log(this.CardSet);
-        console.log(this.CardSet.size);
+        //console.log(this.CardSet);
+        //console.log(this.CardSet.size);
       return this.getCard(this.getRandomInt(this.CardSet.size));
     }
 }
