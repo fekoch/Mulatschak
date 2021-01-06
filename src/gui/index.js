@@ -243,6 +243,7 @@ class PlayGame extends Phaser.Scene {
                 gameObject.x = dropZone.x;
                 //gameObject.y = dropZone.y - PlayGame.HOVEROFFSET;
                 gameObject.y = dropZone.y;
+                this.droppedCard = gameObject;
                 this.controller.playCard(gameObject.getData('object'));
             }
         },this);
@@ -294,17 +295,43 @@ class PlayGame extends Phaser.Scene {
     }
 
     /**
+     * The COM-Card_sprites
+     * @type Phaser.GameObjects.Sprite[]
+     */
+    comcards;
+
+    /**
      * Shows that a com plays a card
      * @param card {Card} the Card that the com plays
      * @param comID {int} the comID from 1-3
      */
     comPlayCard(comID,card) {
+        if (this.comcards === undefined) this.comcards = [];
         const com_cardScale = 0.8;
         const cardWidth = gameOptions.cardWidth * com_cardScale;
         let x = game.config.width*gameOptions.com_x*(comID);
         let y = gameOptions.com_y+gameOptions.com_radius*game.config.width-30;
         let cardSprite = this.add.sprite(x,y, "cards", card.getSpriteID()).setOrigin(0.5,0);
         cardSprite.setScale(com_cardScale);
+        if(this.comcards[comID] != undefined) this.comcards[comID].destroy();
+        this.comcards[comID] = cardSprite;
+    }
+
+    /**
+     * Removes the three ComCards from Screen
+     */
+    clearComCards() {
+        for (let comcardsKey in this.comcards) this.comcards[comcardsKey].destroy();
+    }
+
+    clearPlayerCard() {
+        if (this.droppedCard != undefined ) {
+            let card = this.droppedCard;
+            this.playerHandCards = this.playerHandCards.filter(function (value,index,array) {
+                return value !== card;
+            });
+            this.droppedCard.destroy();
+        }
     }
 
     /**

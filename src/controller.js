@@ -110,7 +110,9 @@ class Controller {
             this.view.displayFadeOutMessage(stecher.getName()+" hat den Stich gemacht!");
             this.view.hideDropzone();
             this.view.setCardDragEnabled(false);
-            this.startRound();
+            setTimeout(function (context) {context.view.clearComCards();}, 500,this);
+            setTimeout(function (context) {context.view.clearPlayerCard()}, 500,this);
+            setTimeout(function (context) { return context.startRound(); },1000,this);
         }
         else if (currPlayer === this.model.getPlayer()) {
             console.log("Player")
