@@ -92,6 +92,10 @@ class Model{
         var j = 0;
         do{
             this.deck = new Deck();
+            this.player.hand = [];
+            this.com1.hand = [];
+            this.com2.hand = [];
+            this.com3.hand = []
         for(var i = 0;i<5;i++){
             this.player.addcard(this.deck.draw());
             this.com1.addcard(this.deck.draw());
