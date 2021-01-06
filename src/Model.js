@@ -174,7 +174,7 @@ class Model{
             COM 1
              */
             outofbounds = true;
-            for(;i1<5;i1++){
+            for(;i1<this.player.getHand().length;i1++){
                 if((this.com1.getCard(i1).getColor() == color && this.com1.getCard(i1).getNumber() > this.player.getPlayedCard().getNumber())||(this.com1.getCard(i1).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
                     outofbounds = false;
                     break;
@@ -182,7 +182,7 @@ class Model{
             }
             if(outofbounds == true){
                 i1 = 0;
-                for(;i1<5;i1++){
+                for(;i1<this.player.getHand().length;i1++){
                     if(this.com1.getCard(i1).getColor() == color ||this.com1.getCard(i1).getColor() == this.trumpffarbe){
                         outofbounds = false;
                         break;
@@ -197,7 +197,7 @@ class Model{
             COM 2
              */
             outofbounds = true;
-            for(;i2<5;i2++){
+            for(;i2<this.player.getHand().length;i2++){
                 if((this.com2.getCard(i2).getColor() == color && this.com2.getCard(i2).getNumber() > this.player.getPlayedCard().getNumber())||(this.com2.getCard(i2).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
                     outofbounds = false;
                     break;
@@ -220,7 +220,7 @@ class Model{
             COM 3
              */
             outofbounds = true;
-            for(;i3<5;i3++){
+            for(;i3<this.player.getHand().length;i3++){
                 if((this.com3.getCard(i3).getColor() == color && this.com3.getCard(i3).getNumber() > this.player.getPlayedCard().getNumber())||(this.com3.getCard(i3).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
                     outofbounds = false;
                     break;
@@ -228,7 +228,7 @@ class Model{
             }
             if(outofbounds == true){
                 i3 = 0;
-                for(;i3<5;i3++){
+                for(;i3<this.player.getHand().length;i3++){
                     if(this.com3.getCard(i3).getColor() == color ||this.com3.getCard(i3).getColor() == this.trumpffarbe){
                         outofbounds = false;
                         break;
@@ -247,7 +247,7 @@ class Model{
             COM 2
              */
             outofbounds = true;
-            for(;i2<5;i2++){
+            for(;i2<this.player.getHand().length;i2++){
                 if((this.com2.getCard(i2).getColor() == color && this.com2.getCard(i2).getNumber() > this.player.getPlayedCard().getNumber())||(this.com2.getCard(i2).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
                     outofbounds = false;
                     break;
@@ -255,7 +255,7 @@ class Model{
             }
             if(outofbounds == true){
                 i2 = 0;
-                for(;i2<5;i2++){
+                for(;i2<this.player.getHand().length;i2++){
                     if(this.com2.getCard(i2).getColor() == color ||this.com2.getCard(i2).getColor() == this.trumpffarbe){
                         outofbounds = false;
                         break;
@@ -269,7 +269,7 @@ class Model{
             COM 3
              */
             outofbounds = true;
-            for(;i3<5;i3++){
+            for(;i3<this.player.getHand().length;i3++){
                 if((this.com3.getCard(i3).getColor() == color && this.com3.getCard(i3).getNumber() > this.player.getPlayedCard().getNumber())||(this.com3.getCard(i3).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
                     outofbounds = false;
                     break;
@@ -296,7 +296,7 @@ class Model{
             COM 1
              */
             outofbounds = true;
-            for(;i1<5;i1++){
+            for(;i1<this.player.getHand().length;i1++){
                 if((this.com1.getCard(i1).getColor() == color && this.com1.getCard(i1).getNumber() > this.player.getPlayedCard().getNumber())||(this.com1.getCard(i1).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
                     outofbounds = false;
                     break;
@@ -304,7 +304,7 @@ class Model{
             }
             if(outofbounds == true){
                 i1 = 0;
-                for(;i1<5;i1++){
+                for(;i1<this.player.getHand().length;i1++){
                     if(this.com1.getCard(i1).getColor() == color ||this.com1.getCard(i1).getColor() == this.trumpffarbe){
                         outofbounds = false;
                         break;
@@ -319,7 +319,7 @@ class Model{
             COM 3
              */
             outofbounds = true;
-            for(;i3<5;i3++){
+            for(;i3<this.player.getHand().length;i3++){
                 if((this.com3.getCard(i3).getColor() == color && this.com3.getCard(i3).getNumber() > this.player.getPlayedCard().getNumber())||(this.com3.getCard(i3).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
                     outofbounds = false;
                     break;
@@ -327,7 +327,7 @@ class Model{
             }
             if(outofbounds == true){
                 i3 = 0;
-                for(;i3<5;i3++){
+                for(;i3<this.player.getHand().length;i3++){
                     if(this.com3.getCard(i3).getColor() == color ||this.com3.getCard(i3).getColor() == this.trumpffarbe){
                         outofbounds = false;
                         break;
@@ -347,7 +347,7 @@ class Model{
             COM 1
              */
             outofbounds = true;
-            for(;i1<5;i1++){
+            for(;i1<this.player.getHand().length;i1++){
                 if((this.com1.getCard(i1).getColor() == color && this.com1.getCard(i1).getNumber() > this.player.getPlayedCard().getNumber())||(this.com1.getCard(i1).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
                     outofbounds = false;
                     break;
@@ -355,7 +355,7 @@ class Model{
             }
             if(outofbounds == true){
                 i1 = 0;
-                for(;i1<5;i1++){
+                for(;i1<this.player.getHand().length;i1++){
                     if(this.com1.getCard(i1).getColor() == color ||this.com1.getCard(i1).getColor() == this.trumpffarbe){
                         outofbounds = false;
                         break;
@@ -370,7 +370,7 @@ class Model{
             COM 2
              */
             outofbounds = true;
-            for(;i2<5;i2++){
+            for(;i2<this.player.getHand().length;i2++){
                 if((this.com2.getCard(i2).getColor() == color && this.com2.getCard(i2).getNumber() > this.player.getPlayedCard().getNumber())||(this.com2.getCard(i2).getColor() == this.trumpffarbe && this.player.getPlayedCard().getColor() != this.trumpffarbe)){
                     outofbounds = false;
                     break;
@@ -378,7 +378,7 @@ class Model{
             }
             if(outofbounds == true){
                 i2 = 0;
-                for(;i2<5;i2++){
+                for(;i2<this.player.getHand().length;i2++){
                     if(this.com2.getCard(i2).getColor() == color ||this.com2.getCard(i2).getColor() == this.trumpffarbe){
                         outofbounds = false;
                         break;
