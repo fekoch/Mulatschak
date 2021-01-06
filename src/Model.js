@@ -435,9 +435,9 @@ class Model{
             }
 
         }
-        console.log(i1);
-        console.log(i2);
-        console.log(i3);
+        //console.log(i1);
+        //console.log(i2);
+        //console.log(i3);
         this.com1.playCard(this.com1.getCard(i1));
         this.com2.playCard(this.com2.getCard(i2));
         this.com3.playCard(this.com3.getCard(i3));
@@ -479,6 +479,7 @@ class Model{
      * @return {Player|-1} the current playing player, or -1 if all had their turn
      */
     getSpieleranderReihe(){
+        console.log("getSpieleranderReihe was called"+this.justacounter+" times");
         if(this.justacounter == 4){
             this.justacounter = 0;
             return -1;
