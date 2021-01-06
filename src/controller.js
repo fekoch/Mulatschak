@@ -100,11 +100,12 @@ class Controller {
      *  or ends the Round if all players played
      */
     newRun() {
-        console.log("NewRun")
+        console.log("NewRun ["+this.roundCounter+"]");
         let currPlayer = this.model.getSpieleranderReihe();
-        console.log("getSpieler an der Reihe")
-        if (currPlayer === -1) {
-            console.log("-1")
+        console.log("getSpieler an der Reihe: ");
+        console.log(currPlayer);
+        if (currPlayer === -1) { // if all players had their turn
+            console.log("end of round");
             var stecher =this.model.play();
             this.view.displayFadeOutMessage(stecher.getName()+" hat den Stich gemacht!");
             this.view.hideDropzone();
@@ -116,21 +117,24 @@ class Controller {
             this.view.showDropzone();
         }
         else {
-            console.log("Com")
+            console.log("COM");
+            let card = "ERORO";
             if(currPlayer === this.model.getCom1()){
-                this.view.comPlayCard(1,this.model.getCom1().getPlayedCard());
+                card = this.model.getCom1().getPlayedCard();
+                this.view.comPlayCard(1,card);
             }else if(currPlayer === this.model.getCom2()){
+                card = this.model.getCom2().getPlayedCard();
                 this.view.comPlayCard(2,this.model.getCom2().getPlayedCard());
-
             }else if(currPlayer === this.model.getCom3()){
+                card = this.model.getCom3().getPlayedCard();
                 this.view.comPlayCard(3,this.model.getCom3().getPlayedCard());
             }
+            console.log("COM-Name: "+currPlayer.getName());
+            console.log("COM-PlayedCard: ");
+            console.log(card);
             this.model.naechsterSpieler();
 
             setTimeout(function (context) {context.newRun()},1000,this); // makes game more smooth
-            // TODO com play
-
-            console.log("COM ist an der Reihe");
         }
 
     }
