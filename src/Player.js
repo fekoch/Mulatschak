@@ -70,6 +70,8 @@ class Player{
         this.counter = counter;
         console.log(counter);
     }
+
+    getCounter() {return this.counter;}
     
     /**
      * sets reihe, that tells you if this player starts the round
