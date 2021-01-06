@@ -142,7 +142,7 @@ class Player{
             this.delcard(card);
             this.playedCard = card;
         }
-        else console.error("The card "+card+" is not int the hand of the player "+this);
+        else console.error("The card "+card+" is not int the hand of the player "+this.getName());
     }
 
     /**
