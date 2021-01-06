@@ -47,6 +47,7 @@ class Controller {
     startPlay() {
         // TODO implement
 
+        this.resetStichDisplay();
         this.model.handOut();
         let time_plus = 0;
         if(this.model.getMulti() > 1){ // Message about Multi
@@ -84,7 +85,6 @@ class Controller {
      */
     startRound() {
         console.log("startRound()");
-
         if(this.roundCounter === 5){
             this.model.punkteauszaehlung();
             // TODO view gets the points
@@ -187,6 +187,7 @@ class Controller {
     tricksChosen(tricks) {
         var stiche = this.model.setSticheAngesagt(tricks);
         this.model.prePlay();
+        // TODO Stichansagen Reinfolge
         this.view.setComDeclaredTricks(0,this.model.getCom1().getSticheAngesagt());
         this.view.setComDeclaredTricks(1,this.model.getCom2().getSticheAngesagt());
         this.view.setComDeclaredTricks(2,this.model.getCom3().getSticheAngesagt());
@@ -217,5 +218,19 @@ class Controller {
         this.model.setTrumpffarbe(farbe);
         this.view.displayTrumpffarbe(farbe);
         this.startRound();
+    }
+
+    /**
+     * Sets the angesagteStiche and getaneStiche in the GUI to zero
+     */
+    resetStichDisplay() {
+        this.view.setComDoneTricks(0,0);
+        this.view.setComDoneTricks(1,0);
+        this.view.setComDoneTricks(2,0);
+        this.view.setPlayerDoneTricks(0);
+        this.view.setComDeclaredTricks(0,"-");
+        this.view.setComDeclaredTricks(1,"-");
+        this.view.setComDeclaredTricks(2,"-");
+        this.view.setPlayerDeclaredTricks("-");
     }
 }

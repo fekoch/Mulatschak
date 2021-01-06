@@ -580,7 +580,7 @@ class PlayGame extends Phaser.Scene {
      * @param state {number} Has the player done enough Tricks?
      *  one of {@link TRICKS_TODO}, {@link TRICKS_CORRECT} and {@link TRICKS_TOO_MUCH}
      */
-    setComDoneTricks(comid, tricks, state) {
+    setComDoneTricks(comid, tricks, state=PlayGame.TRICKS_TODO) {
         const TRICKS_TOO_MUCH_COLOR = 0xE40100;
         const TRICKS_CORRECT_COLOR = 0x47E400;
         const TRICKS_TODO_COLOR = 0xE48F12;
