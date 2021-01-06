@@ -403,6 +403,7 @@ class Model{
      * @param {Card} card1
      */
     setPlayerinStack(card1){
+        console.log(this.getRundenBeginner());
         if(this.getRundenBeginner() != this.player){
             var color = this.getRundenBeginner().getPlayedCard().getColor();
             if(card1.getColor() != color && card1.getColor() != this.trumpffarbe){
@@ -437,6 +438,16 @@ class Model{
             this.justacounter = 0;
             return -1;
         }
+        else if (this.justacounter == 0) {
+            // des is a pfusch, i just wanna die
+            // but it should work
+            let rundenbeginner = this.getRundenBeginner();
+            this.player.setReihe(false);
+            this.com1.setReihe(false);
+            this.com2.setReihe(false);
+            this.com3.setReihe(false);
+            rundenbeginner.setReihe(true);
+        }
         if(this.player.getReihe() == true){
             this.justacounter += 1;
            return this.player;
@@ -467,7 +478,7 @@ class Model{
         }else if(this.com2.getReihe() == true){
             this.com2.setReihe(false);
             this.com3.setReihe(true);
-        }else if(this.com3.getRundeGewonnen() == true){
+        }else if(this.com3.getReihe() == true){
             this.com3.setReihe(false);
             this.player.setReihe(true);
         }
