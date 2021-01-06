@@ -171,8 +171,10 @@ class Controller {
         // this.view.showHand
         // this.view showDropzone
 
-        this.model.setStack();
-        console.log("SetStack")
+        if (this.model.getPlayer() === this.model.getRundenBeginner()) {
+            this.model.setStack();
+            console.log("SetStack")
+        }
         this.model.naechsterSpieler();
         console.log("NextPlayer")
         setTimeout(function (context) {context.newRun()},1000,this); // makes game more smooth
