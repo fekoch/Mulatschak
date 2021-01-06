@@ -115,6 +115,7 @@ class Controller {
         else if (currPlayer === this.model.getPlayer()) {
             console.log("Player")
             this.view.showDropzone();
+            this.view.setCardDragEnabled(true);
         }
         else {
             console.log("COM");
