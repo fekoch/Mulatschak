@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Tutorial</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
+.w3-sidebar {
+  z-index: 3;
+  width: 250px;
+  top: 43px;
+  bottom: 0;
+  height: inherit;
+}
+#footer {
+    position: fixed;
+    padding: 1px 1px 1px 1px;
+    bottom: 0px;
+    width: 100%;
+    /* Height of the footer*/
+    height: 80px;
+    background: #5E5E5E;
+}
+</style>
+<body>
+<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+<div class="w3-main" style="margin-left:0px">
+
+  <div class="w3-row w3-padding-64">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-teal">Willkommen zum Mulatschak Tutorial</h1>
+      <p><b>Ziel des Spieles</b></p>
+	  <p>Die Spieler beginnen das Spiel bei 15 Punkten. Ziel des Spieles ist es bei Spielende die wenigsten Punkte zu haben bzw. nicht der Verlierer zu sein.</p>	
+	  <p><b>Aufbau</b></p>
+	  <p>Alle Spieler bekommen 5 Karten zugewiesen.
+        Hat ein Spieler nur Karten mit einem Wert kleiner/gleich 10 kann er beschließen, seine Hand zu zeigen und die Runde sofort zu beenden. Alle Karten werden gemischt und wieder neu verteilt. Auf dem Block wird notiert, dass für die nächste Runde alle Punktewerte verdoppelt werden. (x2)
+        Die restlichen Karten werden als verdeckter Nachziehstapel bereitgelegt.
+        Der Spieler selbst beginnt mit der Stichansage, bei der nächsten Runde ist es Com1, bei der übernächsten ist es Com2 danach Com3 und dann fängt alles wieder von vorne an bei dem Spieler.
+      </p>
+        <p><b>Besonderheiten</b></p>
+        <p>Stichansage
+            Der Spieler links vom Geber beginnt mit der Ansage wie viele Stiche er macht. Der nächste Spieler muss erhöhen oder passen.
+            Der Geber hat eine besondere Rolle. Er kann die angesagte Stichzahl halten und selbst spielen, wenn der Spieler der ursprünglich die Zahl angesagt hat nicht erhöht.
+            Ausnahme: Ein Spieler kann auch einen Mulatschak ansagen. Das bedeutet, dass er nicht nur alle Stiche macht, sondern hat auch folgende Zusätze: Alle Spieler müssen mitspielen und keine Karten dürfen getauscht werden. Es ist das höchste was man spielen kann (den Schritt Aussetzen und Tauschen einfach überspringen)
+            Was bringt es einem, wenn man Stiche ansagt und spielen darf? Derjenige der das Höchstgebot abgegeben hat ist der Startspieler und bestimmt die Trumpffarbe.
+        </p>
+        <p><b>Aussetzen</b></p>
+        <p>Danach können die Spieler im Uhrzeigersinn beschließen, ob sie mitspielen oder die Runde aussetzen.
+            Ausnahme: Hat ein Spieler <= 5 Punkte muss er mitspielen.
+            Der letzte Spieler muss mitspielen, wenn alle anderen bis dahin gepasst haben.
+        </p>
+        <p><b>Karten tauschen</b></p>
+        <p><br>Jetzt dürfen die Spieler, beginnend mit dem Spieler links vom Geber Karten tauschen, sofern sie noch im Spiel sind.</br>
+            <br>•	Wenn man 1-4 Karten austauschen möchte kann man dies der Reihenfolge nach tuen.</br>
+                <br>•	Wenn man alle 5 Karten austauschen möchte muss man zuerst auf den anderen Spielern warten die 1-4 Karten wechseln möchten.</br>
+        </p>
+        <p><b>Ausspielen und Stich machen</b></p>
+        <p>Haben alle getauscht, spielt nun der Startspieler die 1. Karte aus.
+            Es herrscht Farb- aber kein Stichzwang. Höchste Karte gewinnt den Stich. Der Gewinner des Stichs spielt die nächste Karte aus usw.
+        </p>
+        <p><b>Punkteverteilung</b></p>
+        <p>Wurden alle Stiche gespielt, kommt es zur Wertung.
+            <br>•	Hat der Startspieler mindestens so viele Stiche gemacht, wie er angesagt hat darf er pro Stich einen Punkt von seiner Punktezahl abziehen.
+            <br>•	Konnte der Startspieler die Ansage nicht erfüllen, addiert er 10 Punkte zu seiner Punktezahl
+            <br>•	Ein Spieler der mitgespielt und Stiche gemacht hat darf ebenfalls pro Stich ein Punkt von seiner Punktezahl abziehen.
+            <br>•	Ein Spieler der mitgespielt aber keinen Stich gemacht hat addiert 5 Punkte zu seiner Punktezahl.
+            <br>•	Ein Spieler der ausgesetzt, also nicht mitgespielt hat addiert 1 Punkte zu seiner Punktezahl.
+            <br>•	Wurde eine Mulatschak angesagt und der Startspieler hat die Ansage erfüllt subtrahiert er 10 Punkte von seiner Punktezahl und die anderen addieren 10 Punkte.
+            <br>•	Wurde eine Mulatschak angesagt und der Startspieler hat die Ansage nicht erfüllt addiert er 10 Punkte zu seiner Punktezahl und der/die Spieler, die ihm Stiche weggenommen haben subtrahieren 10 Punkte von ihrer Punktezahl.
+            <br>•	War Herz Trumpf, werden alle Punkte die addiert bzw. subtrahiert werden verdoppelt.
+        </p>
+        <p><b>Spielende</b></p>
+        <p>Erreicht ein Spieler 0 Punkte ist er der Sieger.</p>
+        <p><b>Stechtutorial Erklärung</b></p>
+        <p>In diesem Tutorial wird dem Spieler das Stechen und die UI näher beigebracht. Die Trumpffarbe wird links oben angezeigt und die Gewinnerfarbe wird von Com1 bestimmt. Ziel ist es immer die höchst mögliche Karte zu legen.</p>
+        <img alt="GameBild" src="https://user-images.githubusercontent.com/56251167/104022301-65e4db80-51c0-11eb-8eb8-debb7eb1749e.png"
+             width=500" height="300">
+        <a href="index.html" class="btn btn-primary"><h1>Zum Stechtutorial</h1></a>
+	</div>
+      <!--
+    <div class="w3-third w3-container">
+      <img alt="PiatnikDoppeldeutsch" src="https://trift.org/wp-content/uploads/2014/04/20140410_diary096_piatnik_doppeldeutsch.gif"
+         width=400" height="500">
+      
+    </div>
+    -->
+
+  </div>
+<!--
+  <div class="w3-row">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-teal">Doppeldeutsche Karten</h1>
+      <p>Das Deutsche Blatt kennt die Farben Eichel, Laub, Herz und Schellen. Die Namen für die verschiedenen Farben weisen teils deutliche regionale Unterschiede auf (alternative Namen siehe Grafik). Neben den Karten mit Zahlenwerten gibt es die vier Bildwerte Unter (auch Bauer), Ober (auch Dame), König und Daus oder Sau (möglicherweise aufgrund des Schweins auf dem Schell-Daus auf den Blättern des Salzburger oder einfachdeutschen Bildes und des Bayerischen Bildes). In den meisten heute gebräuchlichen Varianten reichen die Kartenwerte von 6 bis 10 sowie Unter, Ober, König und Ass. Bei Mulatschak fallen alle 6er Karten aus, außer der Weli</p>
+      <p>In Österreich, Ungarn, der Slowakei, Slowenien, Kroatien, Teilen Bosniens und Teilen Tschechiens ist ein Blatt in Verwendung, das dieselben Farben wie das Bayerische Blatt verwendet und mit Persönlichkeiten aus der Wilhelm-Tell-Sage bebildert ist (siehe Bild).</p>
+	  <p>Unter, Ober und Daus jeder Farbe zeigen jeweils eine bestimmte Person (Unter, Ober) aus Friedrich Schillers Tell-Drama oder eine Jahreszeit (Daus). Diese sind:
+<br>
+<br><b>Herz:</b>
+<br>	<BLOCKQUOTE>Unter: Werner Stauffacher oder Kuoni, der Hirte
+<br>	Ober: Hermann Gessler
+<br>	Daus: Frühling, eine Blumen pflückende junge Frau</BLOCKQUOTE>
+<br><b>Schellen:</b>
+<br>	<BLOCKQUOTE>Unter: Arnold von Melchtal oder Itel Reding
+<br>    Ober: Stüssi, der Flurschütz
+<br>	Daus: Sommer, eine Heu mähende junge Frau mit Sichel</BLOCKQUOTE>
+<br><b>Grün:</b>
+<br>	<BLOCKQUOTE>Unter: Walter Fürst
+<br>	Ober: Ulrich von Rudenz
+<br>	Daus: Herbst, zwei Jungen, die Weintrauben verarbeiten</BLOCKQUOTE>
+<br><b>Eichel:</b>
+<br>	<BLOCKQUOTE>Unter: Rudolf der Harras
+<br>	Ober: Wilhelm Tell
+<br>	Daus: Winter, eine alte Frau, die Feuerholz trägt</BLOCKQUOTE></p>
+	</div>
+    <div class="w3-third w3-container">
+      <img alt="PiatnikDoppeldeutsch" src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Bay_eichel.svg?uselang=de" width="50" height="75">
+	  <img alt="PiatnikDoppeldeutsch" src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Bay_gras.svg?uselang=de">
+	  <img alt="PiatnikDoppeldeutsch" src="https://upload.wikimedia.org/wikipedia/commons/5/50/Bay_herz.svg?uselang=de">
+	  <img alt="PiatnikDoppeldeutsch" src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Bay_schellen.svg?uselang=de">
+	  <br>
+      <img alt="PiatnikDoppeldeutsch" src="https://github.com/fkoch-tgm/Mulatschak/blob/master/src/gui/assets/cardsheet.png?raw=true">
+    </div>
+  </div>
+  -->
+
+
+
+<!-- END MAIN -->
+</div>
+<footer id="myFooter">
+    <div class="w3-container w3-theme-l2 w3-padding-32">
+        <h4>Projektteam: Mulatschak-HHFF</h4>
+    </div>
+</footer>
+</body>
+</html>
