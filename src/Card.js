@@ -61,5 +61,15 @@ class Card{
 
       }
   }
+    /**
+     * Compares the values and colors of two cards are equal to eachother
+     * @param {card} The card to compare to
+     * @returns {boolean} whether the cards are the same or not
+     * @author Alexander Hristov
+     */
+  equals(card){
+      if((this.color==card.getColor())&&(this.number==card.getNumber()))return true;
+      return false;
+  }
 
 }
