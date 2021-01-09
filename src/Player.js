@@ -56,7 +56,7 @@ class Player{
     
     /**
      * returns hand
-     * @return hand
+     * @return {Card[]} hand of the player
      */
     getHand(){
         return this.hand;
