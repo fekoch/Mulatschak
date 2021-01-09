@@ -582,13 +582,7 @@ class Model{
         
         this.ar[0]= null;
 
-       for(var i = 0;i<4;i++){
-           if(this.stack[i].getColor()==this.deck.WELI_FARBE) {
-               this.ar[0]=this.stack[i];
-               this.weliVorhanden = true;
-           }
-       }
-       if(this.weliVorhanden==false) {
+
 
 
            // Schauen welche Karten die Trumpffarbe haben, und die höchste Trumpffarbenkarte bestimmen
@@ -616,7 +610,7 @@ class Model{
                    }
                }
            }
-       }
+
 
            // Falls der Spieler die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
            if (this.ar[0] == this.stack[0]) {
