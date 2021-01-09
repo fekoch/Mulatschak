@@ -587,8 +587,10 @@ class Model{
        for(var i = 0;i<4;i++){
            console.log(this.stack[i].getColor());
            if(this.stack[i].getColor()=="WELI_FARBE") {
+               console.log(this.stack[i].getColor());
                this.ar[0]=this.stack[i];
                this.weliVorhanden = true;
+               break;
            }
        }
        if(this.weliVorhanden==false) {
