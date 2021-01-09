@@ -164,25 +164,25 @@ class Controller {
      * @param card the card that the player plays
      */
     playCard(card) {
-        // TODO implement
         console.log("Played CARD:");
         console.log(card);
         this.view.hideDropzone();
         this.view.setCardDragEnabled(false);
-        this.model.setPlayerinStack(card);
-        // Model accepts the card or rejected it
-        // if the card is accepted
-        // else view starts a new user input
-        // this.view.showHand
-        // this.view showDropzone
-
-        if (this.model.getPlayer() === this.model.getRundenBeginner()) {
-            this.model.setStack();
-            console.log("SetStack")
+        let correctCard = this.model.setPlayerinStack(card);
+        if (correctCard) {
+            this.view.hideDropzone();
+            if (this.model.getPlayer() === this.model.getRundenBeginner()) {
+                this.model.setStack();
+            }
+            this.model.naechsterSpieler();
+            setTimeout(function (context) {context.newRun()},1000,this); // makes game more smooth
         }
-        this.model.naechsterSpieler();
-        console.log("NextPlayer")
-        setTimeout(function (context) {context.newRun()},1000,this); // makes game more smooth
+        else {
+            this.view.clearPlayerCard();
+            this.view.showHand(this.model.getPlayer().getHand());
+            this.view.showDropzone();
+            this.view.displayFadeOutMessage("Falsche Farbe");
+        }
     }
 
     /**

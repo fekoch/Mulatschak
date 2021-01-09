@@ -109,6 +109,9 @@ class PlayGame extends Phaser.Scene {
             gameObject.y = dragY;
             if (this.cardDragEnabled && gameObject.outline !== undefined) gameObject.outline()
         },this);
+        this.input.on('dragend',function (pointer,gameObject,dragX,dragY) {
+            if (this.cardDragEnabled && gameObject.outline !== undefined) gameObject.outlineGraphic.clear();
+        },this);
 
         // setup player hand array
         this.playerHandCards = [];
@@ -327,6 +330,7 @@ class PlayGame extends Phaser.Scene {
     clearPlayerCard() {
         if (this.droppedCard != undefined ) {
             let card = this.droppedCard;
+            card.outlineGraphic.clear();
             this.playerHandCards = this.playerHandCards.filter(function (value,index,array) {
                 return value !== card;
             });
