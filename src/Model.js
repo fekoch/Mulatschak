@@ -459,7 +459,7 @@ class Model{
         if(this.getRundenBeginner() != this.player){
             var color = this.getRundenBeginner().getPlayedCard().getColor();
             if(card1.getColor() != color && card1.getColor() != this.trumpffarbe) {
-                for(var i = 0;i<4;i++){
+                for(var i = 0;i<this.player.getHand().length;i++){
                     if(this.player.getCard(i).getColor() == this.trumpffarbe||this.player.getCard(i).getColor() == color){
                         return false;
                     }
