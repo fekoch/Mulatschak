@@ -50,7 +50,7 @@ class Model{
 
     /**
      *  set SticheAngesagt
-     *  @param {Integer} anzahl TODO document
+     *  @param {integer} anzahl TODO document
      *  @return -1, if the player is the Stichsager
      */
     setSticheAngesagt(anzahl) {
@@ -58,17 +58,17 @@ class Model{
         this.com1.setSticheAngesagt(Math.floor(Math.random() * Math.floor(3)));
         this.com2.setSticheAngesagt(Math.floor(Math.random() * Math.floor(3)));
         this.com3.setSticheAngesagt(Math.floor(Math.random() * Math.floor(3)));
-	var arr = [
-         Deck.HERZ_FARBE,
-         Deck.GLOCKE_FARBE,
-         Deck.BLATT_FARBE,
-         Deck.NUSS_FARBE
+        let arr = [
+            Deck.HERZ_FARBE,
+            Deck.GLOCKE_FARBE,
+            Deck.BLATT_FARBE,
+            Deck.NUSS_FARBE
         ];
-        if(this.stichsager() == this.player){
+        if(this.stichsager() === this.player){
             //player wählt
             return -1;
         } else{
-            var randomIndex = Math.floor(Math.random() * arr.length);
+            let randomIndex = Math.floor(Math.random() * arr.length);
             this.setTrumpffarbe(arr[randomIndex]);
             return 0;
         }
