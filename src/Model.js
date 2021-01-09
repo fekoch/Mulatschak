@@ -458,8 +458,12 @@ class Model{
         console.log(this.getRundenBeginner());
         if(this.getRundenBeginner() != this.player){
             var color = this.getRundenBeginner().getPlayedCard().getColor();
-            if(card1.getColor() != color && card1.getColor() != this.trumpffarbe){
-                return false;
+            if(card1.getColor() != color && card1.getColor() != this.trumpffarbe) {
+                for(var i = 0;i<4;i++){
+                    if(this.player.getCard(i).getColor() == this.trumpffarbe||this.player.getCard(i).getColor() == color){
+                        return false;
+                    }
+                }
             }
         }
         this.player.playCard(card1);
