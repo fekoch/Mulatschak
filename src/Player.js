@@ -128,7 +128,7 @@ class Player{
     }
     /**
      * get sticheAngesagt
-     * @return sticheAngesagt
+     * @return {number} sticheAngesagt
      */
     getSticheAngesagt() {
         return this.sticheAngesagt;
