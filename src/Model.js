@@ -585,7 +585,8 @@ class Model{
         this.ar[0]= null;
 
        for(var i = 0;i<4;i++){
-           if(this.stack[i].getColor()==this.deck.WELI_FARBE) {
+           console.log(this.stack[i].getColor());
+           if(this.stack[i].getColor()=="WELI_FARBE") {
                this.ar[0]=this.stack[i];
                this.weliVorhanden = true;
            }
