@@ -41,7 +41,8 @@ class Tutorialcontroller {
     startPlay() {
         // TODO implement
         this.model = new Model();
-        this.model.setPlayerHand(new Card("HERZ_FARBE",9),new Card("BLATT_FARBE",12),new Card("NUSS_FARBE",13),new Card("HERZ_FARBE",14),new Card("GLOCKE_FARBE",11));
+        //this.model.setPlayerHand(new Card("HERZ_FARBE",9),new Card("BLATT_FARBE",12),new Card("NUSS_FARBE",13),new Card("HERZ_FARBE",14),new Card("GLOCKE_FARBE",11));
+        this.model.getPlayer().hand = [new Card("HERZ_FARBE",9),new Card("BLATT_FARBE",12),new Card("NUSS_FARBE",13),new Card("HERZ_FARBE",14),new Card("GLOCKE_FARBE",11)];
         //if(this.model.getMulti() > 1){
         //    this.view.displayFadeOutMessage("Der Multiplikator für diese Runde wurde bereits erhöht er lautet"+this.model.getMulti());
         //}
