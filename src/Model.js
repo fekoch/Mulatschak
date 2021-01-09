@@ -571,6 +571,7 @@ class Model{
     * @return {Player} der Spieler der den Stich gemacht hat
      */
     play(){
+       this.trumpfVorhanden = false;
         this.stack[0] = this.player.getPlayedCard();
         this.stack[1] = this.com1.getPlayedCard();
         this.stack[2] = this.com2.getPlayedCard();
