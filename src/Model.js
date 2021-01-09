@@ -580,61 +580,84 @@ class Model{
         else if(this.com2.getRundeGewonnen())this.gewinnerfarbe=this.stack[2].getColor();
         else if(this.com3.getRundeGewonnen())this.gewinnerfarbe=this.stack[3].getColor();
         
-        this.ar[0]=this.stack[0];
-        // Schauen welche Karten die Trumpffarbe haben, und die höchste Trumpffarbenkarte bestimmen
-            for(var i = 0;i<4;i++){
-                if(this.stack[i].getColor()==this.trumpffarbe && 
-                   this.stack[i].getNumber()>=this.ar[0].getNumber()) {
-                    this.ar[0]=this.stack[i];                                   
-                    this.trumpfVorhanden = true;
-                }
-            }
-        // Falls die Trupffarbe nicht vorkommt gewinnt die höchste Karte mit der Gewinnerfarbe
-            if(this.trumpfVorhanden===false) {
-                for(i = 0;i<4;i++){
-                    if(this.stack[i].getColor()==this.gewinnerfarbe &&
-                       this.stack[i].getNumber()>this.ar[0].getNumber()) {
-                        this.ar[0]=this.stack[i];
-                    }
-                }
-            }
-        // Falls der Spieler die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
-            if(this.ar[0]==this.stack[0]) {
-                this.player.addStich()
-                this.player.setRundeGewonnen(true);
-                this.com1.setRundeGewonnen(false);
-                this.com2.setRundeGewonnen(false);
-                this.com3.setRundeGewonnen(false);
-                return this.player;
-            }
-        // Falls der Com1 die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
-            if(this.ar[0]==this.stack[1]) {
-                this.com1.addStich();
-                this.player.setRundeGewonnen(false);
-                this.com1.setRundeGewonnen(true);
-                this.com2.setRundeGewonnen(false);
-                this.com3.setRundeGewonnen(false);
-                return this.com1;
-            }
-        // Falls der Com2 die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
-            if(this.ar[0]==this.stack[2]) {
-                this.com2.addStich();
-                this.player.setRundeGewonnen(false);
-                this.com1.setRundeGewonnen(false);
-                this.com2.setRundeGewonnen(true);
-                this.com3.setRundeGewonnen(false);
-                return this.com2;
-            }
-        // Falls der Com3 die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
-            if(this.ar[0]==this.stack[3]) {
-                this.com3.addStich();
-                this.player.setRundeGewonnen(false);
-                this.com1.setRundeGewonnen(false);
-                this.com2.setRundeGewonnen(false);
-                this.com3.setRundeGewonnen(true);
-                return this.com3;
-            }
-        }
+        this.ar[0]= null;
+
+       for(var i = 0;i<4;i++){
+           if(this.stack[i].getColor()==this.deck.WELI_FARBE) {
+               this.ar[0]=this.stack[i];
+               this.weliVorhanden = true;
+           }
+       }
+       if(this.weliVorhanden==false) {
+
+
+           // Schauen welche Karten die Trumpffarbe haben, und die höchste Trumpffarbenkarte bestimmen
+           for (var i = 0; i < 4; i++) {
+               if (this.stack[i].getColor() == this.trumpffarbe) {
+                   if (this.ar[0] == null) {
+                       this.ar[0] = this.stack[i];
+                   } else if (this.stack[i].getNumber() > this.ar[0].getNumber()) {
+                       this.ar[0] = this.stack[i];
+                   }
+
+                   this.trumpfVorhanden = true;
+               }
+           }
+
+           // Falls die Trupffarbe nicht vorkommt gewinnt die höchste Karte mit der Gewinnerfarbe
+           if (this.trumpfVorhanden == false) {
+               for (i = 0; i < 4; i++) {
+                   if (this.stack[i].getColor() == this.gewinnerfarbe) {
+                       if (this.ar[0] == null) {
+                           this.ar[0] = this.stack[i];
+                       } else if (this.stack[i].getNumber() > this.ar[0].getNumber()) {
+                           this.ar[0] = this.stack[i];
+                       }
+                   }
+               }
+           }
+       }
+
+           // Falls der Spieler die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
+           if (this.ar[0] == this.stack[0]) {
+               this.player.addStich()
+               this.player.setRundeGewonnen(true);
+               this.com1.setRundeGewonnen(false);
+               this.com2.setRundeGewonnen(false);
+               this.com3.setRundeGewonnen(false);
+               return this.player;
+           }
+           // Falls der Com1 die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
+           if (this.ar[0] == this.stack[1]) {
+               this.com1.addStich();
+               this.player.setRundeGewonnen(false);
+               this.com1.setRundeGewonnen(true);
+               this.com2.setRundeGewonnen(false);
+               this.com3.setRundeGewonnen(false);
+               return this.com1;
+           }
+           // Falls der Com2 die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
+           if (this.ar[0] == this.stack[2]) {
+               this.com2.addStich();
+               this.player.setRundeGewonnen(false);
+               this.com1.setRundeGewonnen(false);
+               this.com2.setRundeGewonnen(true);
+               this.com3.setRundeGewonnen(false);
+               return this.com2;
+           }
+           // Falls der Com3 die Runde gewonnen hat kriegt er +1 stiche und gilt als gewinner der Runde
+           if (this.ar[0] == this.stack[3]) {
+               this.com3.addStich();
+               this.player.setRundeGewonnen(false);
+               this.com1.setRundeGewonnen(false);
+               this.com2.setRundeGewonnen(false);
+               this.com3.setRundeGewonnen(true);
+               return this.com3;
+           }
+
+
+
+    }
 
     punkteauszaehlung(){
         var pl = [this.player,this.com1,this.com2,this.com3]
