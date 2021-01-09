@@ -46,6 +46,9 @@ class Model{
         }else if(this.com3.getSticheAngesagt() > this.com1.getSticheAngesagt() && this.player.getSticheAngesagt() < this.com3.getSticheAngesagt() && this.com2.getSticheAngesagt() < this.com3.getSticheAngesagt()){
             return this.com3;
         }
+        else {
+            return this.player;
+        }
     }
 
     /**
