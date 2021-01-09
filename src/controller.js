@@ -53,9 +53,11 @@ class Controller {
         this.resetStichDisplay();
         this.model.handOut();
         let time_plus = 0;
-        if(this.model.getMulti() > 1){ // Message about Multi
+        let multi = this.model.getMulti();
+        if(multi > 1){ // Message about Multi
             setTimeout(function (context) {
-                context.view.displayFadeOutMessage("Der Multiplikator fuer diese Runde wurde bereits erhoeht er lautet"+context.model.getMulti());
+                //context.view.displayFadeOutMessage("Der Multiplikator fuer diese Runde wurde bereits erhoeht er lautet"+context.model.getMulti());
+                context.view.displayFadeOutMessage("Multiplikator erhoeht: "+multi);
                 },1000,this);
             time_plus = 1000;
         }
