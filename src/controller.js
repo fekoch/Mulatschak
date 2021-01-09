@@ -1,3 +1,4 @@
+// noinspection DuplicatedCode
 /**
  * A Controller for a Game
  * @author Felix Koch
@@ -190,31 +191,39 @@ class Controller {
      * @param tricks
      */
     tricksChosen(tricks) {
-        var stiche = this.model.setSticheAngesagt(tricks);
+        this.model.setSticheAngesagt(tricks);
         this.model.prePlay();
         // TODO Stichansagen Reinfolge
-        this.view.setComDeclaredTricks(0,this.model.getCom1().getSticheAngesagt());
-        this.view.setComDeclaredTricks(1,this.model.getCom2().getSticheAngesagt());
-        this.view.setComDeclaredTricks(2,this.model.getCom3().getSticheAngesagt());
 
-        // TODO falls die Coms es schaffen mehr anzuzeigen dann muss man die angesgaten Stiche anders setzen
+        let stichsager = this.model.stichsager();
+
+
+        for (let com of this.comarray) {
+            if (com !== stichsager) com.setSticheAngesagt(1);
+        }
+
+        this.view.displayFadeOutMessage(stichsager.getName()+" hat die meisten Stiche angesagt",PlayGame.SHORT_DELAY);
 
         // Player with the highest angesagte Stiche must set the trumpffarbe
-
-        // if it is the player the views shows that
-        // Model gets the trumpfarbe
-
-        if(stiche === -1){ // is the Player the Stichsager
-            setTimeout(function (context) {context.view.displayTrumpffarbenPicker(context)},1000,this); // makes game more smooth
+        if(stichsager === this.model.getPlayer()){ // is the Player the Stichsager
+            setTimeout(function (context) {context.view.displayTrumpffarbenPicker(context)},PlayGame.LONG_DELAY,this); // makes game more smooth
         }
+        else {
+            this.model.player.setSticheAngesagt(1);
+            this.view.displayTrumpffarbe(this.model.trumpffarbe);
+            setTimeout(function (context) {context.startRound();},PlayGame.LONG_DELAY,this); // makes game more smooth
+        }
+
+        setTimeout(function (context) {
+            context.view.setComDeclaredTricks(0,context.model.getCom1().getSticheAngesagt());
+            context.view.setComDeclaredTricks(1,context.model.getCom2().getSticheAngesagt());
+            context.view.setComDeclaredTricks(2,context.model.getCom3().getSticheAngesagt());
+            context.view.setPlayerDeclaredTricks(context.model.getPlayer().getSticheAngesagt());
+        },PlayGame.MEDIUM_DELAY,this);
 
         // TODO Discard Cards
         // first player starts to discard cards (and the other players also)
         // if players step out
-
-
-
-
     }
     /**
      *
