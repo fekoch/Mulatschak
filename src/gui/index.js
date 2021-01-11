@@ -653,21 +653,29 @@ class PlayGame extends Phaser.Scene {
             texts.push(bitmaptext);
         }
 
-        let r = this.add.rectangle(margin + offset * 0.5, yoff + offset / 2 * 1.2, 4 * offset, offset * 0.6, 0xffffff).setOrigin(0, 0).setStrokeStyle(2, 0x000000).setInteractive();
-        r.on('pointerup', function (pointer, localx, localy, event) {
-            for (let j = 0; j < options.length; j++) {
-                options[j].destroy();
-                texts[j].destroy();
-            }
-            //console.log("clicked: passen")
-            this.setPlayerDeclaredTricks("1");
-            listener.tricksChosen(0);
-        }, this);
-        r.on('pointerover',function(){r.setStrokeStyle(5,0x0CF2FF)});
-        r.on('pointerout',function(){r.setStrokeStyle()});
-        let t = this.add.bitmapText(sw / 2, yoff + offset / 2 * 1.2 + offset * 0.3, "gothic", "Passen").setOrigin(0.5, 0.5).setTintFill(0x000000);
-        options.push(r);
-        texts.push(t);
+        /* ============================================================================================================
+         * ||                                    the "passen"- Button                                                ||
+         * ||                               this function is deactivated because there is no                         ||
+         * ||                              implementation of what to do, when somebody yields                        ||
+         * ============================================================================================================
+         */
+
+        //let r = this.add.rectangle(margin + offset * 0.5, yoff + offset / 2 * 1.2, 4 * offset, offset * 0.6, 0xffffff).setOrigin(0, 0).setStrokeStyle(2, 0x000000).setInteractive();
+        /*r.on('pointerup', function (pointer, localx, localy, event) {
+         *    for (let j = 0; j < options.length; j++) {
+         *       options[j].destroy();
+         *       texts[j].destroy();
+         *   }
+         *   //console.log("clicked: passen")
+         *   this.setPlayerDeclaredTricks("1");
+         *   listener.tricksChosen(0);
+         *}, this);
+         */
+        //r.on('pointerover',function(){r.setStrokeStyle(5,0x0CF2FF)});
+        //r.on('pointerout',function(){r.setStrokeStyle()});
+        //let t = this.add.bitmapText(sw / 2, yoff + offset / 2 * 1.2 + offset * 0.3, "gothic", "Passen").setOrigin(0.5, 0.5).setTintFill(0x000000);
+        //options.push(r);
+        //texts.push(t);
     }
 
     /**
