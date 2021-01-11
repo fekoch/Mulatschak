@@ -96,13 +96,13 @@ class Controller {
                 this.view.setComRemainingPoints(comid, this.comarray[comid].counter);
                 if(this.comarray[comid].counter<0){
                     setTimeout(function (context) {context.view.displayFadeOutMessage("Der Gewinner ist :"+context.comarray[comid].getName());},2000,this);
-                    this.playGame();
+                    window.location.reload();
                 }
             }
             this.view.setPlayerVerbleibendePunkte(this.model.getPlayer().counter);
             if(this.model.getPlayer().counter<0){
                 setTimeout(function (context) {context.view.displayFadeOutMessage("Du hast gewonnen!");},2000,this);
-                this.playGame();
+                window.location.reload();
             }
             setTimeout(function (context) { return context.startPlay(); },2000,this);
         }else{
