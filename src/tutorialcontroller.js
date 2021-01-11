@@ -219,7 +219,7 @@ class Tutorialcontroller {
         if(this.c==2)this.startPlay3();
         if(this.c==1)this.startPlay4();
 
-        if(this.c==0)window.location.replace("Homepage.html");
+        if(this.c==0)window.location.replace("index.html");
     }
 
     /**
